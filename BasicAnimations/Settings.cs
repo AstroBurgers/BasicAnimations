@@ -17,7 +17,7 @@ namespace BasicAnimations
         internal static Keys SitKey = Keys.X;
         internal static Keys KneelKey = Keys.K;
         internal static Keys SitupKey = Keys.J;
-        internal static Keys LeaningKey = Keys.T;
+        //internal static Keys LeaningKey = Keys.T;
 
         internal static InitializationFile inifile;
         internal static void INIFile()
@@ -29,7 +29,7 @@ namespace BasicAnimations
             SitKey = inifile.ReadEnum("Keybindings", "SitKey", SitKey);
             KneelKey = inifile.ReadEnum("Keybindings", "KneelKey", KneelKey);
             SitupKey = inifile.ReadEnum("Keybindings", "SitupKey", SitupKey);
-            LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey);
+            //LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey);
         }
     }
 }

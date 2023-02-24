@@ -48,10 +48,10 @@ namespace BasicAnimations
                         {
                             Animations.SitupAnim();
                         }
-                        if (Game.IsKeyDown(Settings.LeaningKey) && MainPlayer.IsOnFoot)
+                        /*if (Game.IsKeyDown(Settings.LeaningKey) && MainPlayer.IsOnFoot)
                         {
                             Animations.LeanWall();
-                        }
+                        }*/
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)
