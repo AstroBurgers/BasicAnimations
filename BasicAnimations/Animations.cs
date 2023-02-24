@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BasicAnimations
 {
@@ -107,5 +108,21 @@ namespace BasicAnimations
                 Game.LogTrivial("Stopped Leaning Animation");
             }
         } // Leaning Method end
+        internal static void HandsOnBelt() // Hands on belt Method start
+        {
+            if (!IsActiveAnimation)
+            {
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@idle_enter"), "idle_intro", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@base"), "base", 5f, AnimationFlags.Loop);
+                IsActiveAnimation = true;
+                Game.LogTrivial("Putting hands on belt");
+            }
+            else
+            {
+                EntryPoint.MainPlayer.Tasks.Clear();
+                IsActiveAnimation = false;
+                Game.LogTrivial("Taking hands off belt");
+            }
+        } // Hands on belt Method end
     }
 }

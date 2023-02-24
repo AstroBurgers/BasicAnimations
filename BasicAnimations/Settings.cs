@@ -21,7 +21,7 @@ namespace BasicAnimations
         internal static Keys SitupKey = Keys.J;
         internal static Keys LeaningKey = Keys.T;
         internal static InitializationFile inifile;
-        
+        internal static Keys HandsOnBeltKey = Keys.B;
         internal static void INIFile()
         {
             inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
@@ -32,6 +32,7 @@ namespace BasicAnimations
             KneelKey = inifile.ReadEnum("Keybindings", "KneelKey", KneelKey); // Kneeling
             SitupKey = inifile.ReadEnum("Keybindings", "SitupKey", SitupKey); // Situp
             LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey); // Leaning
+            HandsOnBeltKey = inifile.ReadEnum("Keybindings", "HandsOnBeltKey", HandsOnBeltKey);
         }
     }
 }

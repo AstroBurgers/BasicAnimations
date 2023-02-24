@@ -52,6 +52,10 @@ namespace BasicAnimations
                         {
                             Animations.LeanWall(); // Triggering Leaning Method
                         }
+                        if (Game.IsKeyDown(Settings.HandsOnBeltKey) && MainPlayer.IsOnFoot)
+                        {
+                            Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
+                        }
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)
