@@ -50,6 +50,10 @@ namespace BasicAnimations
                         }
                     }
                 }
+                catch (System.Threading.ThreadAbortException e1)
+                {
+                    Game.LogTrivial("Plugin most likely unloaded: " + e1);
+                }
                 catch (Exception e)
                 {
                     Game.LogTrivial("Crashed at: " + e);
