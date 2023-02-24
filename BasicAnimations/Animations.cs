@@ -90,7 +90,7 @@ namespace BasicAnimations
                 Game.LogTrivial("Ended sit up animation");
             }
         } // Situp Method end
-        /*internal static void LeanWall()
+        internal static void LeanWall() // Leaning Method start
         {
             if (!IsActiveAnimation)
             {
@@ -101,10 +101,11 @@ namespace BasicAnimations
             }
             else
             {
-                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@exit"), "exit_front", 5f, AnimationFlags.None);
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@exit"), "exit_front", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.Clear();
                 IsActiveAnimation = false;
                 Game.LogTrivial("Stopped Leaning Animation");
             }
-        }*/
+        } // Leaning Method end
     }
 }

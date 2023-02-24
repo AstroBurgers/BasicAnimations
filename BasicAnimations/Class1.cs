@@ -48,10 +48,10 @@ namespace BasicAnimations
                         {
                             Animations.SitupAnim(); // Triggering Situp Method
                         }
-                        /*if (Game.IsKeyDown(Settings.LeaningKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.LeaningKey) && MainPlayer.IsOnFoot)
                         {
-                            Animations.LeanWall();
-                        }*/
+                            Animations.LeanWall(); // Triggering Leaning Method
+                        }
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)
