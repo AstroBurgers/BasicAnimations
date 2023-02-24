@@ -91,5 +91,25 @@ namespace BasicAnimations
                 Game.LogTrivial("Ended sit up animation");
             }
         }
+        internal static void LeanWall()
+        {
+            if (!IsActiveAnimation)
+            {
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@enter"), "enter_back", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_a"), "idle_a", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_a"), "idle_b", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_a"), "idle_c", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_b"), "idle_d", 5f, AnimationFlags.None).WaitForCompletion();
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_a"), "idle_e", 5f, AnimationFlags.Loop);
+                IsActiveAnimation = true;
+                Game.LogTrivial("Started Leaning Animation");
+            }
+            else
+            {
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@exit"), "exit_front", 5f, AnimationFlags.None);
+                IsActiveAnimation = false;
+                Game.LogTrivial("Stopped Leaning Animation");
+            }
+        }
     }
 }
