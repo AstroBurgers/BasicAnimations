@@ -11,9 +11,8 @@ namespace BasicAnimations
     internal class Animations
     {
         internal static bool IsActiveAnimation = false;
-        internal static void SitOnGround()
+        internal static void SitOnGround() // Sitting Method start
         {
-            //MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@amb@business@bgen@bgen_no_work@"), "sit_phone_phonepickup_nowork", 5f, AnimationFlags.Loop);
             if (!IsActiveAnimation)
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@amb@business@bgen@bgen_no_work@"), "sit_phone_phoneputdown_idle_nowork", 5f, AnimationFlags.Loop); //Starting task
@@ -27,8 +26,8 @@ namespace BasicAnimations
                 Game.LogTrivial("Started stand up animation");
             }
 
-        }
-        internal static void SmokingInPlace()
+        } // Sitting Method end
+        internal static void SmokingInPlace() // Smoking Method start
         {
             if (!IsActiveAnimation)
             {
@@ -42,8 +41,8 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
                 Game.LogTrivial("Stopped smoking scenario");
             }
-        }
-        internal static void KneelingAnim()
+        } // Smoking Method end
+        internal static void KneelingAnim() // Kneeling Method end
         {
             if (!IsActiveAnimation)
             {
@@ -58,8 +57,8 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
                 Game.LogTrivial("Started stand up animation");
             }
-        }
-        internal static void PushupAnim()
+        } // Kneeling Method end
+        internal static void PushupAnim() // Pushup Method start
         {
             if (!IsActiveAnimation)
             {
@@ -74,8 +73,8 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
                 Game.LogTrivial("Started stand up animation");
             }
-        }
-        internal static void SitupAnim()
+        } // Pushup Method end
+        internal static void SitupAnim() // Situp Method start
         {
             if (!IsActiveAnimation)
             {
@@ -90,7 +89,7 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
                 Game.LogTrivial("Ended sit up animation");
             }
-        }
+        } // Situp Method end
         /*internal static void LeanWall()
         {
             if (!IsActiveAnimation)

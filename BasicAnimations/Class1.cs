@@ -30,23 +30,23 @@ namespace BasicAnimations
                         GameFiber.Yield();
                         if (Game.IsKeyDown(Settings.SitKey) && MainPlayer.IsOnFoot)
                         {
-                            Animations.SitOnGround();
+                            Animations.SitOnGround(); // Triggering sitting Method
                         }
                         if (Game.IsKeyDown(Settings.SmokeKey) && MainPlayer.IsOnFoot)
                         {
-                            Animations.SmokingInPlace();
+                            Animations.SmokingInPlace(); // Triggering smoking Method
                         }
                         if (Game.IsKeyDown(Settings.KneelKey) && MainPlayer.IsOnFoot)
                         {
-                            Animations.KneelingAnim();
+                            Animations.KneelingAnim(); // Triggering kneeling Method
                         }
                         if (Game.IsKeyDown(Settings.PushupKey) && MainPlayer.IsOnFoot)
                         {
-                            Animations.PushupAnim();
+                            Animations.PushupAnim(); // Triggering pushup Method
                         }
                         if (Game.IsKeyDown(Settings.SitupKey) && MainPlayer.IsOnFoot)
                         {
-                            Animations.SitupAnim();
+                            Animations.SitupAnim(); // Triggering Situp Method
                         }
                         /*if (Game.IsKeyDown(Settings.LeaningKey) && MainPlayer.IsOnFoot)
                         {
@@ -56,13 +56,13 @@ namespace BasicAnimations
                 }
                 catch (System.Threading.ThreadAbortException e1)
                 {
-                    Game.LogTrivial("Plugin most likely unloaded: " + e1);
+                    Game.LogTrivial("Plugin most likely unloaded: " + e1); // Error handling
                 }
-                catch (Exception e)
+                catch (Exception e) 
                 {
-                    Game.LogTrivial("Crashed at: " + e);
+                    Game.LogTrivial("Crashed at: " + e); // Error handling
                 }
             }
         }
     }
-}  
+}

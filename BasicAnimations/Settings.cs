@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 
+// INI File configuration
+
 namespace BasicAnimations
 {
     internal class Settings
@@ -18,18 +20,18 @@ namespace BasicAnimations
         internal static Keys KneelKey = Keys.K;
         internal static Keys SitupKey = Keys.J;
         //internal static Keys LeaningKey = Keys.T;
-
         internal static InitializationFile inifile;
+        
         internal static void INIFile()
         {
             inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
             inifile.Create();
-            PushupKey = inifile.ReadEnum("Keybindings", "PushupKey", PushupKey);
-            SmokeKey = inifile.ReadEnum("Keybindings", "SmokeKey", SmokeKey);
-            SitKey = inifile.ReadEnum("Keybindings", "SitKey", SitKey);
-            KneelKey = inifile.ReadEnum("Keybindings", "KneelKey", KneelKey);
-            SitupKey = inifile.ReadEnum("Keybindings", "SitupKey", SitupKey);
-            //LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey);
+            PushupKey = inifile.ReadEnum("Keybindings", "PushupKey", PushupKey); // Pushup
+            SmokeKey = inifile.ReadEnum("Keybindings", "SmokeKey", SmokeKey); // Smoke
+            SitKey = inifile.ReadEnum("Keybindings", "SitKey", SitKey); // Sitting
+            KneelKey = inifile.ReadEnum("Keybindings", "KneelKey", KneelKey); // Kneeling
+            SitupKey = inifile.ReadEnum("Keybindings", "SitupKey", SitupKey); // Situp
+            //LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey); // Leaning
         }
     }
 }
