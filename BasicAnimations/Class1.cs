@@ -56,6 +56,10 @@ namespace BasicAnimations
                         {
                             Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
                         }
+                        if (Game.IsKeyDown(Settings.Suicide))
+                        {
+                            Animations.Suicide(); // Triggering Suicide Method
+                        }
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)

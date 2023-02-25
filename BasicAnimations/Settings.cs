@@ -14,6 +14,7 @@ namespace BasicAnimations
 {
     internal class Settings
     {
+        internal static Keys Suicide = Keys.H;
         internal static Keys PushupKey = Keys.P;
         internal static Keys SmokeKey = Keys.O;
         internal static Keys SitKey = Keys.X;
@@ -33,6 +34,7 @@ namespace BasicAnimations
             SitupKey = inifile.ReadEnum("Keybindings", "SitupKey", SitupKey); // Situp
             LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey); // Leaning
             HandsOnBeltKey = inifile.ReadEnum("Keybindings", "HandsOnBeltKey", HandsOnBeltKey);
+            Suicide = inifile.ReadEnum("Keybindings", "Suicide", Suicide);
         }
     }
 }

@@ -124,5 +124,14 @@ namespace BasicAnimations
                 Game.LogTrivial("Taking hands off belt");
             }
         } // Hands on belt Method end
+        internal static void Suicide()
+        {
+            
+            if (!IsActiveAnimation)
+            {
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pistol", 5f, AnimationFlags.None);
+                Game.LogTrivial("Played Suicide animation (Killed player most likely)");
+            }
+        }
     }
 }
