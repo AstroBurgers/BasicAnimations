@@ -60,6 +60,10 @@ namespace BasicAnimations
                         {
                             Animations.Suicide(); // Triggering Suicide Method
                         }
+                        if (Game.IsKeyDown(Settings.Cleanup))
+                        {
+                            Animations.CleanUp();
+                        }
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)

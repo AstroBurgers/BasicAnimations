@@ -126,10 +126,12 @@ namespace BasicAnimations
         } // Hands on belt Method end
         internal static void Suicide()
         {
-            
+
             if (!IsActiveAnimation)
             {
-                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pistol", 5f, AnimationFlags.None);
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pill", 5f, AnimationFlags.None);
+                GameFiber.Wait(2500);
+                EntryPoint.MainPlayer.Kill();
                 Game.LogTrivial("Played Suicide animation (Killed player most likely)");
                 IsActiveAnimation = false;
             }
