@@ -131,7 +131,14 @@ namespace BasicAnimations
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pistol", 5f, AnimationFlags.None);
                 Game.LogTrivial("Played Suicide animation (Killed player most likely)");
+                IsActiveAnimation = false;
             }
+        }
+        internal static void CleanUp()
+        {
+            EntryPoint.MainPlayer.Tasks.Clear();
+            IsActiveAnimation = false;
+            Game.LogTrivial("Cleared all active animations");
         }
     }
 }
