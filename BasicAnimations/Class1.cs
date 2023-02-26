@@ -23,40 +23,40 @@ namespace BasicAnimations
             {
                 try
                 {
-                    Game.LogTrivial("Loaded Successfully!!");
+                    Startup();
                     Settings.INIFile();
                     while (true)
                     {
                         GameFiber.Yield();
-                        if (Game.IsKeyDown(Settings.SitKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.SitKey) && CheckRequirements())
                         {
                             Animations.SitOnGround(); // Triggering sitting Method
                         }
-                        if (Game.IsKeyDown(Settings.SmokeKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.SmokeKey) && CheckRequirements())
                         {
                             Animations.SmokingInPlace(); // Triggering smoking Method
                         }
-                        if (Game.IsKeyDown(Settings.KneelKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.KneelKey) && CheckRequirements())
                         {
                             Animations.KneelingAnim(); // Triggering kneeling Method
                         }
-                        if (Game.IsKeyDown(Settings.PushupKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.PushupKey) && CheckRequirements())
                         {
                             Animations.PushupAnim(); // Triggering pushup Method
                         }
-                        if (Game.IsKeyDown(Settings.SitupKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.SitupKey) && CheckRequirements())
                         {
                             Animations.SitupAnim(); // Triggering Situp Method
                         }
-                        if (Game.IsKeyDown(Settings.LeaningKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.LeaningKey) && CheckRequirements())
                         {
                             Animations.LeanWall(); // Triggering Leaning Method
                         }
-                        if (Game.IsKeyDown(Settings.HandsOnBeltKey) && MainPlayer.IsOnFoot)
+                        if (Game.IsKeyDown(Settings.HandsOnBeltKey) && CheckRequirements())
                         {
                             Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
                         }
-                        if (Game.IsKeyDown(Settings.Suicide))
+                        if (Game.IsKeyDown(Settings.Suicide) && CheckRequirements())
                         {
                             Animations.Suicide(); // Triggering Suicide Method
                         }
@@ -75,6 +75,24 @@ namespace BasicAnimations
                     Game.LogTrivial("Crashed at: " + e); // Error handling
                 }
             }
+        }
+        internal static bool CheckRequirements()
+        {
+            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll;
+        }
+        internal static void Startup()
+        {
+            Game.Console.Print();
+            Game.Console.Print("========================================= BasicAnimations by Astro ==========================================");
+            Game.Console.Print();
+            Game.Console.Print();
+            Game.Console.Print("BasicAnimations Loaded Successfully");
+            Game.Console.Print("INI File Loaded Successfully From Pathway Plugins/BasicAnimations.ini");
+            Game.Console.Print("Time To Sit Down");
+            Game.Console.Print();
+            Game.Console.Print();
+            Game.Console.Print("========================================= BasicAnimations by Astro ==========================================");
+            Game.Console.Print();
         }
     }
 }
