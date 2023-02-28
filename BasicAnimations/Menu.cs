@@ -21,12 +21,15 @@ namespace BasicAnimations
         internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
         internal static void CreateMenu()
         {
-            MainMenuPool.Add(MainMenu);
+            MainMenuPool.Add(MainMenu, AllAnimMain);
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
+            AllAnimMain.MouseControlsEnabled = false;
+            AllAnimMain.AllowCameraMovement = true;
             SetupMenu();
             GameFiber.StartNew(ProcessMenus);
         }
+        internal static UIMenuItem AllAnimations = new UIMenuItem("All Animations");
         internal static UIMenuItem Sitting = new UIMenuItem("Sit", "Plays sitting animation");
         internal static UIMenuItem Leaning = new UIMenuItem("Lean", "Plays leaning animation");
         internal static UIMenuItem Kneel = new UIMenuItem("Kneel", "Plays kneeling animation");
@@ -34,21 +37,22 @@ namespace BasicAnimations
         internal static UIMenuItem Suicide = new UIMenuItem("Suicide", "Kills the player");
         internal static UIMenuItem Smoking = new UIMenuItem("Smoking", "Plays smoking animation");
         internal static UIMenuItem Pushup = new UIMenuItem("Pushups", "Plays pushup animation");
-        internal static UIMenuItem CleanUp = new UIMenuItem("~r~Clear Active Animations", "Clears all active animations");
         internal static void SetupMenu()
         {
             Game.LogTrivial("BasicAnimations: Creating menu");
-            MainMenu.AddItem(Sitting);
-            MainMenu.AddItem(Leaning);
-            MainMenu.AddItem(Kneel);
-            MainMenu.AddItem(Suicide);
-            MainMenu.AddItem(Smoking);
-            MainMenu.AddItem(Pushup);
-            MainMenu.AddItem(CleanUp);
+            AllAnimMain.AddItem(Sitting);
+            AllAnimMain.AddItem(Leaning);
+            AllAnimMain.AddItem(Kneel);
+            AllAnimMain.AddItem(Suicide);
+            AllAnimMain.AddItem(Smoking);
+            MainMenu.AddItem(AllAnimations);
+            MainMenu.BindMenuToItem(AllAnimMain, AllAnimations);
+            AllAnimMain.AddItem(Pushup);
             MainMenu.OnItemSelect += MainMenu_OnItemSelect;
+            AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
         }
 
-        private static void MainMenu_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
+        private static void AllAnimMain_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
             GameFiber.StartNew(delegate
             {
@@ -64,10 +68,6 @@ namespace BasicAnimations
                 {
                     Animations.PushupAnim();
                 }
-                else if (selectedItem.Equals(CleanUp))
-                {
-                    Animations.CleanUp();
-                }
                 else if (selectedItem.Equals(Sitting))
                 {
                     Animations.SitOnGround();
@@ -80,45 +80,50 @@ namespace BasicAnimations
                 {
                     Animations.KneelingAnim();
                 }
-                else if (true)
+                else if (selectedItem.Equals(Situps))
                 {
-
+                    Animations.SitupAnim();
                 }
             });
-            }   
-
-        internal static void ProcessMenus()
-        {
-            try
+        }
+            private static void MainMenu_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
             {
-                while (true)
+                
+
+            }
+
+            internal static void ProcessMenus()
+            {
+                try
                 {
-                    GameFiber.Yield();
-
-                    MainMenuPool.ProcessMenus();
-
-                    if (Game.IsKeyDown(Settings.Menu))
+                    while (true)
                     {
-                        if (MenuRequirements())
+                        GameFiber.Yield();
+
+                        MainMenuPool.ProcessMenus();
+
+                        if (Game.IsKeyDown(Settings.Menu))
                         {
-                            MainMenu.Visible = true;
-                        }
-                        else if (MainMenu.Visible)
-                        {
-                            MainMenu.Visible = false;
+                            if (MenuRequirements())
+                            {
+                                MainMenu.Visible = true;
+                            }
+                            else if (MainMenu.Visible)
+                            {
+                                MainMenu.Visible = false;
+                            }
                         }
                     }
                 }
-            }
-            catch (System.NullReferenceException e)
-            {
-                Game.LogTrivial("BasicAnimations " + e);
-            }
+                catch (System.NullReferenceException e)
+                {
+                    Game.LogTrivial("BasicAnimations " + e);
+                }
 
+            }
+            internal static bool MenuRequirements()
+            {
+                return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible;
+            }
         }
-        internal static bool MenuRequirements()
-        {
-            return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible;
-        }
-    }
-}
+    } 

@@ -19,7 +19,7 @@ namespace BasicAnimations
         internal static Ped MainPlayer => Game.LocalPlayer.Character;
         internal static void Main()
         {
-            Game.DisplayNotification("~g~Basic Animations loaded!");
+            Game.DisplayNotification("commonmenutu", "arrowright", "BasicAnimations", "~b~By Astro", "If your reading this have a great day!");
             {
                 try
                 {

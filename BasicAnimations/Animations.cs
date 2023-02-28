@@ -136,11 +136,5 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
             }
         }
-        internal static void CleanUp()
-        {
-            EntryPoint.MainPlayer.Tasks.Clear();
-            IsActiveAnimation = false;
-            Game.LogTrivial("Cleared all active animations");
-        }
     }
 }
