@@ -17,6 +17,7 @@ namespace BasicAnimations
     internal static class Menu
     {
         internal static MenuPool MainMenuPool = new MenuPool();
+        internal static UIMenu AllAnimMain = new UIMenu("All Animations", "");
         internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
         internal static void CreateMenu()
         {
@@ -28,14 +29,15 @@ namespace BasicAnimations
         }
         internal static UIMenuItem Suicide = new UIMenuItem("Suicide", "Kills the player");
         internal static UIMenuItem Smoking = new UIMenuItem("Smoking", "Plays smoking animation");
-        internal static UIMenuItem Pushups = new UIMenuItem("Pushups", "Plays pushup animation");
-
+        internal static UIMenuItem Pushup = new UIMenuItem("Pushups", "Plays pushup animation");
+        internal static UIMenuItem CleanUp = new UIMenuItem("Clean Up", "Clears all active animations");
         internal static void SetupMenu()
         {
             Game.LogTrivial("BasicAnimations: Creating menu");
             MainMenu.AddItem(Suicide);
             MainMenu.AddItem(Smoking);
-            MainMenu.AddItem(Pushups);
+            MainMenu.AddItem(Pushup);
+            MainMenu.AddItem(CleanUp);
             MainMenu.OnItemSelect += MainMenu_OnItemSelect;
         }
 
@@ -51,9 +53,13 @@ namespace BasicAnimations
                 {
                     Animations.SmokingInPlace();
                 }
-                else if (selectedItem.Equals(Pushups))
+                else if (selectedItem.Equals(Pushup))
                 {
                     Animations.PushupAnim();
+                }
+                else if (selectedItem.Equals(CleanUp))
+                {
+                    Animations.CleanUp();
                 }
             });
             }   

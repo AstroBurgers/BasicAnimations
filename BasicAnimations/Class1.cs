@@ -48,10 +48,6 @@ namespace BasicAnimations
                         {
                             Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
                         }
-                        if (Game.IsKeyDown(Settings.Cleanup))
-                        {
-                            Animations.CleanUp();
-                        }
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)
