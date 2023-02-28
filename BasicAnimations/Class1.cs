@@ -23,7 +23,7 @@ namespace BasicAnimations
             {
                 try
                 {
-                    Startup();
+                    Menu.CreateMenu();
                     Settings.INIFile();
                     while (true)
                     {
@@ -32,17 +32,9 @@ namespace BasicAnimations
                         {
                             Animations.SitOnGround(); // Triggering sitting Method
                         }
-                        if (Game.IsKeyDown(Settings.SmokeKey) && CheckRequirements())
-                        {
-                            Animations.SmokingInPlace(); // Triggering smoking Method
-                        }
                         if (Game.IsKeyDown(Settings.KneelKey) && CheckRequirements())
                         {
                             Animations.KneelingAnim(); // Triggering kneeling Method
-                        }
-                        if (Game.IsKeyDown(Settings.PushupKey) && CheckRequirements())
-                        {
-                            Animations.PushupAnim(); // Triggering pushup Method
                         }
                         if (Game.IsKeyDown(Settings.SitupKey) && CheckRequirements())
                         {
@@ -55,10 +47,6 @@ namespace BasicAnimations
                         if (Game.IsKeyDown(Settings.HandsOnBeltKey) && CheckRequirements())
                         {
                             Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
-                        }
-                        if (Game.IsKeyDown(Settings.Suicide) && CheckRequirements())
-                        {
-                            Animations.Suicide(); // Triggering Suicide Method
                         }
                         if (Game.IsKeyDown(Settings.Cleanup))
                         {
@@ -78,7 +66,7 @@ namespace BasicAnimations
         }
         internal static bool CheckRequirements()
         {
-            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll;
+            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater;
         }
         internal static void Startup()
         {
