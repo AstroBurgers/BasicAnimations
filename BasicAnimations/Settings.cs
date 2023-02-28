@@ -14,29 +14,21 @@ namespace BasicAnimations
 {
     internal class Settings
     {
-        internal static Keys Cleanup = Keys.X;
-        internal static Keys Suicide = Keys.H;
-        internal static Keys PushupKey = Keys.P;
-        internal static Keys SmokeKey = Keys.O;
         internal static Keys SitKey = Keys.X;
         internal static Keys KneelKey = Keys.K;
-        internal static Keys SitupKey = Keys.J;
         internal static Keys LeaningKey = Keys.T;
+        internal static Keys Menu = Keys.I;
         internal static InitializationFile inifile;
         internal static Keys HandsOnBeltKey = Keys.B;
         internal static void INIFile()
         {
             inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
             inifile.Create();
-            PushupKey = inifile.ReadEnum("Keybindings", "PushupKey", PushupKey); // Pushup
-            SmokeKey = inifile.ReadEnum("Keybindings", "SmokeKey", SmokeKey); // Smoke
             SitKey = inifile.ReadEnum("Keybindings", "SitKey", SitKey); // Sitting
             KneelKey = inifile.ReadEnum("Keybindings", "KneelKey", KneelKey); // Kneeling
-            SitupKey = inifile.ReadEnum("Keybindings", "SitupKey", SitupKey); // Situp
             LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey); // Leaning
             HandsOnBeltKey = inifile.ReadEnum("Keybindings", "HandsOnBeltKey", HandsOnBeltKey);
-            Suicide = inifile.ReadEnum("Keybindings", "Suicide", Suicide);
-            Cleanup = inifile.ReadEnum("Keybindings", "Cleanup", Cleanup);
+            Menu = inifile.ReadEnum("Keybindings", "Menu", Menu);
         }
     }
 }

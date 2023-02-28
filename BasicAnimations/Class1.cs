@@ -23,6 +23,7 @@ namespace BasicAnimations
             {
                 try
                 {
+                    Favourites.SetFav();
                     Menu.CreateMenu();
                     Settings.INIFile();
                     while (true)
@@ -35,10 +36,6 @@ namespace BasicAnimations
                         if (Game.IsKeyDown(Settings.KneelKey) && CheckRequirements())
                         {
                             Animations.KneelingAnim(); // Triggering kneeling Method
-                        }
-                        if (Game.IsKeyDown(Settings.SitupKey) && CheckRequirements())
-                        {
-                            Animations.SitupAnim(); // Triggering Situp Method
                         }
                         if (Game.IsKeyDown(Settings.LeaningKey) && CheckRequirements())
                         {

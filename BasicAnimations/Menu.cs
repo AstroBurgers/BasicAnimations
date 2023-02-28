@@ -27,13 +27,20 @@ namespace BasicAnimations
             SetupMenu();
             GameFiber.StartNew(ProcessMenus);
         }
+        internal static UIMenuItem Sitting = new UIMenuItem("Sit", "Plays sitting animation");
+        internal static UIMenuItem Leaning = new UIMenuItem("Lean", "Plays leaning animation");
+        internal static UIMenuItem Kneel = new UIMenuItem("Kneel", "Plays kneeling animation");
+        internal static UIMenuItem Situps = new UIMenuItem("Situps", "Plays the situp animation");
         internal static UIMenuItem Suicide = new UIMenuItem("Suicide", "Kills the player");
         internal static UIMenuItem Smoking = new UIMenuItem("Smoking", "Plays smoking animation");
         internal static UIMenuItem Pushup = new UIMenuItem("Pushups", "Plays pushup animation");
-        internal static UIMenuItem CleanUp = new UIMenuItem("Clean Up", "Clears all active animations");
+        internal static UIMenuItem CleanUp = new UIMenuItem("~r~Clear Active Animations", "Clears all active animations");
         internal static void SetupMenu()
         {
             Game.LogTrivial("BasicAnimations: Creating menu");
+            MainMenu.AddItem(Sitting);
+            MainMenu.AddItem(Leaning);
+            MainMenu.AddItem(Kneel);
             MainMenu.AddItem(Suicide);
             MainMenu.AddItem(Smoking);
             MainMenu.AddItem(Pushup);
@@ -61,6 +68,22 @@ namespace BasicAnimations
                 {
                     Animations.CleanUp();
                 }
+                else if (selectedItem.Equals(Sitting))
+                {
+                    Animations.SitOnGround();
+                }
+                else if (selectedItem.Equals(Leaning))
+                {
+                    Animations.LeanWall();
+                }
+                else if (selectedItem.Equals(Kneel))
+                {
+                    Animations.KneelingAnim();
+                }
+                else if (true)
+                {
+
+                }
             });
             }   
 
@@ -74,7 +97,7 @@ namespace BasicAnimations
 
                     MainMenuPool.ProcessMenus();
 
-                    if (Game.IsKeyDown(Keys.I))
+                    if (Game.IsKeyDown(Settings.Menu))
                     {
                         if (MenuRequirements())
                         {
