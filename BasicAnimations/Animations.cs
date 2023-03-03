@@ -167,16 +167,5 @@ namespace BasicAnimations
                 Game.LogTrivial("Stopped hands on vest animation");
             }
         }
-        internal static void Ragdoll()
-        {
-            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
-            {
-                EntryPoint.MainPlayer.IsRagdoll = true;
-            }
-            else if(IsActiveAnimation && EntryPoint.CheckRequirements())
-            {
-                EntryPoint.MainPlayer.IsRagdoll = false;
-            }
-        }
     }
 }

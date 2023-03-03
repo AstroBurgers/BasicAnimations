@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animations.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Favourites.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

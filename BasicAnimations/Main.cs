@@ -49,10 +49,6 @@ namespace BasicAnimations
                         {
                             Animations.GrabVest();
                         }
-                        else if (Game.IsKeyDown(Keys.V))
-                        {
-                            Animations.Ragdoll();
-                        }
                     }
                 }
                 catch (System.Threading.ThreadAbortException e1)

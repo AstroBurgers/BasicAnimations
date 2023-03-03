@@ -98,6 +98,7 @@ namespace BasicAnimations
         }
         private static void MainMenu_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
+        
         }
         internal static void ProcessMenus()
         {
@@ -130,4 +131,4 @@ namespace BasicAnimations
             return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible;
         }
     }
-}  
+}
