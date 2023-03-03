@@ -12,6 +12,7 @@ namespace BasicAnimations
     internal class Animations
     {
         internal static bool IsActiveAnimation = false;
+        internal static Rage.Task ActiveAnimation;
         internal static void SitOnGround() // Sitting Method start
         {
             if (!IsActiveAnimation)
@@ -113,7 +114,7 @@ namespace BasicAnimations
             if (!IsActiveAnimation)
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@idle_enter"), "idle_intro", 5f, AnimationFlags.None).WaitForCompletion();
-                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@base"), "base", 5f, AnimationFlags.Loop);
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@base"), "base", 5f, AnimationFlags.Unknown65536 | AnimationFlags.UpperBodyOnly | AnimationFlags.SecondaryTask | AnimationFlags.Loop);
                 IsActiveAnimation = true;
                 Game.LogTrivial("Putting hands on belt");
             }
@@ -135,6 +136,21 @@ namespace BasicAnimations
                 Game.LogTrivial("Played Suicide animation (Killed player most likely)");
                 IsActiveAnimation = false;
             }
+        }
+        internal static void IdleOnPhone()
+        {            
+            /*if (!IsActiveAnimation)
+            {
+                NativeFunction.Natives.xBD2A8EC3AF4DE7DB(EntryPoint.MainPlayer, false, 2);
+                IsActiveAnimation = true;
+                Game.LogTrivial("Started Phone Idle Animations");
+            }
+            //else
+            {
+                EntryPoint.MainPlayer.Tasks.Clear();
+                IsActiveAnimation = false;
+                Game.LogTrivial("Ended Phone Idle Animations");
+            }*/
         }
     }
 }

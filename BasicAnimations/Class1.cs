@@ -23,7 +23,7 @@ namespace BasicAnimations
             {
                 try
                 {
-                    Favourites.SetFav();
+                    //Favourites.SetFav();
                     Menu.CreateMenu();
                     Settings.INIFile();
                     while (true)
@@ -51,7 +51,7 @@ namespace BasicAnimations
                 {
                     Game.LogTrivial("Plugin most likely unloaded: " + e1); // Error handling
                 }
-                catch (Exception e) 
+                catch (Exception e)
                 {
                     Game.LogTrivial("Crashed at: " + e); // Error handling
                 }
@@ -60,20 +60,6 @@ namespace BasicAnimations
         internal static bool CheckRequirements()
         {
             return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater;
-        }
-        internal static void Startup()
-        {
-            Game.Console.Print();
-            Game.Console.Print("========================================= BasicAnimations by Astro ==========================================");
-            Game.Console.Print();
-            Game.Console.Print();
-            Game.Console.Print("BasicAnimations Loaded Successfully");
-            Game.Console.Print("INI File Loaded Successfully From Pathway Plugins/BasicAnimations.ini");
-            Game.Console.Print("Time To Sit Down");
-            Game.Console.Print();
-            Game.Console.Print();
-            Game.Console.Print("========================================= BasicAnimations by Astro ==========================================");
-            Game.Console.Print();
         }
     }
 }
