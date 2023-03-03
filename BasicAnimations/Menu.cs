@@ -32,6 +32,7 @@ namespace BasicAnimations
         }
         internal static UIMenuItem AllAnimations = new UIMenuItem("All Animations");
         //internal static UIMenuItem IdleOnPhone = new UIMenuItem("Phone", "Plays idle on phone animation");
+        internal static UIMenuItem GrabVest = new UIMenuItem("Grab Vest", "Puts your hands on your vest");
         internal static UIMenuItem HandsOnBelt = new UIMenuItem("Hands On Belt", "Puts your hands on your belt");
         internal static UIMenuItem Sitting = new UIMenuItem("Sit", "Plays sitting animation");
         internal static UIMenuItem Leaning = new UIMenuItem("Lean", "Plays leaning animation");
@@ -43,7 +44,7 @@ namespace BasicAnimations
         internal static void SetupMenu()
         {
             Game.LogTrivial("Creating menu");
-            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, Pushup);
+            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest);
             MainMenu.AddItem(AllAnimations);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations);
             MainMenu.OnItemSelect += MainMenu_OnItemSelect;
@@ -80,6 +81,9 @@ namespace BasicAnimations
                             break;
                         case 7:
                             Animations.PushupAnim();
+                            break;
+                        case 8:
+                            Animations.GrabVest();
                             break;
                         default:
                             Game.LogTrivial("");

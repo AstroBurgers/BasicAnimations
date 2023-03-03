@@ -15,13 +15,13 @@ namespace BasicAnimations
         internal static Rage.Task ActiveAnimation;
         internal static void SitOnGround() // Sitting Method start
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@amb@business@bgen@bgen_no_work@"), "sit_phone_phoneputdown_idle_nowork", 5f, AnimationFlags.Loop); //Starting task
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started ground sit animation");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("get_up@sat_on_floor@to_stand"), "getup_0", 5f, AnimationFlags.None); //Clearing task
                 IsActiveAnimation = false;
@@ -31,13 +31,13 @@ namespace BasicAnimations
         } // Sitting Method end
         internal static void SmokingInPlace() // Smoking Method start
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 NativeFunction.Natives.x142A02425FF02BD9(EntryPoint.MainPlayer, "world_human_smoking", 0, true); //start smoking anim
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started smoking scenario");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.Clear(); //clearing task
                 IsActiveAnimation = false;
@@ -46,14 +46,14 @@ namespace BasicAnimations
         } // Smoking Method end
         internal static void KneelingAnim() // Kneeling Method end
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@medic@standing@kneel@enter"), "enter", 5f, AnimationFlags.None).WaitForCompletion();
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@medic@standing@kneel@base"), "base", 5f, AnimationFlags.Loop); //Starting task
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started kneel animation");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@medic@standing@kneel@exit"), "exit", 5f, AnimationFlags.None); //Clearing task
                 IsActiveAnimation = false;
@@ -62,14 +62,14 @@ namespace BasicAnimations
         } // Kneeling Method end
         internal static void PushupAnim() // Pushup Method start
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_push_ups@male@enter"), "enter", 5f, AnimationFlags.None).WaitForCompletion(); //Starting task
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_push_ups@male@base"), "base", 5f, AnimationFlags.Loop);
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started Pushup animation");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_push_ups@male@exit"), "exit", 5f, AnimationFlags.None); //Clearing task
                 IsActiveAnimation = false;
@@ -78,14 +78,14 @@ namespace BasicAnimations
         } // Pushup Method end
         internal static void SitupAnim() // Situp Method start
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_sit_ups@male@enter"), "enter", 5f, AnimationFlags.None).WaitForCompletion();
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_sit_ups@male@base"), "base", 5f, AnimationFlags.Loop);
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started Sit up animation");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_sit_ups@male@exit"), "exit", 5f, AnimationFlags.None);
                 IsActiveAnimation = false;
@@ -94,14 +94,14 @@ namespace BasicAnimations
         } // Situp Method end
         internal static void LeanWall() // Leaning Method start
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@enter"), "enter_back", 5f, AnimationFlags.None).WaitForCompletion();
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_b"), "idle_e", 5f, AnimationFlags.Loop);
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started Leaning Animation");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@exit"), "exit_front", 5f, AnimationFlags.None).WaitForCompletion();
                 EntryPoint.MainPlayer.Tasks.Clear();
@@ -111,14 +111,14 @@ namespace BasicAnimations
         } // Leaning Method end
         internal static void HandsOnBelt() // Hands on belt Method start
         {
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@idle_enter"), "idle_intro", 5f, AnimationFlags.None).WaitForCompletion();
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_cop_idles@male@base"), "base", 5f, AnimationFlags.Unknown65536 | AnimationFlags.UpperBodyOnly | AnimationFlags.SecondaryTask | AnimationFlags.Loop);
                 IsActiveAnimation = true;
                 Game.LogTrivial("Putting hands on belt");
             }
-            else
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.Clear();
                 IsActiveAnimation = false;
@@ -128,7 +128,7 @@ namespace BasicAnimations
         internal static void Suicide()
         {
 
-            if (!IsActiveAnimation)
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
             {
                 EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pill", 5f, AnimationFlags.None);
                 GameFiber.Wait(2500);
@@ -151,6 +151,32 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
                 Game.LogTrivial("Ended Phone Idle Animations");
             }*/
+        }
+        internal static void GrabVest()
+        {
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
+            {
+                EntryPoint.MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_hiker_standing@male@base"), "base", 5f, AnimationFlags.Unknown65536 | AnimationFlags.UpperBodyOnly | AnimationFlags.SecondaryTask | AnimationFlags.Loop);
+                IsActiveAnimation = true;
+                Game.LogTrivial("Started hands on vest animation");
+            }
+            else if (IsActiveAnimation && EntryPoint.CheckRequirements())
+            {
+                EntryPoint.MainPlayer.Tasks.Clear();
+                IsActiveAnimation = false;
+                Game.LogTrivial("Stopped hands on vest animation");
+            }
+        }
+        internal static void Ragdoll()
+        {
+            if (!IsActiveAnimation && EntryPoint.CheckRequirements())
+            {
+                EntryPoint.MainPlayer.IsRagdoll = true;
+            }
+            else if(IsActiveAnimation && EntryPoint.CheckRequirements())
+            {
+                EntryPoint.MainPlayer.IsRagdoll = false;
+            }
         }
     }
 }

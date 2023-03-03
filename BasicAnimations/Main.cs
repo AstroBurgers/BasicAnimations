@@ -33,17 +33,25 @@ namespace BasicAnimations
                         {
                             Animations.SitOnGround(); // Triggering sitting Method
                         }
-                        if (Game.IsKeyDown(Settings.KneelKey) && CheckRequirements())
+                        else if (Game.IsKeyDown(Settings.KneelKey) && CheckRequirements())
                         {
                             Animations.KneelingAnim(); // Triggering kneeling Method
                         }
-                        if (Game.IsKeyDown(Settings.LeaningKey) && CheckRequirements())
+                        else if (Game.IsKeyDown(Settings.LeaningKey) && CheckRequirements())
                         {
                             Animations.LeanWall(); // Triggering Leaning Method
                         }
-                        if (Game.IsKeyDown(Settings.HandsOnBeltKey) && CheckRequirements())
+                        else if (Game.IsKeyDown(Settings.HandsOnBeltKey) && CheckRequirements())
                         {
                             Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
+                        }
+                        else if (Game.IsKeyDown(Settings.VestGrab) && CheckRequirements())
+                        {
+                            Animations.GrabVest();
+                        }
+                        else if (Game.IsKeyDown(Keys.V))
+                        {
+                            Animations.Ragdoll();
                         }
                     }
                 }
@@ -59,7 +67,7 @@ namespace BasicAnimations
         }
         internal static bool CheckRequirements()
         {
-            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater;
+            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater && !MainPlayer.IsGettingIntoVehicle;
         }
     }
 }

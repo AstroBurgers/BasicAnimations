@@ -14,6 +14,7 @@ namespace BasicAnimations
 {
     internal class Settings
     {
+        internal static Keys VestGrab = Keys.P;
         internal static Keys SitKey = Keys.X;
         internal static Keys KneelKey = Keys.K;
         internal static Keys LeaningKey = Keys.T;
@@ -29,6 +30,7 @@ namespace BasicAnimations
             LeaningKey = inifile.ReadEnum("Keybindings", "LeaningKey", LeaningKey); // Leaning
             HandsOnBeltKey = inifile.ReadEnum("Keybindings", "HandsOnBeltKey", HandsOnBeltKey);
             Menu = inifile.ReadEnum("Keybindings", "Menu", Menu);
+            VestGrab = inifile.ReadEnum("Keybindings", "VestGrab", VestGrab);
         }
     }
 }
