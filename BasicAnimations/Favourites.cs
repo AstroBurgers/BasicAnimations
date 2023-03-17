@@ -14,6 +14,7 @@ namespace BasicAnimations
 {
     internal class Favourites
     {
+        internal static List<Animation> Favs = new List<Animation>();
         static string FilePath = @"Plugins/BasicAnimations/Favorites.txt";
         internal static void SetFav()
         {
@@ -24,6 +25,21 @@ namespace BasicAnimations
             else
             {
                 ReadFile();
+            }
+        }
+        internal static void AddFavToMenu()
+        {
+            foreach (Animation item in Favs)
+            {
+                
+            }
+        }
+        internal static void AppendToFile(string str)
+        {
+            using (FileStream fs = new FileStream(FilePath, FileMode.Append, FileAccess.Write))
+            using (StreamWriter sw = new StreamWriter(fs))
+            {
+                sw.WriteLine(str);
             }
         }
         internal static void ReadFile()
@@ -38,7 +54,7 @@ namespace BasicAnimations
             }
             catch (Exception e)
             {
-                Game.LogTrivial("And error occured " + e);
+                Game.LogTrivial("An error occured " + e);
             }
         }
     }   

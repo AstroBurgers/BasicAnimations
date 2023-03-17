@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Rage;
+using static BasicAnimations.Settings;
 using Rage.Native;
 using System.Windows.Forms;
 using RAGENativeUI;
 using RAGENativeUI.PauseMenu;
 using System.Threading.Tasks;
+using System.Reflection;
 
 [assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "AstroBurgers")]
 
@@ -23,33 +25,35 @@ namespace BasicAnimations
             {
                 try
                 {
+                    Game.LogTrivial("Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                    Game.LogTrivial("This Is In Beta. Proceed with caution");
                     //Favourites.SetFav();
                     Menu.CreateMenu();
-                    Settings.INIFile();
-                    while (true)
+                    INIFile();
+                    GameFiber.StartNew(delegate
                     {
-                        GameFiber.Yield();
-                        if (Game.IsKeyDown(Settings.SitKey) && CheckRequirements())
+                        while (true)
                         {
-                            Animations.SitOnGround(); // Triggering sitting Method
+                            GameFiber.Yield();
+                            if (Game.IsKeyDown(Sit) && CheckRequirements()) { Animations.SitOnGround(); } // Sit
+                            else if (Game.IsKeyDown(Kneel) && CheckRequirements()) { Animations.KneelingAnim(); } // Kneel
+                            else if (Game.IsKeyDown(Lean) && CheckRequirements()) { Animations.LeanWall(); } // Lean
+                            else if (Game.IsKeyDown(HandsOnBeltKey) && CheckRequirements()) { Animations.HandsOnBelt(); } // Hands on belt
+                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.GrabVest(); } // grab vest
+                            else if (Game.IsKeyDown(Suicide) && CheckRequirements()) { Animations.Suicide(); } // Suicide
+                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.GrabVest(); } // Grab Vest
+                            else if (Game.IsKeyDown(Pushups) && CheckRequirements()) { Animations.PushupAnim(); } // Pushups
+                            else if (Game.IsKeyDown(Situps) && CheckRequirements()) { Animations.SitupAnim(); } // Situps
+                            else if (Game.IsKeyDown(Salute) && CheckRequirements()) { Animations.Saluting(); } // Saluting
+                            else if (Game.IsKeyDown(Smoking)) { Animations.SmokingInPlace(); } // Smoking
+                            else if (Game.IsKeyDown(Lean2)) { Animations.Lean2(); } // Lean2
+                            else if (Game.IsKeyDown(Box)) { Animations.CarryBox(); } // Carry box
+                            else if (Game.IsKeyDown(Mocking)) { Animations.Mocking(); } // Mocking
+                            else if (Game.IsKeyDown(Settings.Camera)) { Animations.Camera(); } // Camera
+                            else if (Game.IsKeyDown(Settings.Yoga)) { Animations.Yoga(); } // Yoga
+                            else if (Game.IsKeyDown(Settings.Binoculars)) { Animations.Binoculars(); } // Binoculars
                         }
-                        else if (Game.IsKeyDown(Settings.KneelKey) && CheckRequirements())
-                        {
-                            Animations.KneelingAnim(); // Triggering kneeling Method
-                        }
-                        else if (Game.IsKeyDown(Settings.LeaningKey) && CheckRequirements())
-                        {
-                            Animations.LeanWall(); // Triggering Leaning Method
-                        }
-                        else if (Game.IsKeyDown(Settings.HandsOnBeltKey) && CheckRequirements())
-                        {
-                            Animations.HandsOnBelt(); // Triggering HandsOnBeltKey Method
-                        }
-                        else if (Game.IsKeyDown(Settings.VestGrab) && CheckRequirements())
-                        {
-                            Animations.GrabVest();
-                        }
-                    }
+                    });
                 }
                 catch (System.Threading.ThreadAbortException e1)
                 {
