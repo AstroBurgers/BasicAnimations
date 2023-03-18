@@ -21,6 +21,8 @@ namespace BasicAnimations
 {
     internal static class Menu
     {
+        // Creating the menus
+        //String Params are the same as the items
         internal static MenuPool MainMenuPool = new MenuPool();
         internal static UIMenu AllAnimMain = new UIMenu("All Animations", "");
         internal static UIMenu RPAnimations = new UIMenu("RP Animations", "");
@@ -30,6 +32,7 @@ namespace BasicAnimations
         internal static UIMenu Favourites = new UIMenu("Favourites", "");
         internal static void CreateMenu()
         {
+            //Adding all the menus to the menu pool.
             MainMenuPool.Add(MainMenu, AllAnimMain, RPAnimations, MiscAnims, PropAnims);
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
@@ -43,9 +46,13 @@ namespace BasicAnimations
             PropAnims.AllowCameraMovement = true;
             Favourites.MouseControlsEnabled = false;
             Favourites.AllowCameraMovement = true;
+            //Calling SetupMen so I can just have CreateMenu() in Main.cs
             SetupMenu();
             GameFiber.StartNew(ProcessMenus);
         }
+        //Creating menu Items
+        //First String is button name
+        //Second String is the button description on the bottom of the menu.
         internal static UIMenuItem Camera = new UIMenuItem("Camera", "Pull Out A Camera");
         internal static UIMenuItem Binoculars = new UIMenuItem("Binoculars", "Use some binoculars");
         internal static UIMenuItem FavouritesButton = new UIMenuItem("Favourites", "");
@@ -71,17 +78,17 @@ namespace BasicAnimations
         internal static void SetupMenu()
         {
             Game.LogTrivial("Creating menu");
-            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Lean2, Mocking, CarryBox, Yoga, Binoculars, Camera);
+            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Lean2, Mocking, CarryBox, Yoga, Binoculars, Camera); // Adding all animations to the AllAnimations Menu
             MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations);
-            MainMenu.BindMenuToItem(AllAnimMain, AllAnimations);
-            MainMenu.BindMenuToItem(RPAnimations, RPAnims);
-            MainMenu.BindMenuToItem(MiscAnims, MiscAnimations);
-            MainMenu.BindMenuToItem(PropAnims, PropAnimations);
+            MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
+            MainMenu.BindMenuToItem(RPAnimations, RPAnims); //Binding the item defined before to a defined menu
+            MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
+            MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
             //MainMenu.BindMenuToItem(Favourites, FavouritesButton);
-            RPAnimations.OnItemSelect += RPAnimations_OnItemSelect;
-            PropAnims.OnItemSelect += PropAnims_OnItemSelect;
-            MiscAnims.OnItemSelect += MiscAnims_OnItemSelect;
-            MainMenu.OnItemSelect += MainMenu_OnItemSelect;
+            RPAnimations.OnItemSelect += RPAnimations_OnItemSelect; // Event handler
+            PropAnims.OnItemSelect += PropAnims_OnItemSelect; // Event handler
+            MiscAnims.OnItemSelect += MiscAnims_OnItemSelect; // Event handler
+            MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
             AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
             // Favourites.OnItemSelect += Favourites_OnItemSelect;
             RPAnimations.AddItems(Sitting, Kneel, Smoking, HandsOnBelt, GrabVest, Salute, Lean2);
@@ -190,7 +197,7 @@ namespace BasicAnimations
             {
                 try
                 {
-                    switch (index)
+                    switch (index) // All animations event handler
                     {
                         case 0:
                             SitOnGround();
@@ -253,7 +260,7 @@ namespace BasicAnimations
         }
         private static void MainMenu_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
-        
+            //Unused handler
         }
         internal static void ProcessMenus()
         {
@@ -263,27 +270,27 @@ namespace BasicAnimations
                 {
                     GameFiber.Yield();
                     MainMenuPool.ProcessMenus();
-                    if (Game.IsKeyDown(Settings.Menu))
+                    if (Game.IsKeyDown(Settings.Menu)) // If the button defined in the INI Is pressed trigger the IF State ment
                     {
-                        if (MenuRequirements())
+                        if (MenuRequirements()) // Checking menu requirements defined below
                         {
-                            MainMenu.Visible = true;
+                            MainMenu.Visible = true; // Making the menu visible
                         }
                         else if (MainMenu.Visible)
                         {
-                            MainMenu.Visible = false;
+                            MainMenu.Visible = false; // Making the menu no longer visible
                         }
                     }
                 }
             }
-            catch (System.NullReferenceException e)
+            catch (NullReferenceException e)
             {
-                Game.LogTrivial("BasicAnimations " + e);
+                Game.LogTrivial("BasicAnimations " + e); // Errror handling :GIGACHAD:
             }
         }
-        internal static bool MenuRequirements()
+        internal static bool MenuRequirements() // The afformentioned menu requirements
         {
-            return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible;
+            return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible; // Makes sure that the player is not paused/in a compulite style menu. Checks if any other menus are open
         }
     }
 }

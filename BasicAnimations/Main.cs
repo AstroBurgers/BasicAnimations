@@ -35,6 +35,7 @@ namespace BasicAnimations
                         while (true)
                         {
                             GameFiber.Yield();
+                            //Many Else ifs
                             if (Game.IsKeyDown(Sit) && CheckRequirements()) { Animations.SitOnGround(); } // Sit
                             else if (Game.IsKeyDown(Kneel) && CheckRequirements()) { Animations.KneelingAnim(); } // Kneel
                             else if (Game.IsKeyDown(Lean) && CheckRequirements()) { Animations.LeanWall(); } // Lean

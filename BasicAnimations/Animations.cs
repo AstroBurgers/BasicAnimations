@@ -15,8 +15,8 @@ namespace BasicAnimations
 {
     internal class Animations
     {
+        // Confusing spaghetti code :KEKW:
         internal static bool IsActiveAnimation = false;
-        internal static Rage.Task ActiveAnimation;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
         internal static void SitOnGround() // Sitting Method start
         {
