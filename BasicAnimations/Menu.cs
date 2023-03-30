@@ -53,6 +53,7 @@ namespace BasicAnimations
         //Creating menu Items
         //First String is button name
         //Second String is the button description on the bottom of the menu.
+        internal static UIMenuItem Investigate = new UIMenuItem("Investigate", "");
         internal static UIMenuItem Camera = new UIMenuItem("Camera", "Pull Out A Camera");
         internal static UIMenuItem Binoculars = new UIMenuItem("Binoculars", "Use some binoculars");
         internal static UIMenuItem FavouritesButton = new UIMenuItem("Favourites", "");
@@ -78,7 +79,7 @@ namespace BasicAnimations
         internal static void SetupMenu()
         {
             Game.LogTrivial("Creating menu");
-            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Lean2, Mocking, CarryBox, Yoga, Binoculars, Camera); // Adding all animations to the AllAnimations Menu
+            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Lean2, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
             MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(RPAnimations, RPAnims); //Binding the item defined before to a defined menu
@@ -91,7 +92,7 @@ namespace BasicAnimations
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
             AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
             // Favourites.OnItemSelect += Favourites_OnItemSelect;
-            RPAnimations.AddItems(Sitting, Kneel, Smoking, HandsOnBelt, GrabVest, Salute, Lean2);
+            RPAnimations.AddItems(Sitting, Kneel, Smoking, HandsOnBelt, GrabVest, Salute, Lean2, Investigate);
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
         }
@@ -183,6 +184,9 @@ namespace BasicAnimations
                     case 6:
                         Lean2();
                         break;
+                    case 7:
+                        Investigate();
+                        break;
                     default:
                         Game.LogTrivial("");
                         break;
@@ -247,6 +251,9 @@ namespace BasicAnimations
                         case 15:
                             Camera();
                             break;
+                        case 16:
+                            Investigate();
+                            break;
                         default:
                             Game.LogTrivial("");
                             break;
@@ -270,7 +277,7 @@ namespace BasicAnimations
                 {
                     GameFiber.Yield();
                     MainMenuPool.ProcessMenus();
-                    if (Game.IsKeyDown(Settings.Menu)) // If the button defined in the INI Is pressed trigger the IF State ment
+                    if (Game.IsKeyDown(Settings.Menu) && Game.IsKeyDownRightNow(Settings.MenuModKey)) // If the button defined in the INI Is pressed trigger the IF State ment
                     {
                         if (MenuRequirements()) // Checking menu requirements defined below
                         {

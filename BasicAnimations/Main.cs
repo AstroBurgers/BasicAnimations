@@ -19,6 +19,7 @@ namespace BasicAnimations
     {
         internal static bool IsActiveAnimation = false;
         internal static Ped MainPlayer => Game.LocalPlayer.Character;
+        internal static bool BetaVersion = false;
         internal static void Main()
         {
             Game.DisplayNotification("commonmenutu", "arrowright", "BasicAnimations", "~b~By Astro", "If your reading this have a great day!");
@@ -26,7 +27,11 @@ namespace BasicAnimations
                 try
                 {
                     Game.LogTrivial("Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
-                    Game.LogTrivial("This Is In Beta. Proceed with caution");
+                    if (BetaVersion)
+                    {
+                        Game.LogTrivial("This Is In Beta. Proceed with caution");
+                        Game.DisplayNotification("commonmenu", "mp_alerttriangle", "BasicAnimations", "~b~By Astro", "~y~CAUTION: ~w~Plugin is in ~r~Beta~w~, Report any issues to the discord.");
+                    }
                     //Favourites.SetFav();
                     Menu.CreateMenu();
                     INIFile();
@@ -36,23 +41,24 @@ namespace BasicAnimations
                         {
                             GameFiber.Yield();
                             //Many Else ifs
-                            if (Game.IsKeyDown(Sit) && CheckRequirements()) { Animations.SitOnGround(); } // Sit
-                            else if (Game.IsKeyDown(Kneel) && CheckRequirements()) { Animations.KneelingAnim(); } // Kneel
-                            else if (Game.IsKeyDown(Lean) && CheckRequirements()) { Animations.LeanWall(); } // Lean
-                            else if (Game.IsKeyDown(HandsOnBeltKey) && CheckRequirements()) { Animations.HandsOnBelt(); } // Hands on belt
-                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.GrabVest(); } // grab vest
-                            else if (Game.IsKeyDown(Suicide) && CheckRequirements()) { Animations.Suicide(); } // Suicide
-                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.GrabVest(); } // Grab Vest
-                            else if (Game.IsKeyDown(Pushups) && CheckRequirements()) { Animations.PushupAnim(); } // Pushups
-                            else if (Game.IsKeyDown(Situps) && CheckRequirements()) { Animations.SitupAnim(); } // Situps
-                            else if (Game.IsKeyDown(Salute) && CheckRequirements()) { Animations.Saluting(); } // Saluting
-                            else if (Game.IsKeyDown(Smoking)) { Animations.SmokingInPlace(); } // Smoking
-                            else if (Game.IsKeyDown(Lean2)) { Animations.Lean2(); } // Lean2
-                            else if (Game.IsKeyDown(Box)) { Animations.CarryBox(); } // Carry box
-                            else if (Game.IsKeyDown(Mocking)) { Animations.Mocking(); } // Mocking
-                            else if (Game.IsKeyDown(Settings.Camera)) { Animations.Camera(); } // Camera
-                            else if (Game.IsKeyDown(Settings.Yoga)) { Animations.Yoga(); } // Yoga
-                            else if (Game.IsKeyDown(Settings.Binoculars)) { Animations.Binoculars(); } // Binoculars
+                            if (Game.IsKeyDown(Sit) && CheckModKey() && CheckRequirements()) { Animations.SitOnGround(); } // Sit
+                            else if (Game.IsKeyDown(Kneel) && CheckModKey() && CheckRequirements()) { Animations.KneelingAnim(); } // Kneel
+                            else if (Game.IsKeyDown(Lean) && CheckModKey() && CheckRequirements()) { Animations.LeanWall(); } // Lean
+                            else if (Game.IsKeyDown(HandsOnBeltKey) && CheckModKey() && CheckRequirements()) { Animations.HandsOnBelt(); } // Hands on belt
+                            else if (Game.IsKeyDown(GrabVest) && CheckModKey() && CheckRequirements()) { Animations.GrabVest(); } // grab vest
+                            else if (Game.IsKeyDown(Suicide) && CheckModKey() && CheckRequirements()) { Animations.Suicide(); } // Suicide
+                            else if (Game.IsKeyDown(GrabVest) && CheckModKey() && CheckRequirements()) { Animations.GrabVest(); } // Grab Vest
+                            else if (Game.IsKeyDown(Pushups) && CheckModKey() && CheckRequirements()) { Animations.PushupAnim(); } // Pushups
+                            else if (Game.IsKeyDown(Situps) && CheckModKey() && CheckRequirements()) { Animations.SitupAnim(); } // Situps
+                            else if (Game.IsKeyDown(Salute) && CheckModKey() && CheckRequirements()) { Animations.Saluting(); } // Saluting
+                            else if (Game.IsKeyDown(Smoking) && CheckModKey() && CheckRequirements()) { Animations.SmokingInPlace(); } // Smoking
+                            else if (Game.IsKeyDown(Lean2) && CheckModKey() && CheckRequirements()) { Animations.Lean2(); } // Lean2
+                            else if (Game.IsKeyDown(Box) && CheckModKey() && CheckRequirements()) { Animations.CarryBox(); } // Carry box
+                            else if (Game.IsKeyDown(Mocking) && CheckModKey() && CheckRequirements()) { Animations.Mocking(); } // Mocking
+                            else if (Game.IsKeyDown(Settings.Camera) && CheckModKey() && CheckRequirements()) { Animations.Camera(); } // Camera
+                            else if (Game.IsKeyDown(Settings.Yoga) && CheckModKey() && CheckRequirements()) { Animations.Yoga(); } // Yoga
+                            else if (Game.IsKeyDown(Settings.Binoculars) && CheckModKey() && CheckRequirements()) { Animations.Binoculars(); } // Binoculars
+                            else if (Game.IsKeyDown(Settings.Investigate) && CheckModKey() && CheckRequirements()) { Animations.Investigate(); }
                         }
                     });
                 }
@@ -69,6 +75,14 @@ namespace BasicAnimations
         internal static bool CheckRequirements()
         {
             return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater && !MainPlayer.IsGettingIntoVehicle;
+        }
+        internal static bool CheckModKey()
+        {
+            if (MenuModKey == Keys.None)
+            {
+                return true;
+            }
+            return Game.IsKeyDownRightNow(Settings.ModKey);
         }
     }
 }
