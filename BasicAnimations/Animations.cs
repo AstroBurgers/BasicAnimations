@@ -18,6 +18,54 @@ namespace BasicAnimations
         // Confusing spaghetti code :KEKW:
         internal static bool IsActiveAnimation = false;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
+
+        internal static void PlayAction(AnimationSequence animationSequence) //Animations
+        {
+            if (!IsActiveAnimation && CheckRequirements())
+            {
+                animationSequence.startAnim.Play();
+                Game.LogTrivial($"Started {animationSequence.startAnim.MenuName}");
+                if (animationSequence.secondStartAnim != null)
+                {
+                    animationSequence.secondStartAnim.Play();
+                    Game.LogTrivial($"Started {animationSequence.secondStartAnim.MenuName}");
+                }
+                IsActiveAnimation = true;
+            }
+            else if (IsActiveAnimation && CheckRequirements())
+            {
+                if (animationSequence.endAnim != null)
+                {
+                    animationSequence.endAnim.Play(); //Clearing task
+                    IsActiveAnimation = false;
+                    Game.LogTrivial($"Started {animationSequence.endAnim.MenuName}");
+                }
+                else
+                {
+                    MainPlayer.Tasks.ClearImmediately(); //clearing task
+                    IsActiveAnimation = false;
+                    Game.LogTrivial($"Stopped {animationSequence.startAnim.MenuName}");
+                }
+            }
+        }
+        internal static void PlayAction(Action action) // Scenarios
+        {
+            if (!IsActiveAnimation && CheckRequirements())
+            {
+                action.Play();
+                Game.LogTrivial($"Started {action.MenuName}");
+                IsActiveAnimation = true;
+            }
+            else if (IsActiveAnimation && CheckRequirements())
+            {
+                MainPlayer.Tasks.ClearImmediately(); //clearing task
+                IsActiveAnimation = false;
+                Game.LogTrivial($"Stopped {action.MenuName}");
+            }
+
+        }
+        
+        
         internal static void SitOnGround() // Sitting Method start
         {
             if (!IsActiveAnimation && CheckRequirements())
@@ -81,6 +129,22 @@ namespace BasicAnimations
                 Game.LogTrivial("Started stand up animation");
             }
         } // Pushup Method end
+
+        
+       
+        Action pushup = new AnimationSequence(
+            new Animation(new AnimationDictionary("amb@world_human_push_ups@male@enter"), "enter", 5f,
+                AnimationFlags.StayInEndFrame, false, true, 3500, "MenuName", "MenuDescription"),
+            
+            new Animation(new AnimationDictionary("amb@world_human_push_ups@male@base"), "base", 5f,
+                AnimationFlags.Loop, false, false, 0, "MenuName", "MenuDescription"),
+            
+            new Animation(new AnimationDictionary("amb@world_human_push_ups@male@exit"), "exit", 5f,
+                AnimationFlags.None, false, false, 0, "MenuName", "MenuDescription")
+
+        );
+
+        Action yoga = new Scenario(MainPlayer, "world_human_yoga", 0, true,"MenuName","MenuDescription");
         internal static void SitupAnim() // Situp Method start
         {
             if (!IsActiveAnimation && CheckRequirements())
@@ -141,21 +205,6 @@ namespace BasicAnimations
                 Game.LogTrivial("Played Suicide animation (Killed player most likely)");
                 IsActiveAnimation = false;
             }
-        }
-        internal static void IdleOnPhone()
-        {
-            /*if (!IsActiveAnimation)
-            {
-                NativeFunction.Natives.xBD2A8EC3AF4DE7DB(MainPlayer, false, 2);
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started Phone Idle Animations");
-            }
-            //else
-            {
-                MainPlayer.Tasks.Clear();
-                IsActiveAnimation = false;
-                Game.LogTrivial("Ended Phone Idle Animations");
-            }*/
         }
         internal static void GrabVest()
         {
