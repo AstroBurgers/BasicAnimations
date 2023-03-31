@@ -1,3 +1,6 @@
+using Rage;
+using static BasicAnimations.EntryPoint;
+
 namespace BasicAnimations
 {
     internal class AnimationSequence : Action
@@ -15,6 +18,29 @@ namespace BasicAnimations
             this.MenuDescription = startAnim.MenuDescription;
         }
 
-        override internal void Play(){ }
+        override internal void Play()
+        {
+            startAnim.Play();
+            Game.LogTrivial($"Started {startAnim.MenuName}");
+            if (secondStartAnim != null)
+            {
+                secondStartAnim.Play();
+                Game.LogTrivial($"Started {secondStartAnim.MenuName}");
+            }
+        }
+
+        internal void PlayEndAnimation()
+        {
+            if (endAnim != null)
+            {
+                endAnim.Play(); //Clearing task
+                Game.LogTrivial($"Started {endAnim.MenuName}");
+            }
+            else
+            {
+                MainPlayer.Tasks.ClearImmediately(); //clearing task
+                Game.LogTrivial($"Stopped {startAnim.MenuName}");
+            }
+        }
     }
 }

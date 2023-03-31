@@ -24,29 +24,13 @@ namespace BasicAnimations
         {
             if (!IsActiveAnimation && CheckRequirements())
             {
-                animationSequence.startAnim.Play();
-                Game.LogTrivial($"Started {animationSequence.startAnim.MenuName}");
-                if (animationSequence.secondStartAnim != null)
-                {
-                    animationSequence.secondStartAnim.Play();
-                    Game.LogTrivial($"Started {animationSequence.secondStartAnim.MenuName}");
-                }
+                animationSequence.Play();
                 IsActiveAnimation = true;
             }
             else if (IsActiveAnimation && CheckRequirements())
             {
-                if (animationSequence.endAnim != null)
-                {
-                    animationSequence.endAnim.Play(); //Clearing task
-                    IsActiveAnimation = false;
-                    Game.LogTrivial($"Started {animationSequence.endAnim.MenuName}");
-                }
-                else
-                {
-                    MainPlayer.Tasks.ClearImmediately(); //clearing task
-                    IsActiveAnimation = false;
-                    Game.LogTrivial($"Stopped {animationSequence.startAnim.MenuName}");
-                }
+                animationSequence.PlayEndAnimation();
+                IsActiveAnimation = false;
             }
         }
         internal static void PlayAction(Action action) // Scenarios
@@ -66,7 +50,7 @@ namespace BasicAnimations
 
         }
 
-        List<Action> actions = new List<Action>()
+        internal static List<Action> actions = new List<Action>()
         {
             new Scenario(MainPlayer, "world_human_yoga", 0, true, "Yoga", "STREEETCH"), // Yoga
             new Scenario(MainPlayer, "world_human_smoking", 0, true, "Smoking", "Plays smoking animation"), // Smoking
@@ -182,6 +166,10 @@ namespace BasicAnimations
                 Box.Position = new Vector3(0f, 0f, 0f);
                 IsActiveAnimation = false;
             }
+        }
+        internal static void KeybindPlayAnimation(string menuName)
+        {
+            PlayAction(actions.Where(i => i.MenuName.Equals(menuName)).ToList()[0]);
         }
     }
 }

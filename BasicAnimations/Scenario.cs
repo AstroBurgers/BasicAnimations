@@ -22,6 +22,7 @@ namespace BasicAnimations
         internal void Play()
         {
             NativeFunction.Natives.x142A02425FF02BD9(Ped, ScenarioName, delay, playEnterAnim);
+            Game.LogTrivial("Fucker");
         }
     }
 }

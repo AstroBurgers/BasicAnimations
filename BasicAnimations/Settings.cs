@@ -25,11 +25,10 @@ namespace BasicAnimations
         internal static Keys GrabVest = Keys.None; // Defining a new Keys var
         internal static Keys Sit = Keys.None; // Defining a new Keys var
         internal static Keys Kneel = Keys.None; // Defining a new Keys var
-        internal static Keys Lean = Keys.None; // Defining a new Keys var
         internal static Keys Menu = Keys.None; // Defining a new Keys var
         internal static InitializationFile inifile; // Defining a new INI File
         internal static Keys HandsOnBeltKey = Keys.None; // Defining a new Keys var
-        internal static Keys Lean2 = Keys.None; // Defining a new Keys var
+        internal static Keys Leaning = Keys.None; // Defining a new Keys var
         internal static Keys Mocking = Keys.None; // Defining a new Keys var
         internal static Keys Box = Keys.None; // Defining a new Keys var
         internal static void INIFile()
@@ -39,7 +38,6 @@ namespace BasicAnimations
             // INI File items
             Sit = inifile.ReadEnum("Keybindings", "Sit On The Ground", Sit); // Sitting
             Kneel = inifile.ReadEnum("Keybindings", "Kneel", Kneel); // Kneeling
-            Lean = inifile.ReadEnum("Keybindings", "Lean", Lean); // Leaning
             HandsOnBeltKey = inifile.ReadEnum("Keybindings", "Put your hands on your belt", HandsOnBeltKey);
             Menu = inifile.ReadEnum("Keybindings", "Open menu button", Menu);
             GrabVest = inifile.ReadEnum("Keybindings", "Grabbing vest", GrabVest);
@@ -48,7 +46,7 @@ namespace BasicAnimations
             Situps = inifile.ReadEnum("Keybindings", "Do situps", Situps);
             Pushups = inifile.ReadEnum("Keybindings", "Do pushups", Pushups);
             Salute = inifile.ReadEnum("Keybindings", "Salute", Salute);
-            Lean2 = inifile.ReadEnum("Keybindings", "Lean 2", Lean2);
+            Leaning = inifile.ReadEnum("Keybindings", "Leaning", Leaning);
             Mocking = inifile.ReadEnum("Keybindings", "Mock", Mocking);
             Box = inifile.ReadEnum("Keybindings", "Hold box", Box);
             Yoga = inifile.ReadEnum("Keybindings", "Yoga", Yoga);

@@ -36,14 +36,17 @@ namespace BasicAnimations
             if (WaitForCompletion)
             {
                 MainPlayer.Tasks.PlayAnimation(animationDict, AnimName, blendSpeed, AnimFlags).WaitForCompletion();
+                Game.LogTrivial("Fuck");
             }
             else if (WaitForStatus)
             {
                 MainPlayer.Tasks.PlayAnimation(animationDict, AnimName, blendSpeed, AnimFlags).WaitForStatus(TaskStatus.NoTask, WaitForStatusInt);
+                Game.LogTrivial("Shit");
             }
             else
             {
                 MainPlayer.Tasks.PlayAnimation(animationDict, AnimName, blendSpeed, AnimFlags);
+                Game.LogTrivial("Fuck Off");
             }
         }
     }

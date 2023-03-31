@@ -36,23 +36,21 @@ namespace BasicAnimations
                         {
                             GameFiber.Yield();
                             //Many Else ifs
-                            if (Game.IsKeyDown(Sit) && CheckRequirements()) { Animations.SitOnGround(); } // Sit
-                            else if (Game.IsKeyDown(Kneel) && CheckRequirements()) { Animations.KneelingAnim(); } // Kneel
-                            else if (Game.IsKeyDown(Lean) && CheckRequirements()) { Animations.LeanWall(); } // Lean
-                            else if (Game.IsKeyDown(HandsOnBeltKey) && CheckRequirements()) { Animations.HandsOnBelt(); } // Hands on belt
-                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.GrabVest(); } // grab vest
+                            if (Game.IsKeyDown(Sit) && CheckRequirements()) { Animations.KeybindPlayAnimation("Sit"); } // Sit
+                            else if (Game.IsKeyDown(Kneel) && CheckRequirements()) { Animations.KeybindPlayAnimation("Kneel"); } // Kneel
+                            else if (Game.IsKeyDown(HandsOnBeltKey) && CheckRequirements()) { Animations.KeybindPlayAnimation("Hands On Belt"); } // Hands on belt
+                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.KeybindPlayAnimation("Grab Vest"); } // grab vest
                             else if (Game.IsKeyDown(Suicide) && CheckRequirements()) { Animations.Suicide(); } // Suicide
-                            else if (Game.IsKeyDown(GrabVest) && CheckRequirements()) { Animations.GrabVest(); } // Grab Vest
-                            else if (Game.IsKeyDown(Pushups) && CheckRequirements()) { Animations.PushupAnim(); } // Pushups
-                            else if (Game.IsKeyDown(Situps) && CheckRequirements()) { Animations.SitupAnim(); } // Situps
-                            else if (Game.IsKeyDown(Salute) && CheckRequirements()) { Animations.Saluting(); } // Saluting
-                            else if (Game.IsKeyDown(Smoking)) { Animations.SmokingInPlace(); } // Smoking
-                            else if (Game.IsKeyDown(Lean2)) { Animations.Lean2(); } // Lean2
+                            else if (Game.IsKeyDown(Pushups) && CheckRequirements()) { Animations.KeybindPlayAnimation("Pushups"); } // Pushups
+                            else if (Game.IsKeyDown(Situps) && CheckRequirements()) { Animations.KeybindPlayAnimation("Situps"); } // Situps
+                            else if (Game.IsKeyDown(Salute) && CheckRequirements()) { Animations.KeybindPlayAnimation("Salute"); } // Saluting
+                            else if (Game.IsKeyDown(Smoking)) { Animations.KeybindPlayAnimation("Smoking"); } // Smoking
+                            else if (Game.IsKeyDown(Leaning)) { Animations.KeybindPlayAnimation("Leaning"); } // Leaning
                             else if (Game.IsKeyDown(Box)) { Animations.CarryBox(); } // Carry box
-                            else if (Game.IsKeyDown(Mocking)) { Animations.Mocking(); } // Mocking
-                            else if (Game.IsKeyDown(Settings.Camera)) { Animations.Camera(); } // Camera
-                            else if (Game.IsKeyDown(Settings.Yoga)) { Animations.Yoga(); } // Yoga
-                            else if (Game.IsKeyDown(Settings.Binoculars)) { Animations.Binoculars(); } // Binoculars
+                            else if (Game.IsKeyDown(Mocking)) { Animations.KeybindPlayAnimation("Mocking"); } // Mocking
+                            else if (Game.IsKeyDown(Settings.Camera)) { Animations.KeybindPlayAnimation("Camera"); } // Camera
+                            else if (Game.IsKeyDown(Settings.Yoga)) { Animations.KeybindPlayAnimation("Yoga"); } // Yoga
+                            else if (Game.IsKeyDown(Settings.Binoculars)) { Animations.KeybindPlayAnimation("Binoculars"); } // Binoculars
                         }
                     });
                 }
