@@ -25,16 +25,16 @@ namespace BasicAnimations
             if (secondStartAnim != null)
             {
                 secondStartAnim.Play();
-                Game.LogTrivial($"Started {secondStartAnim.MenuName}");
+                Game.LogTrivial($"Started {startAnim.MenuName}");
             }
         }
-
-        internal void PlayEndAnimation()
+        
+        override internal void PlayEndAnimation()
         {
             if (endAnim != null)
             {
                 endAnim.Play(); //Clearing task
-                Game.LogTrivial($"Started {endAnim.MenuName}");
+                Game.LogTrivial($"Started {startAnim.MenuName}");
             }
             else
             {

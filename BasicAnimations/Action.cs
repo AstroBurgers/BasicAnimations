@@ -12,5 +12,6 @@ namespace BasicAnimations
         }
 
         abstract internal void Play();
+        abstract internal void PlayEndAnimation();
     }
 }

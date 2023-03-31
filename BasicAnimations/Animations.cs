@@ -17,35 +17,40 @@ namespace BasicAnimations
     internal class Animations
     {
         // Confusing spaghetti code :KEKW:
-        internal static bool IsActiveAnimation = false;
+        internal static bool IsActiveAnimationPlaying = false;
+        internal static Action ActiveAnimation = null;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
 
         internal static void PlayAction(AnimationSequence animationSequence) //Animations
         {
-            if (!IsActiveAnimation && CheckRequirements())
+            if (IsActiveAnimationPlaying && CheckRequirements())
+            {
+                ActiveAnimation.PlayEndAnimation();
+                IsActiveAnimationPlaying = false;
+                ActiveAnimation = null;
+            }
+            else if (!IsActiveAnimationPlaying && CheckRequirements())
             {
                 animationSequence.Play();
                 IsActiveAnimation = true;
-            }
-            else if (IsActiveAnimation && CheckRequirements())
-            {
-                animationSequence.PlayEndAnimation();
-                IsActiveAnimation = false;
+                ActiveAnimation = animationSequence;
             }
         }
         internal static void PlayAction(Action action) // Scenarios
         {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                action.Play();
-                Game.LogTrivial($"Started {action.MenuName}");
-                IsActiveAnimation = true;
-            }
-            else if (IsActiveAnimation && CheckRequirements())
+            if (IsActiveAnimationPlaying && CheckRequirements())
             {
                 MainPlayer.Tasks.ClearImmediately(); //clearing task
                 IsActiveAnimation = false;
+                ActiveAnimation = null;
                 Game.LogTrivial($"Stopped {action.MenuName}");
+            }
+            else if (!IsActiveAnimationPlaying && CheckRequirements())
+            {
+                action.Play();
+                IsActiveAnimation = true;
+                ActiveAnimation = action;
+                Game.LogTrivial($"Started {action.MenuName}");
             }
 
         }

@@ -1,5 +1,6 @@
 using Rage;
 using Rage.Native;
+using static BasicAnimations.EntryPoint;
 
 namespace BasicAnimations
 {
@@ -18,11 +19,17 @@ namespace BasicAnimations
             this.playEnterAnim = playEnterAnim;
         }
 
-        override 
-        internal void Play()
+       
+        override internal void Play()
         {
             NativeFunction.Natives.x142A02425FF02BD9(Ped, ScenarioName, delay, playEnterAnim);
             Game.LogTrivial("Fucker");
+        }
+        
+        override internal void PlayEndAnimation()
+        {
+                MainPlayer.Tasks.ClearImmediately(); //clearing task
+                Game.LogTrivial($"Stopped {MenuName}");
         }
     }
 }
