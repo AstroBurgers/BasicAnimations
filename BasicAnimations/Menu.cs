@@ -27,6 +27,12 @@ namespace BasicAnimations
         internal static UIMenu AllAnimMain = new UIMenu("All Animations", "");
         internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
         internal static UIMenu Favourites = new UIMenu("Favourites", "");
+        internal static UIMenuItem StopAllAnimations = new UIMenuItem("Stop All Animations");
+        internal static UIMenuItem FavouritesButton = new UIMenuItem("Favourites", "");
+        internal static UIMenuItem AllAnimations = new UIMenuItem("All Animations");
+        internal static UIMenuItem Suicide = new UIMenuItem("Suicide", "Commit Suicide");
+        internal static UIMenuItem CarryBox = new UIMenuItem("Carry Box", "Carry a box");
+        
         internal static void CreateMenu()
         {
             //Adding all the menus to the menu pool.
@@ -42,6 +48,7 @@ namespace BasicAnimations
         }
         internal static void AddMenuItems()
         {
+            AllAnimMain.AddItem(StopAllAnimations);
             for (int i = 0; i < actions.Count; i++)
             {
                 AllAnimMain.AddItem(new UIMenuItem(actions[i].MenuName, actions[i].MenuDescription));
@@ -49,13 +56,7 @@ namespace BasicAnimations
             }
             AllAnimMain.AddItems(Suicide, CarryBox);
         }
-        //Creating menu Items
-        //First String is button name
-        //Second String is the button description on the bottom of the menu.
-        internal static UIMenuItem FavouritesButton = new UIMenuItem("Favourites", "");
-        internal static UIMenuItem AllAnimations = new UIMenuItem("All Animations");
-        internal static UIMenuItem Suicide = new UIMenuItem("Suicide", "Commit Suicide");
-        internal static UIMenuItem CarryBox = new UIMenuItem("Carry Box", "Carry a box");
+        
         internal static void SetupMenu()
         {
             Game.LogTrivial("Creating menu");
@@ -79,8 +80,22 @@ namespace BasicAnimations
             {
                 try
                 {
-                    PlayAction(actions[index]);
-                    Game.LogTrivial(actions[index].ToString());
+                    if (selectedItem.Equals(StopAllAnimations))
+                    {
+                        EndAction(ActiveAnimation);
+                    }
+                    else if (selectedItem.Equals(Suicide))
+                    {
+                        Animations.Suicide();
+                    }
+                    else if (selectedItem.Equals(CarryBox))
+                    {
+                        Animations.CarryBox();
+                    }
+                    else
+                    {
+                        PlayAction(actions[index -1]);
+                    }
                 }
                 catch (Exception error)
                 {

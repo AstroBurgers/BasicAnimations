@@ -34,12 +34,10 @@ namespace BasicAnimations
             if (endAnim != null)
             {
                 endAnim.Play(); //Clearing task
-                Game.LogTrivial($"Started {startAnim.MenuName}");
             }
             else
             {
                 MainPlayer.Tasks.ClearImmediately(); //clearing task
-                Game.LogTrivial($"Stopped {startAnim.MenuName}");
             }
         }
     }

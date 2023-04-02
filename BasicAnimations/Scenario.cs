@@ -22,14 +22,12 @@ namespace BasicAnimations
        
         override internal void Play()
         {
-            NativeFunction.Natives.x142A02425FF02BD9(Ped, ScenarioName, delay, playEnterAnim);
-            Game.LogTrivial("Fucker");
+            NativeFunction.Natives.x142A02425FF02BD9(Ped, ScenarioName, delay, playEnterAnim); 
         }
         
         override internal void PlayEndAnimation()
         {
                 MainPlayer.Tasks.ClearImmediately(); //clearing task
-                Game.LogTrivial($"Stopped {MenuName}");
         }
     }
 }

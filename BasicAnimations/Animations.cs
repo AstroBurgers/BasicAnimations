@@ -23,30 +23,21 @@ namespace BasicAnimations
 
         internal static void PlayAction(AnimationSequence animationSequence) //Animations
         {
-            if (IsActiveAnimationPlaying && CheckRequirements())
+            if (CheckRequirements())
             {
-                ActiveAnimation.PlayEndAnimation();
-                IsActiveAnimationPlaying = false;
-                ActiveAnimation = null;
-            }
-            else if (!IsActiveAnimationPlaying && CheckRequirements())
-            {
+                EndAction(ActiveAnimation);
                 animationSequence.Play();
                 IsActiveAnimation = true;
                 ActiveAnimation = animationSequence;
+                Game.LogTrivial($"Started {animationSequence.MenuName}");
             }
         }
+        
         internal static void PlayAction(Action action) // Scenarios
         {
-            if (IsActiveAnimationPlaying && CheckRequirements())
+            if(CheckRequirements())
             {
-                MainPlayer.Tasks.ClearImmediately(); //clearing task
-                IsActiveAnimation = false;
-                ActiveAnimation = null;
-                Game.LogTrivial($"Stopped {action.MenuName}");
-            }
-            else if (!IsActiveAnimationPlaying && CheckRequirements())
-            {
+                EndAction(ActiveAnimation);
                 action.Play();
                 IsActiveAnimation = true;
                 ActiveAnimation = action;
@@ -54,6 +45,20 @@ namespace BasicAnimations
             }
 
         }
+
+
+        internal static void EndAction(Action action)
+        {
+            if (CheckRequirements() && (ActiveAnimation != null))
+            {
+                action.PlayEndAnimation(); 
+                IsActiveAnimation = false;
+                ActiveAnimation = null;
+                Game.LogTrivial($"Stopped {action.MenuName}");
+            }
+        }
+        
+        
 
         internal static List<Action> actions = new List<Action>()
         {
