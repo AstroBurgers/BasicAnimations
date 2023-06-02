@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using RAGENativeUI.Elements;
 using System.Windows.Markup;
+using static BasicAnimations.Animation;
 
 namespace BasicAnimations
 {
@@ -18,6 +19,7 @@ namespace BasicAnimations
         internal static string CSharpFilePath = @"Plugins\BasicAnimations\CustomAnimations.txt";
         internal static string CSharpFileDirectory = @"Plugins\BasicAnimations\";
         internal static List<string> Animations = new List<string>();
+        internal static List<Animation> Animation = new List<Animation>();
 
         internal static void ReadFile()
         {
@@ -51,6 +53,8 @@ namespace BasicAnimations
                     UIMenuItem Custom = new UIMenuItem(values[6]);
                     Game.LogTrivial($"Adding Menu item {values[6]}");
                     Menu.CustomAnims.AddItems(Custom);
+                    Animation Anim = new Animation(values[0], values[1], values[2], values[3], values[4], values[5]);
+                    Animation.Add(Anim);
                     Game.LogTrivial($"Added Menu item {values[6]}");
                 }
                 catch (Exception e)
@@ -74,6 +78,11 @@ namespace BasicAnimations
                 Game.LogTrivial($"File {CSharpFileDirectory} does not exsist, creating");
                 Directory.CreateDirectory(CSharpFileDirectory);
             }
+        }
+
+        internal static void CustomAnimsOnItemSelectBS()
+        {
+
         }
     }
 }
