@@ -78,7 +78,7 @@ namespace BasicAnimations
         }
         internal static bool CheckModKey()
         {
-            if (MenuModKey == Keys.None)
+            if (ModKey == Keys.None)
             {
                 return true;
             }

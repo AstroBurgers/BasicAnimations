@@ -277,7 +277,7 @@ namespace BasicAnimations
                 {
                     GameFiber.Yield();
                     MainMenuPool.ProcessMenus();
-                    if (Game.IsKeyDown(Settings.Menu) && Game.IsKeyDownRightNow(Settings.MenuModKey)) // If the button defined in the INI Is pressed trigger the IF State ment
+                    if (Game.IsKeyDown(Settings.Menu) && CheckModKey()) // If the button defined in the INI Is pressed trigger the IF State ment
                     {
                         if (MenuRequirements()) // Checking menu requirements defined below
                         {
@@ -298,6 +298,15 @@ namespace BasicAnimations
         internal static bool MenuRequirements() // The afformentioned menu requirements
         {
             return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible; // Makes sure that the player is not paused/in a compulite style menu. Checks if any other menus are open
+        }
+
+        internal static bool CheckModKey()
+        {
+            if (Settings.MenuModKey == Keys.None)
+            {
+                return true;
+            }
+            return Game.IsKeyDownRightNow(Settings.ModKey);
         }
     }
 }
