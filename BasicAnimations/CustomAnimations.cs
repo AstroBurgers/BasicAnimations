@@ -9,6 +9,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using RAGENativeUI.Elements;
+using System.Windows.Markup;
 
 namespace BasicAnimations
 {
@@ -20,6 +21,7 @@ namespace BasicAnimations
 
         internal static void ReadFile()
         {
+            ValidateFile();
             using (FileStream fileStream = new FileStream(CSharpFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 // Read the file content
@@ -41,8 +43,25 @@ namespace BasicAnimations
                     continue;
                 }
                 string[] values = (Animations[i].Trim()).Split(',');
+                Game.LogTrivial("Parsing lines...");
+                Game.LogTrivial($"Items at line {i + 1} : {values[0]}, {values[1]}, {values[2]}, {values[3]}, {values[4]}, {values[5]}, {values[6]}");
+                Game.LogTrivial($"Creating UIMenuItem with name {values[6]} under SubMenu CustomAnimations");
+                UIMenuItem Custom = new UIMenuItem(values[6]);
+                Menu.CustomAnims.AddItem(Custom);
+            }
+        }
 
-                UIMenuItem Custom = new UIMenuItem(values[7]);
+        internal static void ValidateFile()
+        {
+            if (!File.Exists(CSharpFilePath))
+            {
+                Game.LogTrivial($"File {CSharpFilePath} does not exsist, creating");
+                File.Create(CSharpFilePath);
+            }
+            if (!File.Exists(CSharpFileDirectory))
+            {
+                Game.LogTrivial($"File {CSharpFileDirectory} does not exsist, creating");
+                File.Create(CSharpFileDirectory);
             }
         }
     }
