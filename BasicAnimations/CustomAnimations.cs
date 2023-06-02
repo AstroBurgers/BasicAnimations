@@ -45,8 +45,9 @@ namespace BasicAnimations
                 string[] values = (Animations[i].Trim()).Split(',');
                 Game.LogTrivial("Parsing lines...");
                 Game.LogTrivial($"Items at line {i + 1} : {values[0]}, {values[1]}, {values[2]}, {values[3]}, {values[4]}, {values[5]}, {values[6]}");
-                Game.LogTrivial($"Creating UIMenuItem with name {values[6]} under SubMenu CustomAnimations");
+                Game.LogTrivial($"Creating UIMenuItem with name {values[6]}");
                 UIMenuItem Custom = new UIMenuItem(values[6]);
+                Game.LogTrivial($"Adding Menu item {values[6]}");
                 Menu.CustomAnims.AddItem(Custom);
             }
         }
@@ -58,10 +59,10 @@ namespace BasicAnimations
                 Game.LogTrivial($"File {CSharpFilePath} does not exsist, creating");
                 File.Create(CSharpFilePath);
             }
-            if (!File.Exists(CSharpFileDirectory))
+            if (!Directory.Exists(CSharpFileDirectory))
             {
                 Game.LogTrivial($"File {CSharpFileDirectory} does not exsist, creating");
-                File.Create(CSharpFileDirectory);
+                Directory.CreateDirectory(CSharpFileDirectory);
             }
         }
     }
