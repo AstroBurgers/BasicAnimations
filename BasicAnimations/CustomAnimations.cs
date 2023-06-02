@@ -19,11 +19,12 @@ namespace BasicAnimations
         internal static string CSharpFilePath = @"Plugins\BasicAnimations\CustomAnimations.txt";
         internal static string CSharpFileDirectory = @"Plugins\BasicAnimations\";
         internal static List<string> Animations = new List<string>();
-        internal static List<Animation> Animation = new List<Animation>();
+        internal static List<Animation> AnimList = new List<Animation>();
 
         internal static void ReadFile()
         {
             ValidateFile();
+            SelectionHandler();
             using (FileStream fileStream = new FileStream(CSharpFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 // Read the file content
@@ -54,7 +55,7 @@ namespace BasicAnimations
                     Game.LogTrivial($"Adding Menu item {values[6]}");
                     Menu.CustomAnims.AddItems(Custom);
                     Animation Anim = new Animation(values[0], values[1], values[2], values[3], values[4], values[5]);
-                    Animation.Add(Anim);
+                    AnimList.Add(Anim);
                     Game.LogTrivial($"Added Menu item {values[6]}");
                 }
                 catch (Exception e)
@@ -80,9 +81,31 @@ namespace BasicAnimations
             }
         }
 
-        internal static void CustomAnimsOnItemSelectBS()
+        internal static void SelectionHandler()
         {
+            Menu.CustomAnims.OnItemSelect += CustomAnims_OnItemSelect;
+        }
 
+        private static void CustomAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
+        {
+            bool Bool = false;
+            for (int i = 0; i < AnimList.Count; i++)
+            {
+                if (i == index)
+                {
+                    if (!Bool)
+                    {
+                        Bool = true;
+                        AnimList[i].PlayIntroAnim();
+                        AnimList[i].PlayMainAnimation();
+                    }
+                    else if (Bool)
+                    {
+                        Bool = false;
+                        AnimList[i].PlayStopAnimation();
+                    }
+                }
+            }
         }
     }
 }

@@ -34,16 +34,28 @@ namespace BasicAnimations
 
         internal void PlayIntroAnim()
         {
+            if (startDict == "" || startName == "")
+            {
+                return;
+            }
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(startDict), startName, 5f, AnimationFlags.None).WaitForCompletion();
         }
 
         internal void PlayMainAnimation()
         {
+            if (mainDict == "" || mainName == "")
+            {
+                return;
+            }
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.Loop);
         }
 
         internal void PlayStopAnimation()
         {
+            if (stopDict == "" || stopName == "")
+            {
+                return;
+            }
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(stopDict), stopName, 5f, AnimationFlags.None).WaitForCompletion();
         }
     }
