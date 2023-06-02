@@ -48,6 +48,7 @@ namespace BasicAnimations
                 try
                 {
                     string[] values = (Animations[i].Trim()).Split(',');
+                    SetToNull(values);
                     Game.LogTrivial("Parsing lines...");
                     Game.LogTrivial($"Current Line: {i}");
                     Game.LogTrivial($"Items at line {i + 1} : {values[0]}, {values[1]}, {values[2]}, {values[3]}, {values[4]}, {values[5]}, {values[6]}");
@@ -79,6 +80,17 @@ namespace BasicAnimations
             {
                 Game.LogTrivial($"File {CSharpFileDirectory} does not exsist, creating");
                 Directory.CreateDirectory(CSharpFileDirectory);
+            }
+        }
+
+        internal static void SetToNull(string[] values)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i] == "null")
+                {
+                    values[i] = null;
+                }
             }
         }
 
