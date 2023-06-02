@@ -42,13 +42,23 @@ namespace BasicAnimations
                     Game.LogTrivial($"Line Number {i + 1} was invalid. Skipping line.");
                     continue;
                 }
-                string[] values = (Animations[i].Trim()).Split(',');
-                Game.LogTrivial("Parsing lines...");
-                Game.LogTrivial($"Items at line {i + 1} : {values[0]}, {values[1]}, {values[2]}, {values[3]}, {values[4]}, {values[5]}, {values[6]}");
-                Game.LogTrivial($"Creating UIMenuItem with name {values[6]}");
-                UIMenuItem Custom = new UIMenuItem(values[6]);
-                Game.LogTrivial($"Adding Menu item {values[6]}");
-                Menu.CustomAnims.AddItem(Custom);
+                try
+                {
+                    string[] values = (Animations[i].Trim()).Split(',');
+                    Game.LogTrivial("Parsing lines...");
+                    Game.LogTrivial($"Items at line {i + 1} : {values[0]}, {values[1]}, {values[2]}, {values[3]}, {values[4]}, {values[5]}, {values[6]}");
+                    Game.LogTrivial($"Creating UIMenuItem with name {values[6]}");
+                    UIMenuItem Custom = new UIMenuItem(values[6]);
+                    Game.LogTrivial($"Adding Menu item {values[6]}");
+                    Menu.CustomAnims.AddItems(Custom);
+                    Game.LogTrivial($"Added Menu item {values[6]}");
+                }
+                catch (Exception e)
+                {
+                    string Error = e.ToString();
+                    Game.LogTrivial($"Error line {i + 1} Does not contain All parameters");
+                    Game.LogTrivial(Error);
+                }
             }
         }
 

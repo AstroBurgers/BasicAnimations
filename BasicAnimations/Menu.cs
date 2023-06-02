@@ -34,19 +34,28 @@ namespace BasicAnimations
         internal static void CreateMenu()
         {
             //Adding all the menus to the menu pool.
-            MainMenuPool.Add(MainMenu, AllAnimMain, RPAnimations, MiscAnims, PropAnims);
+            MainMenuPool.Add(MainMenu, AllAnimMain, RPAnimations, MiscAnims, PropAnims, CustomAnims);
+            
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
+            
             AllAnimMain.MouseControlsEnabled = false;
             AllAnimMain.AllowCameraMovement = true;
+            
             RPAnimations.MouseControlsEnabled = false;
             RPAnimations.AllowCameraMovement = true;
+            
             MiscAnims.MouseControlsEnabled = false;
             MiscAnims.AllowCameraMovement = true;
+            
             PropAnims.MouseControlsEnabled = false;
             PropAnims.AllowCameraMovement = true;
+            
             Favourites.MouseControlsEnabled = false;
             Favourites.AllowCameraMovement = true;
+
+            CustomAnims.MouseControlsEnabled = false;
+            CustomAnims.AllowCameraMovement = true;
             //Calling SetupMen so I can just have CreateMenu() in Main.cs
             SetupMenu();
             GameFiber.StartNew(ProcessMenus);
