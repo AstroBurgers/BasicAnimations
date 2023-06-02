@@ -30,6 +30,7 @@ namespace BasicAnimations
         internal static UIMenu PropAnims = new UIMenu("Prop Animations", "");
         internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
         internal static UIMenu Favourites = new UIMenu("Favourites", "");
+        internal static UIMenu CustomAnims = new UIMenu("Custom Animations", "Where all of the custom animations in CustomAnimations.txt");
         internal static void CreateMenu()
         {
             //Adding all the menus to the menu pool.
