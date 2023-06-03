@@ -14,6 +14,8 @@ namespace BasicAnimations
 {
     internal class Settings
     {
+        internal static Keys Investigate = Keys.None;
+        internal static Keys ModKey = Keys.None; // Modifier key
         internal static Keys Camera = Keys.None; // Defining a new Keys var
         internal static Keys Binoculars = Keys.None; // Defining a new Keys var
         internal static Keys Yoga = Keys.None; // Defining a new Keys var
@@ -32,11 +34,13 @@ namespace BasicAnimations
         internal static Keys Lean2 = Keys.None; // Defining a new Keys var
         internal static Keys Mocking = Keys.None; // Defining a new Keys var
         internal static Keys Box = Keys.None; // Defining a new Keys var
+        internal static Keys MenuModKey = Keys.None;
         internal static void INIFile()
         {
             inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
             inifile.Create();
             // INI File items
+            ModKey = inifile.ReadEnum("Keybindings", "Modifier Key", ModKey);
             Sit = inifile.ReadEnum("Keybindings", "Sit On The Ground", Sit); // Sitting
             Kneel = inifile.ReadEnum("Keybindings", "Kneel", Kneel); // Kneeling
             Lean = inifile.ReadEnum("Keybindings", "Lean", Lean); // Leaning
@@ -54,6 +58,8 @@ namespace BasicAnimations
             Yoga = inifile.ReadEnum("Keybindings", "Yoga", Yoga);
             Binoculars = inifile.ReadEnum("Keybindings", "Binoculars", Binoculars);
             Camera = inifile.ReadEnum("Keybindings", "Camera", Camera);
+            MenuModKey = inifile.ReadEnum("Keybindings", "Menu Modifier Key", MenuModKey);
+            Investigate = inifile.ReadEnum("Keybindings", "Investigate", Investigate);
         }
     }
 }

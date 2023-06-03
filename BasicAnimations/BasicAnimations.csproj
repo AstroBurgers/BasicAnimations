@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Animations.cs" />
     <Compile Include="Animation.cs" />
+    <Compile Include="CustomAnimations.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Favourites.cs" />
     <Compile Include="Menu.cs" />

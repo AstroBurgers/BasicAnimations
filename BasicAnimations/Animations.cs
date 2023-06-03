@@ -142,21 +142,6 @@ namespace BasicAnimations
                 IsActiveAnimation = false;
             }
         }
-        internal static void IdleOnPhone()
-        {
-            /*if (!IsActiveAnimation)
-            {
-                NativeFunction.Natives.xBD2A8EC3AF4DE7DB(MainPlayer, false, 2);
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started Phone Idle Animations");
-            }
-            //else
-            {
-                MainPlayer.Tasks.Clear();
-                IsActiveAnimation = false;
-                Game.LogTrivial("Ended Phone Idle Animations");
-            }*/
-        }
         internal static void GrabVest()
         {
             if (!IsActiveAnimation && CheckRequirements())
@@ -241,7 +226,6 @@ namespace BasicAnimations
                 catch (Exception e)
                 {
                     Game.LogTrivial("" + e);
-                    
                 }
             }
             else
@@ -296,6 +280,21 @@ namespace BasicAnimations
                 MainPlayer.Tasks.ClearImmediately();
                 IsActiveAnimation = false;
                 Game.LogTrivial("Stopped Camera animation");
+            }
+        }
+        internal static void Investigate()
+        {
+            if (!IsActiveAnimation && CheckRequirements())
+            {
+                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, "code_human_police_investigate", 0, true);
+                IsActiveAnimation = true;
+                Game.LogTrivial("Started Investigate animation");
+            }
+            else
+            {
+                MainPlayer.Tasks.ClearImmediately();
+                IsActiveAnimation = false;
+                Game.LogTrivial("Stopped Investigate animation");
             }
         }
     }
