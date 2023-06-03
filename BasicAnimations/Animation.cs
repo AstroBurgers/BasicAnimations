@@ -52,7 +52,7 @@ namespace BasicAnimations
             
             Game.LogTrivial("Playing Main animation");
             Game.LogTrivial($"Playing animation... dict/name : {mainDict}, {mainName}");
-            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary($"{mainDict.ToString()}"), $"{mainName.ToString()}", 5f, AnimationFlags.Loop);
+            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.Loop);
         }
 
         internal void PlayStopAnimation()
