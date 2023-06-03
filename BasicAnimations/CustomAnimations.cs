@@ -101,24 +101,8 @@ namespace BasicAnimations
 
         private static void CustomAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
-            bool Bool = false;
-            for (int i = 0; i < AnimList.Count; i++)
-            {
-                if (i == index)
-                {
-                    if (!Bool)
-                    {
-                        Bool = true;
-                        AnimList[i].PlayIntroAnim();
-                        AnimList[i].PlayMainAnimation();
-                    }
-                    else if (Bool)
-                    {
-                        Bool = false;
-                        AnimList[i].PlayStopAnimation();
-                    }
-                }
-            }
+            AnimList[index].PlayIntroAnim();
+            AnimList[index].PlayMainAnimation();
         }
     }
 }

@@ -34,8 +34,8 @@ namespace BasicAnimations
 
         internal void PlayIntroAnim()
         {
-            if (String.IsNullOrEmpty(startDict) || String.IsNullOrEmpty(startName) || !CheckRequirements())
-            {
+            if (!String.IsNullOrEmpty(startDict) && !String.IsNullOrEmpty(startName) && !CheckRequirements())
+            { 
                 return;
             }
             Game.LogTrivial("Playing intro animation");
@@ -45,7 +45,7 @@ namespace BasicAnimations
 
         internal void PlayMainAnimation()
         {
-            if (String.IsNullOrEmpty(mainDict) || String.IsNullOrEmpty(mainName) || !CheckRequirements())
+            if (!String.IsNullOrEmpty(startDict) && !String.IsNullOrEmpty(startName) && !CheckRequirements())
             {
                 return;
             }
@@ -57,7 +57,7 @@ namespace BasicAnimations
 
         internal void PlayStopAnimation()
         {
-            if (String.IsNullOrEmpty(stopDict) || String.IsNullOrEmpty(stopName) || !CheckRequirements())
+            if (!String.IsNullOrEmpty(startDict) && !String.IsNullOrEmpty(startName) && !CheckRequirements())
             {
                 return;
             }

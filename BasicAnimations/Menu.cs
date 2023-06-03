@@ -307,7 +307,7 @@ namespace BasicAnimations
                 {
                     GameFiber.Yield();
                     MainMenuPool.ProcessMenus();
-                    if (Game.IsKeyDown(Settings.Menu) && CheckModKey()) // If the button defined in the INI Is pressed trigger the IF State ment
+                    if (Game.IsKeyDownRightNow(Keys.LShiftKey) && Game.IsKeyDown(Keys.B)) // If the button defined in the INI Is pressed trigger the IF State ment
                     {
                         if (MenuRequirements()) // Checking menu requirements defined below
                         {
