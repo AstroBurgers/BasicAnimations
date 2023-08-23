@@ -33,6 +33,7 @@ namespace BasicAnimations
         internal static UIMenu CustomAnims = new UIMenu("Custom Animations", "");
         internal static void CreateMenu()
         {
+            
             //Adding all the menus to the menu pool.
             MainMenuPool.Add(MainMenu, AllAnimMain, RPAnimations, MiscAnims, PropAnims, CustomAnims);
             
@@ -89,25 +90,6 @@ namespace BasicAnimations
         internal static UIMenuItem CustomMenus = new UIMenuItem("Custom Animations", "Where all of the custom animations in CustomAnimations.txt are");
         internal static void SetupMenu()
         {
-            Game.LogTrivial("Creating menu");
-            Game.LogTrivial("");
-            Game.LogTrivial("Adding Menu Items to Menus");
-            Game.LogTrivial("");
-            Game.LogTrivial("Adding Item: Sitting");
-            Game.LogTrivial("Adding Item: Leaning");
-            Game.LogTrivial("Adding Item: Kneel");
-            Game.LogTrivial("Adding Item: Smoking");
-            Game.LogTrivial("Adding Item: Situps");
-            Game.LogTrivial("Adding Item: HandsOnBelt");
-            Game.LogTrivial("Adding Item: Salute");
-            Game.LogTrivial("Adding Item: Lean2");
-            Game.LogTrivial("Adding Item: Mocking");
-            Game.LogTrivial("Adding Item: CarryBox");
-            Game.LogTrivial("Adding Item: Yoga");
-            Game.LogTrivial("Adding Item: Binoculars");
-            Game.LogTrivial("Adding Item: Camera");
-            Game.LogTrivial("Adding Item: Investigate");
-            Game.LogTrivial("");
             AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Lean2, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
             MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations, CustomMenus);
             MainMenu.BindMenuToItem(CustomAnims, CustomMenus);

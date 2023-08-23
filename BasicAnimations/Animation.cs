@@ -45,7 +45,7 @@ namespace BasicAnimations
 
         internal void PlayMainAnimation()
         {
-            if (!String.IsNullOrEmpty(startDict) && !String.IsNullOrEmpty(startName) && !CheckRequirements())
+            if (!String.IsNullOrEmpty(mainDict) && !String.IsNullOrEmpty(mainName) && !CheckRequirements())
             {
                 return;
             }
@@ -57,7 +57,7 @@ namespace BasicAnimations
 
         internal void PlayStopAnimation()
         {
-            if (!String.IsNullOrEmpty(startDict) && !String.IsNullOrEmpty(startName) && !CheckRequirements())
+            if (!String.IsNullOrEmpty(stopDict) && !String.IsNullOrEmpty(stopName) && !CheckRequirements())
             {
                 return;
             }
