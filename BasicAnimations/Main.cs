@@ -3,6 +3,8 @@ using System;
 using System.Reflection;
 using System.Windows.Forms;
 using static BasicAnimations.Settings;
+using static BasicAnimations.Animation_Classes.Animation;
+using static BasicAnimations.Systems.Helper;
 
 [assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "AstroBurgers")]
 
@@ -11,7 +13,6 @@ namespace BasicAnimations
     internal class EntryPoint
     {
         internal static bool IsActiveAnimation = false;
-        internal static Ped MainPlayer => Game.LocalPlayer.Character;
         internal static bool BetaVersion = false;
         internal static void Main()
         {
@@ -28,7 +29,6 @@ namespace BasicAnimations
                     //Favourites.SetFav();
                     Menu.CreateMenu();
                     INIFile();
-                    CustomAnimations.ReadFile();
                     GameFiber.StartNew(delegate
                     {
                         while (true)
@@ -65,11 +65,6 @@ namespace BasicAnimations
                     Game.LogTrivial("Crashed at: " + e); // Error handling
                 }
             }
-        }
-
-        internal static bool CheckRequirements()
-        {
-            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater && !MainPlayer.IsGettingIntoVehicle;
         }
         internal static bool CheckModKey()
         {

@@ -2,7 +2,9 @@
 using Rage.Native;
 using System;
 using static BasicAnimations.EntryPoint;
-
+using static BasicAnimations.Animation_Classes.Animation;
+using static BasicAnimations.Systems.Helper;
+    
 namespace BasicAnimations
 {
     internal class Animations
@@ -11,24 +13,8 @@ namespace BasicAnimations
         internal static bool IsActiveAnimation = false;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
 
-        Animation SitOnGround = new Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true);
+        Animation_Classes.Animation Sit = new Animation_Classes.Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true);
 
-        internal static void SitOnGround() // Sitting Method start
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(""), "", 5f, AnimationFlags.Loop); //Starting task
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started ground sit animation");
-            }
-            else if (IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(""), "", 5f, AnimationFlags.None); //Clearing task
-                IsActiveAnimation = false;
-                Game.LogTrivial("Started stand up animation");
-            }
-
-        } // Sitting Method end
         internal static void SmokingInPlace() // Smoking Method start
         {
             if (!IsActiveAnimation && CheckRequirements())

@@ -3,7 +3,7 @@ using System;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
-namespace BasicAnimations
+namespace BasicAnimations.Animation_Classes
 {
     internal class Animation
     {
@@ -34,36 +34,44 @@ namespace BasicAnimations
 
         internal void PlayIntroAnim()
         {
-            if (IsAnimationActive)
+            if (IsAnimationActive || !CheckRequirements())
             {
                 return;
             }
-            Game.LogTrivial("Playing intro animation");
-            Game.LogTrivial($"Playing animation... dict/name : {startDict}, {startName}");
+            Logger.Log(LogType.Normal, $"Playing animation: {startName}");
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(startDict), startName, 5f, AnimationFlags.None).WaitForCompletion();
         }
 
         internal void PlayMainAnimation()
         {
-            if (IsAnimationActive)
+            if (IsAnimationActive || !CheckRequirements())
             {
                 return;
             }
-            Game.LogTrivial("Playing Main animation");
-            Game.LogTrivial($"Playing animation... dict/name : {mainDict}, {mainName}");
-            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.Loop);
+            Logger.Log(LogType.Normal, $"Playing animation: {mainName}");
+            if (looped)
+            {
+                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.Loop);
+            }
+            else
+            {
+                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.None);
+            }
         }
 
         internal void PlayStopAnimation()
         {
-            Game.LogTrivial("Playing Exit animation");
-            Game.LogTrivial($"Playing animation... dict/name : {stopDict}, {stopName}");
+            if (!CheckRequirements())
+            {
+                return;
+            }
+            Logger.Log(LogType.Normal, $"Playing animation: {stopName}");
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(stopDict), stopName, 5f, AnimationFlags.None).WaitForCompletion();
         }
 
-        internal static bool CheckRequirements()
+        internal void ExecuteAnimation(Animation animation, bool intro, bool main, bool stop, bool looped)
         {
-            return MainPlayer.Exists() && MainPlayer.IsAlive && MainPlayer.IsValid() && MainPlayer.IsOnFoot && !MainPlayer.IsRagdoll && !MainPlayer.IsReloading && !MainPlayer.IsFalling && !MainPlayer.IsInAir && !MainPlayer.IsJumping && !MainPlayer.IsInWater && !MainPlayer.IsGettingIntoVehicle;
+
         }
     }
 }

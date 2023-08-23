@@ -1,4 +1,4 @@
-﻿using Rage;
+﻿/*using Rage;
 using RAGENativeUI;
 using RAGENativeUI.Elements;
 using System;
@@ -99,3 +99,4 @@ namespace BasicAnimations
         }
     }
 }
+*/

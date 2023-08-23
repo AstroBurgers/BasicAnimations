@@ -103,22 +103,22 @@ namespace BasicAnimations
                 switch (index)
                 {
                     case 0:
-                        LeanWall();
+                        Animations.LeanWall();
                         break;
                     case 1:
-                        Suicide();
+                        Animations.Suicide();
                         break;
                     case 2:
-                        SitupAnim();
+                        Animations.SitupAnim();
                         break;
                     case 3:
-                        PushupAnim();
+                        Animations.PushupAnim();
                         break;
                     case 4:
-                        Mocking();
+                        Animations.Mocking();
                         break;
                     case 5:
-                        Yoga();
+                        Animations.Yoga();
                         break;
                     default:
                         Game.LogTrivial("");
@@ -135,13 +135,13 @@ namespace BasicAnimations
                 switch (index)
                 {
                     case 0:
-                        CarryBox();
+                        Animations.CarryBox();
                         break;
                     case 1:
-                        Binoculars();
+                        Animations.Binoculars();
                         break;
                     case 2:
-                        Camera();
+                        Animations.Camera();
                         break;
                     default:
                         Game.LogTrivial("");
@@ -160,55 +160,55 @@ namespace BasicAnimations
                     switch (index) // All animations event handler
                     {
                         case 0:
-                            SitOnGround();
+                            Animations.SitOnGround();
                             break;
                         case 1:
-                            LeanWall();
+                            Animations.LeanWall();
                             break;
                         case 2:
-                            KneelingAnim();
+                            Animations.KneelingAnim();
                             break;
                         case 3:
-                            Suicide();
+                            Animations.Suicide();
                             break;
                         case 4:
-                            SmokingInPlace();
+                            Animations.SmokingInPlace();
                             break;
                         case 5:
-                            SitupAnim();
+                            Animations.SitupAnim();
                             break;
                         case 6:
-                            HandsOnBelt();
+                            Animations.HandsOnBelt();
                             break;
                         case 7:
-                            PushupAnim();
+                            Animations.PushupAnim();
                             break;
                         case 8:
-                            GrabVest();
+                            Animations.GrabVest();
                             break;
                         case 9:
-                            Saluting();
+                            Animations.Saluting();
                             break;
                         case 10:
-                            Lean2();
+                            Animations.Lean2();
                             break;
                         case 11:
-                            Mocking();
+                            Animations.Mocking();
                             break;
                         case 12:
-                            CarryBox();
+                            Animations.CarryBox();
                             break;
                         case 13:
-                            Yoga();
+                            Animations.Yoga();
                             break;
                         case 14:
-                            Binoculars();
+                            Animations.Binoculars();
                             break;
                         case 15:
-                            Camera();
+                            Animations.Camera();
                             break;
                         case 16:
-                            Investigate();
+                            Animations.Investigate();
                             break;
                         default:
                             Game.LogTrivial("");
