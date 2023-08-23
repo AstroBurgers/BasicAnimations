@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Deployment.Internal;
-using System.Linq;
-using System.Drawing;
-using static BasicAnimations.EntryPoint;
-using static BasicAnimations.Animations;
-using Rage;
-using Rage.Native;
+﻿using Rage;
 using RAGENativeUI;
-using System.Windows.Forms;
-using System.Text;
-using System.Threading.Tasks;
 using RAGENativeUI.Elements;
-using Rage.Attributes;
 using RAGENativeUI.PauseMenu;
-using System.ComponentModel.Design.Serialization;
-using System.Net.Http.Headers;
+using System;
+using System.Windows.Forms;
+using static BasicAnimations.Animations;
 
 namespace BasicAnimations
 {
@@ -25,7 +14,6 @@ namespace BasicAnimations
         //String Params are the same as the items
         internal static MenuPool MainMenuPool = new MenuPool();
         internal static UIMenu AllAnimMain = new UIMenu("All Animations", "");
-        internal static UIMenu RPAnimations = new UIMenu("RP Animations", "");
         internal static UIMenu MiscAnims = new UIMenu("Miscellaneous", "");
         internal static UIMenu PropAnims = new UIMenu("Prop Animations", "");
         internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
@@ -33,25 +21,22 @@ namespace BasicAnimations
         internal static UIMenu CustomAnims = new UIMenu("Custom Animations", "");
         internal static void CreateMenu()
         {
-            
+
             //Adding all the menus to the menu pool.
-            MainMenuPool.Add(MainMenu, AllAnimMain, RPAnimations, MiscAnims, PropAnims, CustomAnims);
-            
+            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims, CustomAnims);
+
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
-            
+
             AllAnimMain.MouseControlsEnabled = false;
             AllAnimMain.AllowCameraMovement = true;
-            
-            RPAnimations.MouseControlsEnabled = false;
-            RPAnimations.AllowCameraMovement = true;
-            
+
             MiscAnims.MouseControlsEnabled = false;
             MiscAnims.AllowCameraMovement = true;
-            
+
             PropAnims.MouseControlsEnabled = false;
             PropAnims.AllowCameraMovement = true;
-            
+
             Favourites.MouseControlsEnabled = false;
             Favourites.AllowCameraMovement = true;
 
@@ -94,17 +79,14 @@ namespace BasicAnimations
             MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations, CustomMenus);
             MainMenu.BindMenuToItem(CustomAnims, CustomMenus);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
-            MainMenu.BindMenuToItem(RPAnimations, RPAnims); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
             //MainMenu.BindMenuToItem(Favourites, FavouritesButton);
-            RPAnimations.OnItemSelect += RPAnimations_OnItemSelect; // Event handler
             PropAnims.OnItemSelect += PropAnims_OnItemSelect; // Event handler
             MiscAnims.OnItemSelect += MiscAnims_OnItemSelect; // Event handler
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
             AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
             // Favourites.OnItemSelect += Favourites_OnItemSelect;
-            RPAnimations.AddItems(Sitting, Kneel, Smoking, HandsOnBelt, GrabVest, Salute, Lean2, Investigate);
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
         }
@@ -160,44 +142,6 @@ namespace BasicAnimations
                         break;
                     case 2:
                         Camera();
-                        break;
-                    default:
-                        Game.LogTrivial("");
-                        break;
-                }
-
-            });
-        }
-
-        private static void RPAnimations_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
-        {
-            GameFiber.StartNew(delegate
-            {
-                switch (index)
-                {
-                    case 0:
-                        SitOnGround();
-                        break;
-                    case 1:
-                        KneelingAnim();
-                        break;
-                    case 2:
-                        SmokingInPlace();
-                        break;
-                    case 3:
-                        HandsOnBelt();
-                        break;
-                    case 4:
-                        GrabVest();
-                        break;
-                    case 5:
-                        Saluting();
-                        break;
-                    case 6:
-                        Lean2();
-                        break;
-                    case 7:
-                        Investigate();
                         break;
                     default:
                         Game.LogTrivial("");

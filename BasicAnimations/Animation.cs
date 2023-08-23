@@ -1,41 +1,41 @@
 ﻿using Rage;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static BasicAnimations.Systems.Helper;
+using static BasicAnimations.Systems.Logging;
 
 namespace BasicAnimations
 {
     internal class Animation
     {
-        internal static Ped MainPlayer => Game.LocalPlayer.Character;
         string startDict;
         string startName;
-        
+
         string mainDict;
         string mainName;
-        
+
         string stopDict;
         string stopName;
 
-        internal Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName)
+        bool looped;
+
+        internal Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped)
         {
             this.startDict = startDict;
             this.startName = startName;
-            
+
             this.mainDict = mainDict;
             this.mainName = mainName;
-            
+
             this.stopDict = stopDict;
             this.stopName = stopName;
+
+            this.looped = looped;
         }
 
         internal void PlayIntroAnim()
         {
-            if (!String.IsNullOrEmpty(startDict) && !String.IsNullOrEmpty(startName) && !CheckRequirements())
-            { 
+            if (IsAnimationActive)
+            {
                 return;
             }
             Game.LogTrivial("Playing intro animation");
@@ -45,11 +45,10 @@ namespace BasicAnimations
 
         internal void PlayMainAnimation()
         {
-            if (!String.IsNullOrEmpty(mainDict) && !String.IsNullOrEmpty(mainName) && !CheckRequirements())
+            if (IsAnimationActive)
             {
                 return;
             }
-            
             Game.LogTrivial("Playing Main animation");
             Game.LogTrivial($"Playing animation... dict/name : {mainDict}, {mainName}");
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.Loop);
@@ -57,11 +56,6 @@ namespace BasicAnimations
 
         internal void PlayStopAnimation()
         {
-            if (!String.IsNullOrEmpty(stopDict) && !String.IsNullOrEmpty(stopName) && !CheckRequirements())
-            {
-                return;
-            }
-
             Game.LogTrivial("Playing Exit animation");
             Game.LogTrivial($"Playing animation... dict/name : {stopDict}, {stopName}");
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(stopDict), stopName, 5f, AnimationFlags.None).WaitForCompletion();

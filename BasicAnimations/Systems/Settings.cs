@@ -1,12 +1,5 @@
 ﻿using Rage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Rage.Native;
-using RAGENativeUI;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 
 // INI File configuration
 

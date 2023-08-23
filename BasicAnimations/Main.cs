@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Rage;
-using static BasicAnimations.Settings;
-using Rage.Native;
-using System.Windows.Forms;
-using RAGENativeUI;
-using RAGENativeUI.PauseMenu;
-using System.Threading.Tasks;
+﻿using Rage;
+using System;
 using System.Reflection;
+using System.Windows.Forms;
+using static BasicAnimations.Settings;
 
 [assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "AstroBurgers")]
 

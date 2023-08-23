@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rage;
+﻿using Rage;
 using RAGENativeUI;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using RAGENativeUI.Elements;
-using System.Windows.Markup;
-using static BasicAnimations.Animation;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace BasicAnimations
 {

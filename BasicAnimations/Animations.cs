@@ -1,15 +1,7 @@
-﻿using Rage.Native;
-using Rage;
+﻿using Rage;
+using Rage.Native;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using static BasicAnimations.EntryPoint;
-using static BasicAnimations.Animations;
-using System.Windows.Forms;
-using System.Security.Cryptography;
-using System.Threading;
-using System.Drawing;
 
 namespace BasicAnimations
 {
@@ -18,17 +10,20 @@ namespace BasicAnimations
         // Confusing spaghetti code :KEKW:
         internal static bool IsActiveAnimation = false;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
+
+        Animation SitOnGround = new Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true);
+
         internal static void SitOnGround() // Sitting Method start
         {
             if (!IsActiveAnimation && CheckRequirements())
             {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@amb@business@bgen@bgen_no_work@"), "sit_phone_phoneputdown_idle_nowork", 5f, AnimationFlags.Loop); //Starting task
+                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(""), "", 5f, AnimationFlags.Loop); //Starting task
                 IsActiveAnimation = true;
                 Game.LogTrivial("Started ground sit animation");
             }
             else if (IsActiveAnimation && CheckRequirements())
             {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("get_up@sat_on_floor@to_stand"), "getup_0", 5f, AnimationFlags.None); //Clearing task
+                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(""), "", 5f, AnimationFlags.None); //Clearing task
                 IsActiveAnimation = false;
                 Game.LogTrivial("Started stand up animation");
             }
