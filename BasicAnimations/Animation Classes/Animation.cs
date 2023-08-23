@@ -17,8 +17,9 @@ namespace BasicAnimations.Animation_Classes
         string stopName;
 
         bool looped;
+        bool stayInEndFrame;
 
-        internal Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped)
+        internal Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped, bool stayInEndFrame)
         {
             this.startDict = startDict;
             this.startName = startName;
@@ -30,12 +31,16 @@ namespace BasicAnimations.Animation_Classes
             this.stopName = stopName;
 
             this.looped = looped;
+            this.stayInEndFrame = stayInEndFrame;
         }
 
         internal void PlayIntroAnim()
         {
-            if (IsAnimationActive || !CheckRequirements())
+            if (!CheckRequirements()) { return; }
+            if (IsAnimationActive)
             {
+                Logger.Log(LogType.Normal, $"Playing animation: {stopName}");
+                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(stopDict), stopName, 5f, AnimationFlags.None).WaitForCompletion();
                 return;
             }
             Logger.Log(LogType.Normal, $"Playing animation: {startName}");
@@ -57,21 +62,6 @@ namespace BasicAnimations.Animation_Classes
             {
                 MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, AnimationFlags.None);
             }
-        }
-
-        internal void PlayStopAnimation()
-        {
-            if (!CheckRequirements())
-            {
-                return;
-            }
-            Logger.Log(LogType.Normal, $"Playing animation: {stopName}");
-            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(stopDict), stopName, 5f, AnimationFlags.None).WaitForCompletion();
-        }
-
-        internal void ExecuteAnimation(Animation animation, bool intro, bool main, bool stop, bool looped)
-        {
-
         }
     }
 }

@@ -20,7 +20,7 @@ namespace BasicAnimations.Animation_Classes
 
         internal void StartScenario()
         {
-            if (IsAnimationActive)
+            if (IsAnimationActive || !CheckRequirements())
             {
                 return;
             }
