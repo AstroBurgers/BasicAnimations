@@ -4,7 +4,6 @@ using RAGENativeUI.Elements;
 using RAGENativeUI.PauseMenu;
 using System;
 using System.Windows.Forms;
-using static BasicAnimations.Animations;
 
 namespace BasicAnimations
 {

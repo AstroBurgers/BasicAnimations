@@ -1,10 +1,9 @@
-﻿using Rage;
+﻿using BasicAnimations.Animation_Classes;
+using Rage;
 using Rage.Native;
 using System;
-using static BasicAnimations.EntryPoint;
-using static BasicAnimations.Animation_Classes.Animation;
 using static BasicAnimations.Systems.Helper;
-    
+
 namespace BasicAnimations
 {
     internal class Animations
@@ -13,23 +12,8 @@ namespace BasicAnimations
         internal static bool IsActiveAnimation = false;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
 
-        Animation_Classes.Animation Sit = new Animation_Classes.Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true, false);
-
-        internal static void SmokingInPlace() // Smoking Method start
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, "world_human_smoking", 0, true); //start smoking anim
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started smoking scenario");
-            }
-            else if (IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.ClearImmediately(); //clearing task
-                IsActiveAnimation = false;
-                Game.LogTrivial("Stopped smoking scenario");
-            }
-        } // Smoking Method end
+        Animation_Classes.Animation Sit = new Animation_Classes.Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true, false, 0);
+        Scenario Smoking = new Scenario("world_human_smoking");
         internal static void KneelingAnim() // Kneeling Method end
         {
             if (!IsActiveAnimation && CheckRequirements())

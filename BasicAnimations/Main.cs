@@ -3,7 +3,6 @@ using System;
 using System.Reflection;
 using System.Windows.Forms;
 using static BasicAnimations.Settings;
-using static BasicAnimations.Animation_Classes.Animation;
 using static BasicAnimations.Systems.Helper;
 
 [assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "AstroBurgers")]

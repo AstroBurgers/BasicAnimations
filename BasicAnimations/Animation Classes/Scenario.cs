@@ -1,9 +1,4 @@
 ﻿using Rage.Native;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
