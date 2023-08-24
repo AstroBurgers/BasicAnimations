@@ -1,4 +1,5 @@
-﻿using Rage;
+﻿using BasicAnimations.Systems;
+using Rage;
 using RAGENativeUI;
 using RAGENativeUI.Elements;
 using RAGENativeUI.PauseMenu;
@@ -198,7 +199,7 @@ namespace BasicAnimations
                 }
                 catch (Exception error)
                 {
-                    Game.LogTrivial("An error occured in the Menu.cs " + error);
+                    Logging.Logger.LogException("Menu.cs", error.ToString());
                 }
             });
         }

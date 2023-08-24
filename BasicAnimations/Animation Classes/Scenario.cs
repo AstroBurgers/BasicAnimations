@@ -18,12 +18,16 @@ namespace BasicAnimations.Animation_Classes
             if (IsAnimationActive || !CheckRequirements())
             {
                 EndScenario();
+                IsAnimationActive = false;
                 return;
             }
 
-            Logger.Log(LogType.Normal, $"Starting Scenario {scenarioName}");
-
-            NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, scenarioName, 0, true);
+            else if (!IsAnimationActive && CheckRequirements())
+            {
+                Logger.Log(LogType.Normal, $"Starting Scenario {scenarioName}");
+                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, scenarioName, 0, true);
+                IsAnimationActive = true;
+            }
         }
 
         internal void EndScenario()
