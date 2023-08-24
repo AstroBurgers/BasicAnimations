@@ -17,6 +17,7 @@ namespace BasicAnimations.Animation_Classes
         {
             if (IsAnimationActive || !CheckRequirements())
             {
+                EndScenario();
                 return;
             }
 

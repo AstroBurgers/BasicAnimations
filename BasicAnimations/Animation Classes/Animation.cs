@@ -62,6 +62,7 @@ namespace BasicAnimations.Animation_Classes
                 Logger.Log(LogType.Normal, $"Playing animation: {stopName}");
                 MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(stopDict), stopName, 5f, AnimationFlags.None).WaitForCompletion();
                 IsAnimationActive = false;
+                MainPlayer.Tasks.Clear();
                 return;
             }
 
@@ -70,6 +71,7 @@ namespace BasicAnimations.Animation_Classes
                 Logger.Log(LogType.Normal, "Clearing player tasks");
                 MainPlayer.Tasks.Clear();
                 IsAnimationActive = false;
+                return;
             }
 
             if (IsAnimationActive || string.IsNullOrEmpty(startName) || string.IsNullOrEmpty(startDict) || !CheckRequirements()) { return; }
@@ -97,15 +99,12 @@ namespace BasicAnimations.Animation_Classes
             Logger.Log(LogType.Normal, $"Playing animation: {mainName}");
             if (stayInEndFrame && (stayInEndFrameStage == AnimationStage.Main))
             {
-                Logger.Log(LogType.Normal, $"Playing animation: {mainName}");
                 MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, stayInEndFrameTime);
                 IsAnimationActive = true;
+                return;
             }
-            else
-            {
-                IsAnimationActive = true;
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, SetFlags());
-            }
+            IsAnimationActive = true;
+            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(mainDict), mainName, 5f, SetFlags());
         }
 
         internal AnimationFlags SetFlags()
