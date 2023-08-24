@@ -12,73 +12,13 @@ namespace BasicAnimations
         internal static bool IsActiveAnimation = false;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
 
-        Animation_Classes.Animation Sit = new Animation_Classes.Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true, false, 0);
+        Animation Sit = new Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true, false, 0, AnimationStage.None);
+        Animation Pushup = new Animation("amb@world_human_push_ups@male@enter", "enter", "amb@world_human_push_ups@male@base", "base", "amb@world_human_push_ups@male@exit", "exit", true, true, 3500, AnimationStage.Start);
+        Animation Situp = new Animation("amb@world_human_sit_ups@male@enter", "enter", "amb@world_human_sit_ups@male@base", "base", "amb@world_human_sit_ups@male@exit", "exit", true, true, 3000, AnimationStage.Start);
+
         Scenario Smoking = new Scenario("world_human_smoking");
-        internal static void KneelingAnim() // Kneeling Method end
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, "code_human_medic_kneel", 0, true); // TASK_START_SCENARIO_IN_PLACE
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started kneeling animation");
-            }
-            else
-            {
-                //NativeFunction.Natives.SET_PED_SHOULD_PLAY_IMMEDIATE_SCENARIO_EXIT(MainPlayer);
-                MainPlayer.Tasks.Clear();
-                IsActiveAnimation = false;
-                Game.LogTrivial("Stopped kneeling animation");
-            }
-        } // Kneeling Method end
-        internal static void PushupAnim() // Pushup Method start
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_push_ups@male@enter"), "enter", 5f, AnimationFlags.StayInEndFrame).WaitForStatus(TaskStatus.NoTask, 3500); //Starting task
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_push_ups@male@base"), "base", 5f, AnimationFlags.Loop);
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started Pushup animation");
-            }
-            else if (IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_push_ups@male@exit"), "exit", 5f, AnimationFlags.None); //Clearing task
-                IsActiveAnimation = false;
-                Game.LogTrivial("Started stand up animation");
-            }
-        } // Pushup Method end
-        internal static void SitupAnim() // Situp Method start
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_sit_ups@male@enter"), "enter", 5f, AnimationFlags.StayInEndFrame).WaitForStatus(TaskStatus.NoTask, 3000);
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_sit_ups@male@base"), "base", 5f, AnimationFlags.Loop);
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started Sit up animation");
-            }
-            else if (IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_sit_ups@male@exit"), "exit", 5f, AnimationFlags.None);
-                IsActiveAnimation = false;
-                Game.LogTrivial("Ended sit up animation");
-            }
-        } // Situp Method end
-        internal static void LeanWall() // Leaning Method start
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@enter"), "enter_back", 5f, AnimationFlags.StayInEndFrame).WaitForStatus(TaskStatus.NoTask, 5000);
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@idle_b"), "idle_e", 5f, AnimationFlags.Loop);
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started Leaning Animation");
-            }
-            else if (IsActiveAnimation && CheckRequirements())
-            {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("amb@world_human_leaning@male@wall@back@hands_together@exit"), "exit_front", 5f, AnimationFlags.None).WaitForCompletion();
-                MainPlayer.Tasks.Clear();
-                IsActiveAnimation = false;
-                Game.LogTrivial("Stopped Leaning Animation");
-            }
-        } // Leaning Method end
+        Scenario Kneeling = new Scenario("code_human_medic_kneel");
+        Scenario Leaning = new Scenario("world_human_leaning");
         internal static void HandsOnBelt() // Hands on belt Method start
         {
             if (!IsActiveAnimation && CheckRequirements())
