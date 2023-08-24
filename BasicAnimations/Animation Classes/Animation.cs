@@ -1,6 +1,4 @@
 ﻿using Rage;
-using System;
-using System.Text;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
@@ -57,6 +55,8 @@ namespace BasicAnimations.Animation_Classes
         {
             if (!CheckRequirements()) { return; }
 
+            SetFlags();
+
             if (IsAnimationActive && !string.IsNullOrEmpty(stopName) && !string.IsNullOrEmpty(stopDict))
             {
                 Logger.Log(LogType.Normal, $"Playing animation: {stopName}");
@@ -109,7 +109,7 @@ namespace BasicAnimations.Animation_Classes
 
         internal AnimationFlags SetFlags()
         {
-            var flags = AnimationFlags.None;
+            AnimationFlags flags = AnimationFlags.None;
 
             if (stayInEndFrame)
             {

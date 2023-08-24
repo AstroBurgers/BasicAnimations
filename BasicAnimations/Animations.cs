@@ -19,14 +19,13 @@ namespace BasicAnimations
         internal static Animation Salute = new Animation("mp_player_int_uppersalute", "mp_player_int_salute_enter", "mp_player_int_uppersalute", "mp_player_int_salute", "mp_player_int_uppersalute", "mp_player_int_salute_Exit", true, true, 2000, AnimationStage.Start, false);
         internal static Animation Mocking = new Animation(String.Empty, String.Empty, "anim@mp_player_intcelebrationfemale@thumb_on_ears", "thumb_on_ears", String.Empty, String.Empty, true, false, 0, AnimationStage.None, false);
 
-        internal Scenario Smoking = new Scenario("world_human_smoking");
-        internal Scenario Kneeling = new Scenario("code_human_medic_kneel");
-        internal Scenario Leaning = new Scenario("world_human_leaning");
-        internal Scenario Lean = new Scenario("world_human_leaning");
-        internal Scenario Yoga = new Scenario("world_human_yoga");
-        internal Scenario Binoculars = new Scenario("world_human_binoculars");
-        internal Scenario Camera = new Scenario("world_human_paparazzi");
-        internal Scenario Investigate = new Scenario("code_human_police_investigate");
+        internal static Scenario Smoking = new Scenario("world_human_smoking");
+        internal static Scenario Kneeling = new Scenario("code_human_medic_kneel");
+        internal static Scenario Lean = new Scenario("world_human_leaning");
+        internal static Scenario Yoga = new Scenario("world_human_yoga");
+        internal static Scenario Binoculars = new Scenario("world_human_binoculars");
+        internal static Scenario Camera = new Scenario("world_human_paparazzi");
+        internal static Scenario Investigate = new Scenario("code_human_police_investigate");
 
         internal static void Suicide()
         {

@@ -45,13 +45,11 @@ namespace BasicAnimations
             Situps = inifile.ReadEnum("Keybindings", "Do situps", Situps);
             Pushups = inifile.ReadEnum("Keybindings", "Do pushups", Pushups);
             Salute = inifile.ReadEnum("Keybindings", "Salute", Salute);
-            Lean2 = inifile.ReadEnum("Keybindings", "Lean 2", Lean2);
             Mocking = inifile.ReadEnum("Keybindings", "Mock", Mocking);
             Box = inifile.ReadEnum("Keybindings", "Hold box", Box);
             Yoga = inifile.ReadEnum("Keybindings", "Yoga", Yoga);
             Binoculars = inifile.ReadEnum("Keybindings", "Binoculars", Binoculars);
             Camera = inifile.ReadEnum("Keybindings", "Camera", Camera);
-            MenuModKey = inifile.ReadEnum("Keybindings", "Menu Modifier Key", MenuModKey);
             Investigate = inifile.ReadEnum("Keybindings", "Investigate", Investigate);
         }
     }

@@ -3,7 +3,7 @@ using RAGENativeUI;
 using RAGENativeUI.Elements;
 using RAGENativeUI.PauseMenu;
 using System;
-using System.Windows.Forms;
+using static BasicAnimations.Systems.Helper;
 
 namespace BasicAnimations
 {
@@ -16,13 +16,11 @@ namespace BasicAnimations
         internal static UIMenu MiscAnims = new UIMenu("Miscellaneous", "");
         internal static UIMenu PropAnims = new UIMenu("Prop Animations", "");
         internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
-        internal static UIMenu Favourites = new UIMenu("Favourites", "");
-        internal static UIMenu CustomAnims = new UIMenu("Custom Animations", "");
         internal static void CreateMenu()
         {
 
             //Adding all the menus to the menu pool.
-            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims, CustomAnims);
+            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims);
 
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
@@ -36,11 +34,7 @@ namespace BasicAnimations
             PropAnims.MouseControlsEnabled = false;
             PropAnims.AllowCameraMovement = true;
 
-            Favourites.MouseControlsEnabled = false;
-            Favourites.AllowCameraMovement = true;
 
-            CustomAnims.MouseControlsEnabled = false;
-            CustomAnims.AllowCameraMovement = true;
             //Calling SetupMen so I can just have CreateMenu() in Main.cs
             SetupMenu();
             GameFiber.StartNew(ProcessMenus);
@@ -51,14 +45,12 @@ namespace BasicAnimations
         internal static UIMenuItem Investigate = new UIMenuItem("Investigate", "");
         internal static UIMenuItem Camera = new UIMenuItem("Camera", "Pull Out A Camera");
         internal static UIMenuItem Binoculars = new UIMenuItem("Binoculars", "Use some binoculars");
-        internal static UIMenuItem FavouritesButton = new UIMenuItem("Favourites", "");
         internal static UIMenuItem RPAnims = new UIMenuItem("RP Animations");
         internal static UIMenuItem MiscAnimations = new UIMenuItem("Miscellaneous");
         internal static UIMenuItem PropAnimations = new UIMenuItem("Prop Animations");
         internal static UIMenuItem AllAnimations = new UIMenuItem("All Animations");
         internal static UIMenuItem CarryBox = new UIMenuItem("Box", "Carry a box");
         internal static UIMenuItem Mocking = new UIMenuItem("Mocking", "Plays mocking animation");
-        internal static UIMenuItem Lean2 = new UIMenuItem("Lean 2", "Improved leaning animation");
         internal static UIMenuItem DrinkingCoffee = new UIMenuItem("Drinking Coffee", "Drink some coffee");
         internal static UIMenuItem GrabVest = new UIMenuItem("Grab Vest", "Puts your hands on your vest");
         internal static UIMenuItem HandsOnBelt = new UIMenuItem("Hands On Belt", "Puts your hands on your belt");
@@ -71,29 +63,22 @@ namespace BasicAnimations
         internal static UIMenuItem Smoking = new UIMenuItem("Smoking", "Plays smoking animation");
         internal static UIMenuItem Pushup = new UIMenuItem("Pushups", "Plays pushup animation");
         internal static UIMenuItem Yoga = new UIMenuItem("Yoga", "STREEETCH");
-        internal static UIMenuItem CustomMenus = new UIMenuItem("Custom Animations", "Where all of the custom animations in CustomAnimations.txt are");
+        internal static UIMenuItem EndAnimation = new UIMenuItem("~r~End Current Action", "Ends the current active animation/scenario");
+
         internal static void SetupMenu()
         {
-            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Lean2, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
-            MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations, CustomMenus);
-            MainMenu.BindMenuToItem(CustomAnims, CustomMenus);
+            AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
+            MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations, EndAnimation);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
-            //MainMenu.BindMenuToItem(Favourites, FavouritesButton);
             PropAnims.OnItemSelect += PropAnims_OnItemSelect; // Event handler
             MiscAnims.OnItemSelect += MiscAnims_OnItemSelect; // Event handler
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
-            AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
-            // Favourites.OnItemSelect += Favourites_OnItemSelect;
+            AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect; ;
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
         }
-
-        /*private static void Favourites_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
-        {
-            throw new NotImplementedException();
-        }*/
 
         private static void MiscAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
@@ -102,22 +87,22 @@ namespace BasicAnimations
                 switch (index)
                 {
                     case 0:
-                        Animations.LeanWall();
+                        Animations.Lean.StartScenario();
                         break;
                     case 1:
                         Animations.Suicide();
                         break;
                     case 2:
-                        Animations.SitupAnim();
+                        Animations.Situp.PlayAnimation();
                         break;
                     case 3:
-                        Animations.PushupAnim();
+                        Animations.Pushup.PlayAnimation();
                         break;
                     case 4:
-                        Animations.Mocking();
+                        Animations.Mocking.PlayAnimation();
                         break;
                     case 5:
-                        Animations.Yoga();
+                        Animations.Yoga.StartScenario();
                         break;
                     default:
                         Game.LogTrivial("");
@@ -137,10 +122,10 @@ namespace BasicAnimations
                         Animations.CarryBox();
                         break;
                     case 1:
-                        Animations.Binoculars();
+                        Animations.Binoculars.StartScenario();
                         break;
                     case 2:
-                        Animations.Camera();
+                        Animations.Camera.StartScenario();
                         break;
                     default:
                         Game.LogTrivial("");
@@ -159,55 +144,52 @@ namespace BasicAnimations
                     switch (index) // All animations event handler
                     {
                         case 0:
-                            Animations.SitOnGround();
+                            Animations.Sit.PlayAnimation();
                             break;
                         case 1:
-                            Animations.LeanWall();
+                            Animations.Lean.StartScenario();
                             break;
                         case 2:
-                            Animations.KneelingAnim();
+                            Animations.Kneeling.StartScenario();
                             break;
                         case 3:
                             Animations.Suicide();
                             break;
                         case 4:
-                            Animations.SmokingInPlace();
+                            Animations.Smoking.StartScenario();
                             break;
                         case 5:
-                            Animations.SitupAnim();
+                            Animations.Situp.PlayAnimation();
                             break;
                         case 6:
-                            Animations.HandsOnBelt();
+                            Animations.GrabBelt.PlayAnimation();
                             break;
                         case 7:
-                            Animations.PushupAnim();
+                            Animations.Pushup.PlayAnimation();
                             break;
                         case 8:
-                            Animations.GrabVest();
+                            Animations.GrabVest.PlayAnimation();
                             break;
                         case 9:
-                            Animations.Saluting();
+                            Animations.Salute.PlayAnimation();
                             break;
                         case 10:
-                            Animations.Lean2();
+                            Animations.Mocking.PlayAnimation();
                             break;
                         case 11:
-                            Animations.Mocking();
-                            break;
-                        case 12:
                             Animations.CarryBox();
                             break;
+                        case 12:
+                            Animations.Yoga.StartScenario();
+                            break;
                         case 13:
-                            Animations.Yoga();
+                            Animations.Binoculars.StartScenario();
                             break;
                         case 14:
-                            Animations.Binoculars();
+                            Animations.Camera.StartScenario();
                             break;
                         case 15:
-                            Animations.Camera();
-                            break;
-                        case 16:
-                            Animations.Investigate();
+                            Animations.Investigate.StartScenario();
                             break;
                         default:
                             Game.LogTrivial("");
@@ -222,7 +204,14 @@ namespace BasicAnimations
         }
         private static void MainMenu_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
-            //Unused handler
+            switch (index)
+            {
+                case 0:
+                    EndAction();
+                    break;
+                default:
+                    break;
+            }
         }
         internal static void ProcessMenus()
         {
@@ -232,7 +221,7 @@ namespace BasicAnimations
                 {
                     GameFiber.Yield();
                     MainMenuPool.ProcessMenus();
-                    if (Game.IsKeyDownRightNow(Keys.LShiftKey) && Game.IsKeyDown(Keys.B)) // If the button defined in the INI Is pressed trigger the IF State ment
+                    if (CheckModKey() && Game.IsKeyDown(Settings.Menu)) // If the button defined in the INI Is pressed trigger the IF State ment
                     {
                         if (MenuRequirements()) // Checking menu requirements defined below
                         {
@@ -253,15 +242,6 @@ namespace BasicAnimations
         internal static bool MenuRequirements() // The afformentioned menu requirements
         {
             return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible; // Makes sure that the player is not paused/in a compulite style menu. Checks if any other menus are open
-        }
-
-        internal static bool CheckModKey()
-        {
-            if (Settings.MenuModKey == Keys.None)
-            {
-                return true;
-            }
-            return Game.IsKeyDownRightNow(Settings.MenuModKey);
         }
     }
 }

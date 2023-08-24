@@ -1,5 +1,6 @@
 ﻿using Rage;
 using System.Windows.Forms;
+using static BasicAnimations.Settings;
 
 namespace BasicAnimations.Systems
 {
@@ -7,6 +8,7 @@ namespace BasicAnimations.Systems
     {
         internal static Ped MainPlayer => Game.LocalPlayer.Character;
         internal static bool IsAnimationActive;
+        internal static bool BetaVersion = false;
 
         internal static bool CheckRequirements()
         {
@@ -20,6 +22,13 @@ namespace BasicAnimations.Systems
                 return true;
             }
             return Game.IsKeyDownRightNow(Settings.ModKey);
+        }
+
+        internal static void EndAction()
+        {
+            Logging.Logger.Log(Logging.LogType.Normal, "Ending animation");
+            MainPlayer.Tasks.ClearImmediately();
+            IsAnimationActive = false;
         }
     }
 }

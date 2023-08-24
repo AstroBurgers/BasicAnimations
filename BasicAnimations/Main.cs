@@ -1,7 +1,7 @@
-﻿using Rage;
+﻿using BasicAnimations.Systems;
+using Rage;
 using System;
 using System.Reflection;
-using System.Windows.Forms;
 using static BasicAnimations.Settings;
 using static BasicAnimations.Systems.Helper;
 
@@ -11,8 +11,6 @@ namespace BasicAnimations
 {
     internal class EntryPoint
     {
-        internal static bool IsActiveAnimation = false;
-        internal static bool BetaVersion = false;
         internal static void Main()
         {
             Game.DisplayNotification("commonmenutu", "arrowright", "BasicAnimations", "~b~By Astro", "If your reading this have a great day!");
@@ -25,18 +23,9 @@ namespace BasicAnimations
                         Game.LogTrivial("This Is In Beta. Proceed with caution");
                         Game.DisplayNotification("commonmenu", "mp_alerttriangle", "BasicAnimations", "~b~By Astro", "~y~CAUTION: ~w~Plugin is in ~r~Beta~w~, Report any issues to the discord.");
                     }
-                    //Favourites.SetFav();
                     Menu.CreateMenu();
                     INIFile();
-                    GameFiber.StartNew(delegate
-                    {
-                        while (true)
-                        {
-                            GameFiber.Yield();
-                            //Many Else ifs
-
-                        }
-                    });
+                    Hotkeys.HotKeyHandler();
                 }
                 catch (System.Threading.ThreadAbortException e1)
                 {
