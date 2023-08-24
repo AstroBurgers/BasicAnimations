@@ -2,7 +2,6 @@
 using Rage;
 using Rage.Native;
 using System;
-using System.Data.SqlClient;
 using static BasicAnimations.Systems.Helper;
 
 namespace BasicAnimations
@@ -10,40 +9,39 @@ namespace BasicAnimations
     internal class Animations
     {
         // Confusing spaghetti code :KEKW:
-        internal static bool IsActiveAnimation = false;
         internal static Rage.Object Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
 
-        Animation Sit = new Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true, false, 0, AnimationStage.None, false);
-        Animation Pushup = new Animation("amb@world_human_push_ups@male@enter", "enter", "amb@world_human_push_ups@male@base", "base", "amb@world_human_push_ups@male@exit", "exit", true, true, 3500, AnimationStage.Start, false);
-        Animation Situp = new Animation("amb@world_human_sit_ups@male@enter", "enter", "amb@world_human_sit_ups@male@base", "base", "amb@world_human_sit_ups@male@exit", "exit", true, true, 3000, AnimationStage.Start, false);
-        Animation GrabBelt = new Animation("amb@world_human_cop_idles@male@idle_enter", "idle_intro", "amb@world_human_cop_idles@male@base", "base", String.Empty, String.Empty, false, false, 0, AnimationStage.None, true);
-        Animation GrabVest = new Animation(String.Empty, String.Empty, "amb@world_human_hiker_standing@male@base", "base", String.Empty, String.Empty, false, false, 0, AnimationStage.None, true);
-        Animation Salute = new Animation("mp_player_int_uppersalute", "mp_player_int_salute_enter", "mp_player_int_uppersalute", "mp_player_int_salute", "mp_player_int_uppersalute", "mp_player_int_salute_Exit", true, true, 2000, AnimationStage.Start, false);
-        Animation Mocking = new Animation(String.Empty, String.Empty, "anim@mp_player_intcelebrationfemale@thumb_on_ears", "thumb_on_ears", String.Empty, String.Empty, true, false, 0, AnimationStage.None, false);
+        internal static Animation Sit = new Animation(String.Empty, String.Empty, "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true, false, 0, AnimationStage.None, false);
+        internal static Animation Pushup = new Animation("amb@world_human_push_ups@male@enter", "enter", "amb@world_human_push_ups@male@base", "base", "amb@world_human_push_ups@male@exit", "exit", true, true, 3500, AnimationStage.Start, false);
+        internal static Animation Situp = new Animation("amb@world_human_sit_ups@male@enter", "enter", "amb@world_human_sit_ups@male@base", "base", "amb@world_human_sit_ups@male@exit", "exit", true, true, 3000, AnimationStage.Start, false);
+        internal static Animation GrabBelt = new Animation("amb@world_human_cop_idles@male@idle_enter", "idle_intro", "amb@world_human_cop_idles@male@base", "base", String.Empty, String.Empty, false, false, 0, AnimationStage.None, true);
+        internal static Animation GrabVest = new Animation(String.Empty, String.Empty, "amb@world_human_hiker_standing@male@base", "base", String.Empty, String.Empty, false, false, 0, AnimationStage.None, true);
+        internal static Animation Salute = new Animation("mp_player_int_uppersalute", "mp_player_int_salute_enter", "mp_player_int_uppersalute", "mp_player_int_salute", "mp_player_int_uppersalute", "mp_player_int_salute_Exit", true, true, 2000, AnimationStage.Start, false);
+        internal static Animation Mocking = new Animation(String.Empty, String.Empty, "anim@mp_player_intcelebrationfemale@thumb_on_ears", "thumb_on_ears", String.Empty, String.Empty, true, false, 0, AnimationStage.None, false);
 
-        Scenario Smoking = new Scenario("world_human_smoking");
-        Scenario Kneeling = new Scenario("code_human_medic_kneel");
-        Scenario Leaning = new Scenario("world_human_leaning");
-        Scenario Lean = new Scenario("world_human_leaning");
-        Scenario Yoga = new Scenario("world_human_yoga");
-        Scenario Binoculars = new Scenario("world_human_binoculars");
-        Scenario Camera = new Scenario("world_human_paparazzi");
-        Scenario Investigate = new Scenario("code_human_police_investigate");
+        internal Scenario Smoking = new Scenario("world_human_smoking");
+        internal Scenario Kneeling = new Scenario("code_human_medic_kneel");
+        internal Scenario Leaning = new Scenario("world_human_leaning");
+        internal Scenario Lean = new Scenario("world_human_leaning");
+        internal Scenario Yoga = new Scenario("world_human_yoga");
+        internal Scenario Binoculars = new Scenario("world_human_binoculars");
+        internal Scenario Camera = new Scenario("world_human_paparazzi");
+        internal Scenario Investigate = new Scenario("code_human_police_investigate");
 
         internal static void Suicide()
         {
-            if (IsActiveAnimation || !CheckRequirements()) { return; }
+            if (IsAnimationActive || !CheckRequirements()) { return; }
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pill", 5f, AnimationFlags.None);
             GameFiber.Wait(2500);
             MainPlayer.Kill();
             Game.LogTrivial("Played Suicide animation (Killed player most likely)");
-            IsActiveAnimation = false;
+            IsAnimationActive = false;
         }
 
         internal static void CarryBox()
         {
             // 0x6B9BBD38AB0796DF ATTACH_ENTITY_TO_ENTITY
-            if (!IsActiveAnimation && CheckRequirements())
+            if (!IsAnimationActive && CheckRequirements())
             {
                 try
                 {
@@ -57,7 +55,7 @@ namespace BasicAnimations
                         GameFiber.Wait(175);
                         int Handbone = NativeFunction.Natives.GET_PED_BONE_INDEX<int>(MainPlayer, (int)PedBoneId.RightPhHand);
                         NativeFunction.Natives.ATTACH_ENTITY_TO_ENTITY(Box, MainPlayer, Handbone, -0.0100f, -0.0300f, 0.0000f, 0f, 0f, 0f, true, true, false, true, 2, 1);
-                        IsActiveAnimation = true;
+                        IsAnimationActive = true;
                     }
                 }
                 catch (Exception e)
@@ -71,23 +69,7 @@ namespace BasicAnimations
                 Box.Detach();
                 GameFiber.Wait(1);
                 Box.Position = new Vector3(0f, 0f, 0f);
-                IsActiveAnimation = false;
-            }
-        }
-
-        internal static void Investigate()
-        {
-            if (!IsActiveAnimation && CheckRequirements())
-            {
-                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, "", 0, true);
-                IsActiveAnimation = true;
-                Game.LogTrivial("Started Investigate animation");
-            }
-            else
-            {
-                MainPlayer.Tasks.ClearImmediately();
-                IsActiveAnimation = false;
-                Game.LogTrivial("Stopped Investigate animation");
+                IsAnimationActive = false;
             }
         }
     }
