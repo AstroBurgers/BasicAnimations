@@ -12,11 +12,11 @@ namespace BasicAnimations
     {
         // Creating the menus
         //String Params are the same as the items
-        internal static MenuPool MainMenuPool = new MenuPool();
-        internal static UIMenu AllAnimMain = new UIMenu("All Animations", "");
-        internal static UIMenu MiscAnims = new UIMenu("Miscellaneous", "");
-        internal static UIMenu PropAnims = new UIMenu("Prop Animations", "");
-        internal static UIMenu MainMenu = new UIMenu("BasicAnimations", "");
+        internal static MenuPool MainMenuPool = new();
+        internal static UIMenu AllAnimMain = new("All Animations", "");
+        internal static UIMenu MiscAnims = new("Miscellaneous", "");
+        internal static UIMenu PropAnims = new("Prop Animations", "");
+        internal static UIMenu MainMenu = new("BasicAnimations", "");
         internal static void CreateMenu()
         {
 
@@ -43,28 +43,28 @@ namespace BasicAnimations
         //Creating menu Items
         //First String is button name
         //Second String is the button description on the bottom of the menu.
-        internal static UIMenuItem Investigate = new UIMenuItem("Investigate", "");
-        internal static UIMenuItem Camera = new UIMenuItem("Camera", "Pull Out A Camera");
-        internal static UIMenuItem Binoculars = new UIMenuItem("Binoculars", "Use some binoculars");
-        internal static UIMenuItem RPAnims = new UIMenuItem("RP Animations");
-        internal static UIMenuItem MiscAnimations = new UIMenuItem("Miscellaneous");
-        internal static UIMenuItem PropAnimations = new UIMenuItem("Prop Animations");
-        internal static UIMenuItem AllAnimations = new UIMenuItem("All Animations");
-        internal static UIMenuItem CarryBox = new UIMenuItem("Box", "Carry a box");
-        internal static UIMenuItem Mocking = new UIMenuItem("Mocking", "Plays mocking animation");
-        internal static UIMenuItem DrinkingCoffee = new UIMenuItem("Drinking Coffee", "Drink some coffee");
-        internal static UIMenuItem GrabVest = new UIMenuItem("Grab Vest", "Puts your hands on your vest");
-        internal static UIMenuItem HandsOnBelt = new UIMenuItem("Hands On Belt", "Puts your hands on your belt");
-        internal static UIMenuItem Sitting = new UIMenuItem("Sit", "Plays sitting animation");
-        internal static UIMenuItem Salute = new UIMenuItem("Salute", "Plays salute animation");
-        internal static UIMenuItem Leaning = new UIMenuItem("Lean", "Plays leaning animation");
-        internal static UIMenuItem Kneel = new UIMenuItem("Kneel", "Plays kneeling animation");
-        internal static UIMenuItem Situps = new UIMenuItem("Situps", "Plays the situp animation");
-        internal static UIMenuItem Suicide = new UIMenuItem("~r~Suicide", "~r~Kills ~w~the player");
-        internal static UIMenuItem Smoking = new UIMenuItem("Smoking", "Plays smoking animation");
-        internal static UIMenuItem Pushup = new UIMenuItem("Pushups", "Plays pushup animation");
-        internal static UIMenuItem Yoga = new UIMenuItem("Yoga", "STREEETCH");
-        internal static UIMenuItem EndAnimation = new UIMenuItem("~r~End Current Action", "Ends the current active animation/scenario");
+        internal static UIMenuItem Investigate = new("Investigate", "");
+        internal static UIMenuItem Camera = new("Camera", "Pull Out A Camera");
+        internal static UIMenuItem Binoculars = new("Binoculars", "Use some binoculars");
+        internal static UIMenuItem RPAnims = new("RP Animations");
+        internal static UIMenuItem MiscAnimations = new("Miscellaneous");
+        internal static UIMenuItem PropAnimations = new("Prop Animations");
+        internal static UIMenuItem AllAnimations = new("All Animations");
+        internal static UIMenuItem CarryBox = new("Box", "Carry a box");
+        internal static UIMenuItem Mocking = new("Mocking", "Plays mocking animation");
+        internal static UIMenuItem DrinkingCoffee = new("Drinking Coffee", "Drink some coffee");
+        internal static UIMenuItem GrabVest = new("Grab Vest", "Puts your hands on your vest");
+        internal static UIMenuItem HandsOnBelt = new("Hands On Belt", "Puts your hands on your belt");
+        internal static UIMenuItem Sitting = new("Sit", "Plays sitting animation");
+        internal static UIMenuItem Salute = new("Salute", "Plays salute animation");
+        internal static UIMenuItem Leaning = new("Lean", "Plays leaning animation");
+        internal static UIMenuItem Kneel = new("Kneel", "Plays kneeling animation");
+        internal static UIMenuItem Situps = new("Situps", "Plays the situp animation");
+        internal static UIMenuItem Suicide = new("~r~Suicide", "~r~Kills ~w~the player");
+        internal static UIMenuItem Smoking = new("Smoking", "Plays smoking animation");
+        internal static UIMenuItem Pushup = new("Pushups", "Plays pushup animation");
+        internal static UIMenuItem Yoga = new("Yoga", "STREEETCH");
+        internal static UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
 
         internal static void SetupMenu()
         {
