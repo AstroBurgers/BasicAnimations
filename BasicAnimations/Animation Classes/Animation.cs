@@ -64,7 +64,7 @@ namespace BasicAnimations.Animation_Classes
                 return;
             }
 
-            else if (IsAnimationActive || string.IsNullOrEmpty(stopName) || string.IsNullOrEmpty(stopDict))
+            else if (IsAnimationActive)
             {
                 Logger.Log(LogType.Normal, "Clearing player tasks");
                 MainPlayer.Tasks.Clear();
@@ -72,7 +72,7 @@ namespace BasicAnimations.Animation_Classes
                 return;
             }
 
-            else if (stayInEndFrame && (stayInEndFrameStage == AnimationStage.Start))
+            else if (!IsAnimationActive && stayInEndFrame && (stayInEndFrameStage == AnimationStage.Start))
             {
                 Logger.Log(LogType.Normal, $"Playing animation: {startName}");
                 MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(startDict), startName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, stayInEndFrameTime);
@@ -92,6 +92,7 @@ namespace BasicAnimations.Animation_Classes
                 MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(startDict), startName, 5f, SetFlags()).WaitForCompletion();
                 IsAnimationActive = true;
             }
+
 
             PlaySecondaryAnimation();
         }
