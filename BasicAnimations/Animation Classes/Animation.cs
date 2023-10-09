@@ -31,7 +31,7 @@ namespace BasicAnimations.Animation_Classes
 
         AnimationStage stayInEndFrameStage;
 
-        internal Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped, bool stayInEndFrame, int stayInEndFrameTime, AnimationStage stayInEndFrameStage, bool canMove)
+        internal Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped, bool stayInEndFrame = false, int stayInEndFrameTime = 0, AnimationStage stayInEndFrameStage = AnimationStage.None, bool canMove = false)
         {
             this.startDict = startDict;
             this.startName = startName;
