@@ -8,9 +8,12 @@ namespace BasicAnimations
 {
     internal class Animations
     {
-        // Confusing spaghetti code :KEKW:
+        // Making box :smileysnek:
         internal static Rage.Object Box = new(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
 
+        // Sexy oop that took 3 Months
+
+        // Animations
         internal static Animation Sit = new("anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", string.Empty, string.Empty, "get_up@sat_on_floor@to_stand", "getup_0", true);
         internal static Animation Pushup = new("amb@world_human_push_ups@male@enter", "enter", "amb@world_human_push_ups@male@base", "base", "amb@world_human_push_ups@male@exit", "exit", true, true, 3500, AnimationStage.Start);
         internal static Animation Situp = new("amb@world_human_sit_ups@male@enter", "enter", "amb@world_human_sit_ups@male@base", "base", "amb@world_human_sit_ups@male@exit", "exit", true, true, 3000, AnimationStage.Start);
@@ -19,6 +22,7 @@ namespace BasicAnimations
         internal static Animation Salute = new("mp_player_int_uppersalute", "mp_player_int_salute_enter", "mp_player_int_uppersalute", "mp_player_int_salute", "mp_player_int_uppersalute", "mp_player_int_salute_Exit", true, true, 2000, AnimationStage.Start);
         internal static Animation Mocking = new("anim@mp_player_intcelebrationfemale@thumb_on_ears", "thumb_on_ears", string.Empty, string.Empty, string.Empty, string.Empty, true);
 
+        // Scenarios
         internal static Scenario Smoking = new("world_human_smoking");
         internal static Scenario Kneeling = new("code_human_medic_kneel");
         internal static Scenario Lean = new("world_human_leaning");
