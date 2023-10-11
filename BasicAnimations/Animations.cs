@@ -22,6 +22,9 @@ namespace BasicAnimations
         internal static Animation Salute = new("mp_player_int_uppersalute", "mp_player_int_salute_enter", "mp_player_int_uppersalute", "mp_player_int_salute", "mp_player_int_uppersalute", "mp_player_int_salute_Exit", true, true, 2000, AnimationStage.Start);
         internal static Animation Mocking = new("anim@mp_player_intcelebrationfemale@thumb_on_ears", "thumb_on_ears", string.Empty, string.Empty, string.Empty, string.Empty, true);
 
+        // DODO ANIMS
+        internal static Animation HoldVest = new("anim@male@holding_vest", "holding_vest_clip", string.Empty, string.Empty, string.Empty, string.Empty, true, false, 0, default, true);
+
         // Scenarios
         internal static Scenario Smoking = new("world_human_smoking");
         internal static Scenario Kneeling = new("code_human_medic_kneel");

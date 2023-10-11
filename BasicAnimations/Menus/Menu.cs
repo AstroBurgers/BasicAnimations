@@ -17,11 +17,14 @@ namespace BasicAnimations
         internal static UIMenu MiscAnims = new("Miscellaneous", "");
         internal static UIMenu PropAnims = new("Prop Animations", "");
         internal static UIMenu MainMenu = new("BasicAnimations", "");
+        internal static UIMenu DevMenu = new("Development Menu", "");
+        internal static UIMenu CustomAnims = new("Custom Animations", "");
+
         internal static void CreateMenu()
         {
 
             //Adding all the menus to the menu pool.
-            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims);
+            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims, CustomAnims);
 
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
@@ -35,6 +38,11 @@ namespace BasicAnimations
             PropAnims.MouseControlsEnabled = false;
             PropAnims.AllowCameraMovement = true;
 
+            DevMenu.MouseControlsEnabled = false;
+            DevMenu.AllowCameraMovement = true;
+
+            CustomAnims.MouseControlsEnabled = false;
+            CustomAnims.AllowCameraMovement = true;
 
             //Calling SetupMen so I can just have CreateMenu() in Main.cs
             SetupMenu();
@@ -65,20 +73,34 @@ namespace BasicAnimations
         internal static UIMenuItem Pushup = new("Pushups", "Plays pushup animation");
         internal static UIMenuItem Yoga = new("Yoga", "STREEETCH");
         internal static UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
+        internal static UIMenuItem CustomAnimations = new("Custom Animations", "Dodo Custom Animations");
+        internal static UIMenuItem HoldingVest = new("Holding Vest", "Grabs vest (Custom)");
 
         internal static void SetupMenu()
         {
             AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
-            MainMenu.AddItems(AllAnimations, RPAnims, MiscAnimations, PropAnimations, EndAnimation);
+            MainMenu.AddItems(AllAnimations, MiscAnimations, PropAnimations, CustomAnimations, EndAnimation);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
+            MainMenu.BindMenuToItem(CustomAnims, CustomAnimations);
             PropAnims.OnItemSelect += PropAnims_OnItemSelect; // Event handler
             MiscAnims.OnItemSelect += MiscAnims_OnItemSelect; // Event handler
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
-            AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect; ;
+            AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
+            CustomAnims.OnItemSelect += CustomAnims_OnItemSelect;
+            CustomAnims.AddItems(HoldingVest);
+
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
+        }
+
+        private static void CustomAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
+        {
+            if (selectedItem.Equals(HoldingVest))
+            {
+                Animations.HoldVest.PlayAnimation();
+            }
         }
 
         private static void MiscAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
@@ -205,13 +227,9 @@ namespace BasicAnimations
         }
         private static void MainMenu_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
         {
-            switch (index)
+            if (selectedItem.Equals(EndAnimation))
             {
-                case 0:
-                    EndAction();
-                    break;
-                default:
-                    break;
+                EndAction();
             }
         }
         internal static void ProcessMenus()

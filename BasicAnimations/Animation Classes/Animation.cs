@@ -118,6 +118,10 @@ namespace BasicAnimations.Animation_Classes
             if (stayInEndFrame)
             {
                 flags = AnimationFlags.StayInEndFrame;
+                if (looped)
+                {
+                    flags = AnimationFlags.StayInEndFrame | AnimationFlags.Loop;
+                }
             }
             else if (canMove)
             {

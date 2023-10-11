@@ -24,6 +24,7 @@ namespace BasicAnimations
                         Game.DisplayNotification("commonmenu", "mp_alerttriangle", "BasicAnimations", "~b~By Astro", "~y~CAUTION: ~w~Plugin is in ~r~Beta~w~, Report any issues to the discord.");
                     }
                     Menu.CreateMenu();
+                    //Menus.testing.TestingIK();
                     INIFile();
                     Hotkeys.HotKeyHandler();
                 }

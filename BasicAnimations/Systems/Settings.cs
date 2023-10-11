@@ -28,6 +28,10 @@ namespace BasicAnimations
         internal static Keys Mocking = Keys.None; // Defining a new Keys var
         internal static Keys Box = Keys.None; // Defining a new Keys var
         internal static Keys MenuModKey = Keys.None;
+
+        // Custom Keybinds
+        internal static Keys HoldVest = Keys.None;
+
         internal static void INIFile()
         {
             inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
@@ -51,6 +55,7 @@ namespace BasicAnimations
             Binoculars = inifile.ReadEnum("Keybindings", "Binoculars", Binoculars);
             Camera = inifile.ReadEnum("Keybindings", "Camera", Camera);
             Investigate = inifile.ReadEnum("Keybindings", "Investigate", Investigate);
+            HoldVest = inifile.ReadEnum("Keybindings", "Holding Vest", HoldVest);
         }
     }
 }
