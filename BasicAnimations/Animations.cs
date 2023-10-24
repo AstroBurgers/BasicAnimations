@@ -24,6 +24,7 @@ namespace BasicAnimations
 
         // DODO ANIMS
         internal static Animation HoldVest = new("anim@male@holding_vest", "holding_vest_clip", string.Empty, string.Empty, string.Empty, string.Empty, true, false, 0, default, true);
+        internal static Animation HoldRifle = new("anim@male@hug_weapon", "hug_weapon_clip", string.Empty, string.Empty, string.Empty, string.Empty, true, false, 0, default, true);
 
         // Scenarios
         internal static Scenario Smoking = new("world_human_smoking");

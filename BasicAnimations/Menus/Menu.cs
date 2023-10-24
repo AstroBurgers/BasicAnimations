@@ -74,7 +74,9 @@ namespace BasicAnimations
         internal static UIMenuItem Yoga = new("Yoga", "STREEETCH");
         internal static UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
         internal static UIMenuItem CustomAnimations = new("Custom Animations", "Dodo Custom Animations");
+
         internal static UIMenuItem HoldingVest = new("Holding Vest", "Grabs vest (Custom)");
+        internal static UIMenuItem HugWeapon = new("Hugging Weapon", "Hugs the held weapon (Custom)");
 
         internal static void SetupMenu()
         {
@@ -89,7 +91,7 @@ namespace BasicAnimations
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
             AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
             CustomAnims.OnItemSelect += CustomAnims_OnItemSelect;
-            CustomAnims.AddItems(HoldingVest);
+            CustomAnims.AddItems(HoldingVest, HugWeapon);
 
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
@@ -100,6 +102,10 @@ namespace BasicAnimations
             if (selectedItem.Equals(HoldingVest))
             {
                 Animations.HoldVest.PlayAnimation();
+            }
+            else if (selectedItem.Equals(HugWeapon))
+            {
+                Animations.HoldRifle.PlayAnimation();
             }
         }
 

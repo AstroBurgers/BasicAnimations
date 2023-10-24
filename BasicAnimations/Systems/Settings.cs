@@ -31,6 +31,7 @@ namespace BasicAnimations
 
         // Custom Keybinds
         internal static Keys HoldVest = Keys.None;
+        internal static Keys HugWeapon = Keys.None;
 
         internal static void INIFile()
         {
@@ -55,7 +56,9 @@ namespace BasicAnimations
             Binoculars = inifile.ReadEnum("Keybindings", "Binoculars", Binoculars);
             Camera = inifile.ReadEnum("Keybindings", "Camera", Camera);
             Investigate = inifile.ReadEnum("Keybindings", "Investigate", Investigate);
+
             HoldVest = inifile.ReadEnum("Keybindings", "Holding Vest", HoldVest);
+            HugWeapon = inifile.ReadEnum("Keybindings", "Hug Weapon", HugWeapon);
         }
     }
 }
