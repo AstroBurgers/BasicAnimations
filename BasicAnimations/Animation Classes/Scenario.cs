@@ -6,11 +6,11 @@ namespace BasicAnimations.Animation_Classes
 {
     internal class Scenario
     {
-        string scenarioName;
+        private readonly string _scenarioName;
 
         internal Scenario(string scenarioName)
         {
-            this.scenarioName = scenarioName;
+            this._scenarioName = scenarioName;
         }
 
         internal void StartScenario()
@@ -19,18 +19,17 @@ namespace BasicAnimations.Animation_Classes
             {
                 EndScenario();
                 IsAnimationActive = false;
-                return;
             }
 
             else if (!IsAnimationActive && CheckRequirements())
             {
-                Logger.Log(LogType.Normal, $"Starting Scenario {scenarioName}");
-                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, scenarioName, 0, true);
+                Logger.Log(LogType.Normal, $"Starting Scenario {_scenarioName}");
+                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, _scenarioName, 0, true);
                 IsAnimationActive = true;
             }
         }
 
-        internal void EndScenario()
+        private void EndScenario()
         {
             Logger.Log(LogType.Normal, $"Clearing Scenario normally");
             MainPlayer.Tasks.Clear();

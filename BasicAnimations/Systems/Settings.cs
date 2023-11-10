@@ -22,7 +22,7 @@ namespace BasicAnimations
         internal static Keys Kneel = Keys.None; // Defining a new Keys var
         internal static Keys Lean = Keys.None; // Defining a new Keys var
         internal static Keys Menu = Keys.None; // Defining a new Keys var
-        internal static InitializationFile inifile; // Defining a new INI File
+        internal static InitializationFile Inifile; // Defining a new INI File
         internal static Keys HandsOnBeltKey = Keys.None; // Defining a new Keys var
         internal static Keys Lean2 = Keys.None; // Defining a new Keys var
         internal static Keys Mocking = Keys.None; // Defining a new Keys var
@@ -33,32 +33,32 @@ namespace BasicAnimations
         internal static Keys HoldVest = Keys.None;
         internal static Keys HugWeapon = Keys.None;
 
-        internal static void INIFile()
+        internal static void IniFile()
         {
-            inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
-            inifile.Create();
+            Inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
+            Inifile.Create();
             // INI File items
-            ModKey = inifile.ReadEnum("Keybindings", "Modifier Key", ModKey);
-            Sit = inifile.ReadEnum("Keybindings", "Sit On The Ground", Sit); // Sitting
-            Kneel = inifile.ReadEnum("Keybindings", "Kneel", Kneel); // Kneeling
-            Lean = inifile.ReadEnum("Keybindings", "Lean", Lean); // Leaning
-            HandsOnBeltKey = inifile.ReadEnum("Keybindings", "Put your hands on your belt", HandsOnBeltKey);
-            Menu = inifile.ReadEnum("Keybindings", "Open menu button", Menu);
-            GrabVest = inifile.ReadEnum("Keybindings", "Grabbing vest", GrabVest);
-            Suicide = inifile.ReadEnum("Keybindings", "Commit suicide", Suicide);
-            Smoking = inifile.ReadEnum("Keybindings", "Smoking", Smoking);
-            Situps = inifile.ReadEnum("Keybindings", "Do situps", Situps);
-            Pushups = inifile.ReadEnum("Keybindings", "Do pushups", Pushups);
-            Salute = inifile.ReadEnum("Keybindings", "Salute", Salute);
-            Mocking = inifile.ReadEnum("Keybindings", "Mock", Mocking);
-            Box = inifile.ReadEnum("Keybindings", "Hold box", Box);
-            Yoga = inifile.ReadEnum("Keybindings", "Yoga", Yoga);
-            Binoculars = inifile.ReadEnum("Keybindings", "Binoculars", Binoculars);
-            Camera = inifile.ReadEnum("Keybindings", "Camera", Camera);
-            Investigate = inifile.ReadEnum("Keybindings", "Investigate", Investigate);
+            ModKey = Inifile.ReadEnum("Keybindings", "Modifier Key", ModKey);
+            Sit = Inifile.ReadEnum("Keybindings", "Sit On The Ground", Sit); // Sitting
+            Kneel = Inifile.ReadEnum("Keybindings", "Kneel", Kneel); // Kneeling
+            Lean = Inifile.ReadEnum("Keybindings", "Lean", Lean); // Leaning
+            HandsOnBeltKey = Inifile.ReadEnum("Keybindings", "Put your hands on your belt", HandsOnBeltKey);
+            Menu = Inifile.ReadEnum("Keybindings", "Open menu button", Menu);
+            GrabVest = Inifile.ReadEnum("Keybindings", "Grabbing vest", GrabVest);
+            Suicide = Inifile.ReadEnum("Keybindings", "Commit suicide", Suicide);
+            Smoking = Inifile.ReadEnum("Keybindings", "Smoking", Smoking);
+            Situps = Inifile.ReadEnum("Keybindings", "Do situps", Situps);
+            Pushups = Inifile.ReadEnum("Keybindings", "Do pushups", Pushups);
+            Salute = Inifile.ReadEnum("Keybindings", "Salute", Salute);
+            Mocking = Inifile.ReadEnum("Keybindings", "Mock", Mocking);
+            Box = Inifile.ReadEnum("Keybindings", "Hold box", Box);
+            Yoga = Inifile.ReadEnum("Keybindings", "Yoga", Yoga);
+            Binoculars = Inifile.ReadEnum("Keybindings", "Binoculars", Binoculars);
+            Camera = Inifile.ReadEnum("Keybindings", "Camera", Camera);
+            Investigate = Inifile.ReadEnum("Keybindings", "Investigate", Investigate);
 
-            HoldVest = inifile.ReadEnum("Keybindings", "Holding Vest", HoldVest);
-            HugWeapon = inifile.ReadEnum("Keybindings", "Hug Weapon", HugWeapon);
+            HoldVest = Inifile.ReadEnum("Keybindings", "Holding Vest", HoldVest);
+            HugWeapon = Inifile.ReadEnum("Keybindings", "Hug Weapon", HugWeapon);
         }
     }
 }

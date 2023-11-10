@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using static BasicAnimations.Settings;
 using static BasicAnimations.Systems.Helper;
+using Menu = BasicAnimations.Menus.Menu;
 
 [assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "AstroBurgers")]
 
@@ -17,7 +18,7 @@ namespace BasicAnimations
             {
                 try
                 {
-                    Game.LogTrivial("Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                    Game.LogTrivial("Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version);
                     if (BetaVersion)
                     {
                         Game.LogTrivial("This Is In Beta. Proceed with caution");
@@ -25,7 +26,7 @@ namespace BasicAnimations
                     }
                     Menu.CreateMenu();
                     //Menus.testing.TestingIK();
-                    INIFile();
+                    IniFile();
                     Hotkeys.HotKeyHandler();
                 }
                 catch (System.Threading.ThreadAbortException e1)

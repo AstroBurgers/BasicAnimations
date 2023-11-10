@@ -1,30 +1,29 @@
-﻿using BasicAnimations.Systems;
+﻿using System;
+using BasicAnimations.Systems;
 using Rage;
 using RAGENativeUI;
 using RAGENativeUI.Elements;
 using RAGENativeUI.PauseMenu;
-using System;
 using static BasicAnimations.Systems.Helper;
 
-namespace BasicAnimations
+namespace BasicAnimations.Menus
 {
     internal static class Menu
     {
         // Creating the menus
         //String Params are the same as the items
-        internal static MenuPool MainMenuPool = new();
-        internal static UIMenu AllAnimMain = new("All Animations", "");
-        internal static UIMenu MiscAnims = new("Miscellaneous", "");
-        internal static UIMenu PropAnims = new("Prop Animations", "");
-        internal static UIMenu MainMenu = new("BasicAnimations", "");
-        internal static UIMenu DevMenu = new("Development Menu", "");
-        internal static UIMenu CustomAnims = new("Custom Animations", "");
+        private static readonly MenuPool MainMenuPool = new();
+        private static readonly UIMenu AllAnimMain = new("All Animations", "");
+        private static readonly UIMenu MiscAnims = new("Miscellaneous", "");
+        private static readonly UIMenu PropAnims = new("Prop Animations", "");
+        private static readonly UIMenu MainMenu = new("BasicAnimations", "");
+        private static readonly UIMenu DevMenu = new("Development Menu", "");
 
         internal static void CreateMenu()
         {
 
-            //Adding all the menus to the menu pool.
-            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims, CustomAnims);
+            //Adding all the menus to the menu pool
+            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims);
 
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
@@ -41,9 +40,6 @@ namespace BasicAnimations
             DevMenu.MouseControlsEnabled = false;
             DevMenu.AllowCameraMovement = true;
 
-            CustomAnims.MouseControlsEnabled = false;
-            CustomAnims.AllowCameraMovement = true;
-
             //Calling SetupMen so I can just have CreateMenu() in Main.cs
             SetupMenu();
             GameFiber.StartNew(ProcessMenus);
@@ -51,62 +47,41 @@ namespace BasicAnimations
         //Creating menu Items
         //First String is button name
         //Second String is the button description on the bottom of the menu.
-        internal static UIMenuItem Investigate = new("Investigate", "");
-        internal static UIMenuItem Camera = new("Camera", "Pull Out A Camera");
-        internal static UIMenuItem Binoculars = new("Binoculars", "Use some binoculars");
-        internal static UIMenuItem RPAnims = new("RP Animations");
-        internal static UIMenuItem MiscAnimations = new("Miscellaneous");
-        internal static UIMenuItem PropAnimations = new("Prop Animations");
-        internal static UIMenuItem AllAnimations = new("All Animations");
-        internal static UIMenuItem CarryBox = new("Box", "Carry a box");
-        internal static UIMenuItem Mocking = new("Mocking", "Plays mocking animation");
-        internal static UIMenuItem DrinkingCoffee = new("Drinking Coffee", "Drink some coffee");
-        internal static UIMenuItem GrabVest = new("Grab Vest", "Puts your hands on your vest");
-        internal static UIMenuItem HandsOnBelt = new("Hands On Belt", "Puts your hands on your belt");
-        internal static UIMenuItem Sitting = new("Sit", "Plays sitting animation");
-        internal static UIMenuItem Salute = new("Salute", "Plays salute animation");
-        internal static UIMenuItem Leaning = new("Lean", "Plays leaning animation");
-        internal static UIMenuItem Kneel = new("Kneel", "Plays kneeling animation");
-        internal static UIMenuItem Situps = new("Situps", "Plays the situp animation");
-        internal static UIMenuItem Suicide = new("~r~Suicide", "~r~Kills ~w~the player");
-        internal static UIMenuItem Smoking = new("Smoking", "Plays smoking animation");
-        internal static UIMenuItem Pushup = new("Pushups", "Plays pushup animation");
-        internal static UIMenuItem Yoga = new("Yoga", "STREEETCH");
-        internal static UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
-        internal static UIMenuItem CustomAnimations = new("Custom Animations", "Dodo Custom Animations");
+        private static readonly UIMenuItem Investigate = new("Investigate", "");
+        private static readonly UIMenuItem Camera = new("Camera", "Pull Out A Camera");
+        private static readonly UIMenuItem Binoculars = new("Binoculars", "Use some binoculars");
+        private static readonly UIMenuItem MiscAnimations = new("Miscellaneous");
+        private static readonly UIMenuItem PropAnimations = new("Prop Animations");
+        private static readonly UIMenuItem AllAnimations = new("All Animations");
+        private static readonly UIMenuItem CarryBox = new("Box", "Carry a box");
+        private static readonly UIMenuItem Mocking = new("Mocking", "Plays mocking animation");
+        private static readonly UIMenuItem GrabVest = new("Grab Vest", "Puts your hands on your vest");
+        private static readonly UIMenuItem HandsOnBelt = new("Hands On Belt", "Puts your hands on your belt");
+        private static readonly UIMenuItem Sitting = new("Sit", "Plays sitting animation");
+        private static readonly UIMenuItem Salute = new("Salute", "Plays salute animation");
+        private static readonly UIMenuItem Leaning = new("Lean", "Plays leaning animation");
+        private static readonly UIMenuItem Kneel = new("Kneel", "Plays kneeling animation");
+        private static readonly UIMenuItem Situps = new("Situps", "Plays the situp animation");
+        private static readonly UIMenuItem Suicide = new("~r~Suicide", "~r~Kills ~w~the player");
+        private static readonly UIMenuItem Smoking = new("Smoking", "Plays smoking animation");
+        private static readonly UIMenuItem Pushup = new("Pushups", "Plays pushup animation");
+        private static readonly UIMenuItem Yoga = new("Yoga", "STREEETCH");
+        private static readonly UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
 
-        internal static UIMenuItem HoldingVest = new("Holding Vest", "Grabs vest (Custom)");
-        internal static UIMenuItem HugWeapon = new("Hugging Weapon", "Hugs the held weapon (Custom)");
-
-        internal static void SetupMenu()
+        private static void SetupMenu()
         {
             AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
-            MainMenu.AddItems(AllAnimations, MiscAnimations, PropAnimations, CustomAnimations, EndAnimation);
+            MainMenu.AddItems(AllAnimations, MiscAnimations, PropAnimations, EndAnimation);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
-            MainMenu.BindMenuToItem(CustomAnims, CustomAnimations);
             PropAnims.OnItemSelect += PropAnims_OnItemSelect; // Event handler
             MiscAnims.OnItemSelect += MiscAnims_OnItemSelect; // Event handler
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
             AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
-            CustomAnims.OnItemSelect += CustomAnims_OnItemSelect;
-            CustomAnims.AddItems(HoldingVest, HugWeapon);
 
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
-        }
-
-        private static void CustomAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
-        {
-            if (selectedItem.Equals(HoldingVest))
-            {
-                Animations.HoldVest.PlayAnimation();
-            }
-            else if (selectedItem.Equals(HugWeapon))
-            {
-                Animations.HoldRifle.PlayAnimation();
-            }
         }
 
         private static void MiscAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
@@ -238,7 +213,7 @@ namespace BasicAnimations
                 EndAction();
             }
         }
-        internal static void ProcessMenus()
+        private static void ProcessMenus()
         {
             try
             {
@@ -246,27 +221,25 @@ namespace BasicAnimations
                 {
                     GameFiber.Yield();
                     MainMenuPool.ProcessMenus();
-                    if (CheckModKey() && Game.IsKeyDown(Settings.Menu)) // If the button defined in the INI Is pressed trigger the IF State ment
+                    if (!CheckModKey() || !Game.IsKeyDown(Settings.Menu)) continue; // If the button defined in the INI Is pressed trigger the IF State meant
+                    if (MenuRequirements()) // Checking menu requirements defined below
                     {
-                        if (MenuRequirements()) // Checking menu requirements defined below
-                        {
-                            MainMenu.Visible = true; // Making the menu visible
-                        }
-                        else if (MainMenu.Visible)
-                        {
-                            MainMenu.Visible = false; // Making the menu no longer visible
-                        }
+                        MainMenu.Visible = true; // Making the menu visible
+                    }
+                    else if (MainMenu.Visible)
+                    {
+                        MainMenu.Visible = false; // Making the menu no longer visible
                     }
                 }
             }
             catch (NullReferenceException e)
             {
-                Game.LogTrivial("BasicAnimations " + e); // Errror handling :GIGACHAD:
+                Game.LogTrivial("BasicAnimations " + e); // Error handling :GIGACHAD:
             }
         }
-        internal static bool MenuRequirements() // The afformentioned menu requirements
+        private static bool MenuRequirements() // The aforementioned menu requirements
         {
-            return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible; // Makes sure that the player is not paused/in a compulite style menu. Checks if any other menus are open
+            return !UIMenu.IsAnyMenuVisible && !TabView.IsAnyPauseMenuVisible; // Makes sure that the player is not paused/in a Compulite style menu. Checks if any other menus are open
         }
     }
 }

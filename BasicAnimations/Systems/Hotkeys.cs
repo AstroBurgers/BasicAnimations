@@ -3,7 +3,7 @@ using static BasicAnimations.Systems.Helper;
 
 namespace BasicAnimations.Systems
 {
-    internal class Hotkeys
+    internal static class Hotkeys
     {
         internal static void HotKeyHandler()
         {
@@ -27,9 +27,8 @@ namespace BasicAnimations.Systems
                 else if (Game.IsKeyDown(Settings.Yoga) && CheckModKey() && CheckRequirements()) { Animations.Yoga.StartScenario(); } // Yoga
                 else if (Game.IsKeyDown(Settings.Binoculars) && CheckModKey() && CheckRequirements()) { Animations.Binoculars.StartScenario(); } // Binoculars
                 else if (Game.IsKeyDown(Settings.Investigate) && CheckModKey() && CheckRequirements()) { Animations.Investigate.StartScenario(); } // Investigate
-                else if (Game.IsKeyDown(Settings.HoldVest) && CheckModKey() && CheckRequirements()) { Animations.HoldVest.PlayAnimation(); } // Holding vest CUSTOM
-                else if (Game.IsKeyDown(Settings.HugWeapon) && CheckModKey() && CheckRequirements()) { Animations.HoldRifle.PlayAnimation(); } // Hugging Rifle CUSTOM
             }
+            // ReSharper disable once FunctionNeverReturns
         }
     }
 }
