@@ -43,37 +43,40 @@ namespace BasicAnimations
 
         internal static void CarryBox()
         {
-            // 0x6B9BBD38AB0796DF ATTACH_ENTITY_TO_ENTITY
-            if (!IsAnimationActive && CheckRequirements())
+            try
             {
-                try
+                if (IsAnimationActive && CheckRequirements())
                 {
-                    if (!_box.Exists())
-                    {
-                        _box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
-                    }
+                    MainPlayer.Tasks.Clear();
+                    _box.Detach();
+                    GameFiber.Wait(1);
+                    _box.Position = new Vector3(0f, 0f, 0f);
+                    IsAnimationActive = false;
+                }
+                // 0x6B9BBD38AB0796DF ATTACH_ENTITY_TO_ENTITY
+                if (!IsAnimationActive && CheckRequirements())
+                {
+                    if (!_box.Exists()) { _box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f); }
                     else if (_box.Exists())
                     {
-                        MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@heists@box_carry@"), "idle", 5f, AnimationFlags.Unknown65536 | AnimationFlags.UpperBodyOnly | AnimationFlags.SecondaryTask | AnimationFlags.Loop);
+                        MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@heists@box_carry@"), "idle", 5f,
+                            AnimationFlags.Unknown65536 | AnimationFlags.UpperBodyOnly | AnimationFlags.SecondaryTask |
+                            AnimationFlags.Loop);
                         GameFiber.Wait(175);
-                        int handbone = NativeFunction.Natives.GET_PED_BONE_INDEX<int>(MainPlayer, (int)PedBoneId.RightPhHand);
-                        NativeFunction.Natives.ATTACH_ENTITY_TO_ENTITY(_box, MainPlayer, handbone, -0.0100f, -0.0300f, 0.0000f, 0f, 0f, 0f, true, true, false, true, 2, 1);
+                        int handbone =
+                            NativeFunction.Natives.GET_PED_BONE_INDEX<int>(MainPlayer, (int)PedBoneId.RightPhHand);
+                        NativeFunction.Natives.ATTACH_ENTITY_TO_ENTITY(_box, MainPlayer, handbone, -0.0100f, -0.0300f,
+                            0.0000f, 0f, 0f, 0f, true, true, false, true, 2, 1);
                         IsAnimationActive = true;
                     }
                 }
-                catch (Exception e)
-                {
-                    Systems.Logging.Logger.LogException("Animations.cs - CarryBox", e.ToString());
-                }
             }
-            else
+            catch (Exception e)
             {
-                MainPlayer.Tasks.Clear();
-                _box.Detach();
-                GameFiber.Wait(1);
-                _box.Position = new Vector3(0f, 0f, 0f);
-                IsAnimationActive = false;
+                Systems.Logging.Logger.LogException("Animations.cs - CarryBox", e.ToString());
+                throw;
             }
+
         }
     }
 }
