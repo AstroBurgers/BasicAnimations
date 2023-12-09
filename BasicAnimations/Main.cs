@@ -2,6 +2,7 @@
 using Rage;
 using System;
 using System.Reflection;
+using BasicAnimations.CustomAnimationsStuff;
 using static BasicAnimations.Settings;
 using static BasicAnimations.Systems.Helper;
 using Menu = BasicAnimations.Menus.Menu;
@@ -25,9 +26,9 @@ namespace BasicAnimations
                         Game.DisplayNotification("commonmenu", "mp_alerttriangle", "BasicAnimations", "~b~By Astro", "~y~CAUTION: ~w~Plugin is in ~r~Beta~w~, Report any issues to the discord.");
                     }
                     Menu.CreateMenu();
-                    //Menus.testing.TestingIK();
                     IniFile();
                     Hotkeys.HotKeyHandler();
+                    CustomAnimations.DeserializeCustomAnimations();
                 }
                 catch (System.Threading.ThreadAbortException e1)
                 {

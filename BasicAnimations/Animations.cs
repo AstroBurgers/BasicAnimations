@@ -14,7 +14,7 @@ namespace BasicAnimations
         // Sexy oop that took 3 Months
 
         // Animations
-        internal static readonly Animation Sit = new("anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", string.Empty, string.Empty, "get_up@sat_on_floor@to_stand", "getup_0", true);
+        internal static readonly Animation Sit = new("amb@world_human_picnic@male@enter", "enter", "anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_idle_nowork", "get_up@sat_on_floor@to_stand", "getup_0", true);
         internal static readonly Animation Pushup = new("amb@world_human_push_ups@male@enter", "enter", "amb@world_human_push_ups@male@base", "base", "amb@world_human_push_ups@male@exit", "exit", true, true, 3500, AnimationStage.Start);
         internal static readonly Animation Situp = new("amb@world_human_sit_ups@male@enter", "enter", "amb@world_human_sit_ups@male@base", "base", "amb@world_human_sit_ups@male@exit", "exit", true, true, 3000, AnimationStage.Start);
         internal static readonly Animation GrabBelt = new("amb@world_human_cop_idles@male@idle_enter", "idle_intro", "amb@world_human_cop_idles@male@base", "base", string.Empty, string.Empty, true, false, 0, default, true);

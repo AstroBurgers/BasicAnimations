@@ -1,14 +1,16 @@
-﻿using Rage.Native;
+﻿using System.Xml.Serialization;
+using Rage.Native;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
 namespace BasicAnimations.Animation_Classes
 {
-    internal class Scenario
+    public class Scenario
     {
-        private readonly string _scenarioName;
+        [XmlAttribute("Scenario")]
+        public string _scenarioName;
 
-        internal Scenario(string scenarioName)
+        public Scenario(string scenarioName)
         {
             this._scenarioName = scenarioName;
         }
