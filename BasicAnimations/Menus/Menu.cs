@@ -232,9 +232,9 @@ namespace BasicAnimations.Menus
                     }
                 }
             }
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
-                Game.LogTrivial("BasicAnimations " + e); // Error handling :GIGACHAD:
+                Logging.Logger.LogException("Menu.cs - ProcessMenus", e.ToString()); // Error handling :GIGACHAD:
             }
         }
         private static bool MenuRequirements() // The aforementioned menu requirements

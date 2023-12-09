@@ -21,7 +21,7 @@ namespace BasicAnimations.Systems
             {
                 return true;
             }
-            return Game.IsKeyDownRightNow(Settings.ModKey);
+            return Game.IsKeyDownRightNow(ModKey);
         }
 
         internal static void EndAction()

@@ -1,9 +1,6 @@
-﻿using System;
-using Rage;
+﻿using Rage;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace BasicAnimations.Animation_Classes
 {
@@ -38,22 +35,22 @@ namespace BasicAnimations.Animation_Classes
         
         public Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped, bool stayInEndFrame = false, int stayInEndFrameTime = 0, AnimationStage stayInEndFrameStage = AnimationStage.None, bool canMove = false)
         {
-            this._startDict = startDict;
-            this._startName = startName;
+            _startDict = startDict;
+            _startName = startName;
 
-            this._mainDict = mainDict;
-            this._mainName = mainName;
+            _mainDict = mainDict;
+            _mainName = mainName;
 
-            this._stopDict = stopDict;
-            this._stopName = stopName;
+            _stopDict = stopDict;
+            _stopName = stopName;
 
-            this._looped = looped;
-            this._canMove = canMove;
+            _looped = looped;
+            _canMove = canMove;
 
-            this._stayInEndFrame = stayInEndFrame;
-            this._stayInEndFrameTime = stayInEndFrameTime;
+            _stayInEndFrame = stayInEndFrame;
+            _stayInEndFrameTime = stayInEndFrameTime;
 
-            this._stayInEndFrameStage = stayInEndFrameStage;
+            _stayInEndFrameStage = stayInEndFrameStage;
         }
 
         public void PlayAnimation()
@@ -68,21 +65,25 @@ namespace BasicAnimations.Animation_Classes
                     IsAnimationActive = false;
                     MainPlayer.Tasks.Clear();
                     return;
+                
                 case true:
                     Logger.Log(LogType.Normal, "Clearing player tasks");
                     MainPlayer.Tasks.Clear();
                     IsAnimationActive = false;
                     return;
+                
                 case false when _stayInEndFrame && (_stayInEndFrameStage == AnimationStage.Start):
                     Logger.Log(LogType.Normal, $"Playing animation: {_startName}");
                     MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_startDict), _startName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, _stayInEndFrameTime);
                     IsAnimationActive = true;
                     break;
+               
                 case false when _looped && !string.IsNullOrEmpty(_startName) && !string.IsNullOrEmpty(_startDict) && CheckRequirements():
                     Logger.Log(LogType.Normal, $"Playing animation: {_startName}");
                     MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_startDict), _startName, 5f, SetFlags());
                     IsAnimationActive = true;
                     break;
+                
                 case false when !string.IsNullOrEmpty(_startName) && !string.IsNullOrEmpty(_startDict) && CheckRequirements():
                     Logger.Log(LogType.Normal, $"Playing animation: {_startName}");
                     MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_startDict), _startName, 5f, SetFlags()).WaitForCompletion();
