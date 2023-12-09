@@ -6,40 +6,43 @@ using BasicAnimations.CustomAnimationsStuff;
 using static BasicAnimations.Settings;
 using static BasicAnimations.Systems.Helper;
 using Menu = BasicAnimations.Menus.Menu;
+using static BasicAnimations.Systems.Logging;
 
-[assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "AstroBurgers")]
+[assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "Astro")]
 
-namespace BasicAnimations
+namespace BasicAnimations;
+
+internal class EntryPoint
 {
-    internal class EntryPoint
+    internal static void Main()
     {
-        internal static void Main()
+        try
         {
-            Game.DisplayNotification("commonmenutu", "arrowright", "BasicAnimations", "~b~By Astro", "If your reading this have a great day!");
-            {
-                try
-                {
-                    Game.LogTrivial("Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version);
-                    if (BetaVersion)
-                    {
-                        Game.LogTrivial("This Is In Beta. Proceed with caution");
-                        Game.DisplayNotification("commonmenu", "mp_alerttriangle", "BasicAnimations", "~b~By Astro", "~y~CAUTION: ~w~Plugin is in ~r~Beta~w~, Report any issues to the discord.");
-                    }
-                    Menu.CreateMenu();
-                    IniFile();
-                    Hotkeys.HotKeyHandler();
-                    CustomAnimations.DeserializeCustomAnimations();
-                }
-                catch (System.Threading.ThreadAbortException e1)
-                {
-                    Game.LogTrivial("Plugin most likely unloaded: " + e1); // Error handling
-                }
-                catch (Exception e)
-                {
-                    Game.LogTrivial("Crashed at: " + e); // Error handling
-                }
-            }
-        }
+            Game.DisplayNotification("commonmenutu", "arrowright",
+                "BasicAnimations",
+                "~b~By Astro",
+                "If your reading this have a great day!");
 
+            Logger.Log(LogType.Normal, "Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version);
+            if (BetaVersion)
+            {
+                Logger.Log(LogType.Warning, "This Is In Beta. Proceed with caution");
+                Game.DisplayNotification("commonmenu", "mp_alerttriangle",
+                    "BasicAnimations",
+                    "~b~By Astro",
+                    "~y~CAUTION~s~: This is a beta version of BA, please report any issues that occur to the discord.");
+            }
+
+            GameFiber.StartNew(Menu.CreateMenu);
+            GameFiber.StartNew(SetupIniFile);
+            GameFiber.StartNew(Hotkeys.HotKeyHandler);
+            //CustomAnimations.DeserializeCustomAnimations();
+        }
+        catch (Exception e)
+        {
+            if (e is System.Threading.ThreadAbortException) return;
+            Logger.LogException("Main.cs", e.ToString()); // Error handling
+        }
     }
+
 }

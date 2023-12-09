@@ -33,7 +33,7 @@ namespace BasicAnimations
         internal static Keys HoldVest = Keys.None;
         internal static Keys HugWeapon = Keys.None;
 
-        internal static void IniFile()
+        internal static void SetupIniFile()
         {
             Inifile = new InitializationFile(@"Plugins/BasicAnimations.ini");
             Inifile.Create();

@@ -3,6 +3,7 @@ using Rage;
 using Rage.Native;
 using System;
 using static BasicAnimations.Systems.Helper;
+using static BasicAnimations.Systems.Logging.Logger;
 
 namespace BasicAnimations
 {
@@ -37,7 +38,7 @@ namespace BasicAnimations
             MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("mp_suicide"), "pill", 5f, AnimationFlags.None);
             GameFiber.Wait(2500);
             MainPlayer.Kill();
-            Game.LogTrivial("Played Suicide animation (Killed player most likely)");
+            Log(Systems.Logging.LogType.Normal,"Played Suicide animation (Killed player most likely)");
             IsAnimationActive = false;
         }
 
