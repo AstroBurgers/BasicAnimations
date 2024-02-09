@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using BasicAnimations.Animation_Classes;
 using BasicAnimations.Systems;
 using Rage;
 using RAGENativeUI;
@@ -18,12 +20,13 @@ namespace BasicAnimations.Menus
         private static readonly UIMenu PropAnims = new("Prop Animations", "");
         private static readonly UIMenu MainMenu = new("BasicAnimations", "");
         private static readonly UIMenu DevMenu = new("Development Menu", "");
-
+        private static readonly UIMenu CustomAnimsMenu = new("Custom Animations", "");
+        
         internal static void CreateMenu()
         {
 
             //Adding all the menus to the menu pool
-            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims);
+            MainMenuPool.Add(MainMenu, AllAnimMain, MiscAnims, PropAnims, CustomAnimsMenu);
 
             MainMenu.MouseControlsEnabled = false;
             MainMenu.AllowCameraMovement = true;
@@ -37,6 +40,9 @@ namespace BasicAnimations.Menus
             PropAnims.MouseControlsEnabled = false;
             PropAnims.AllowCameraMovement = true;
 
+            CustomAnimsMenu.MouseControlsEnabled = false;
+            CustomAnimsMenu.AllowCameraMovement = true;
+            
             DevMenu.MouseControlsEnabled = false;
             DevMenu.AllowCameraMovement = true;
 
@@ -68,6 +74,9 @@ namespace BasicAnimations.Menus
         private static readonly UIMenuItem Yoga = new("Yoga", "STREEETCH");
         private static readonly UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
 
+        internal static Dictionary<UIMenuItem, Animation> CustomAnimations = new();
+        internal static Dictionary<UIMenuItem, Scenario> CustomScenarios = new();
+        
         private static void SetupMenu()
         {
             AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
@@ -75,13 +84,48 @@ namespace BasicAnimations.Menus
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
+
+            foreach (var anim in CustomAnimationsStuff.CustomAnimations.customAnimations.CustomAnimationsArray)
+            {
+                UIMenuItem customAnimMenuItem = new(anim.MenuName);
+                CustomAnimsMenu.AddItem(customAnimMenuItem);
+                CustomAnimations.Add(customAnimMenuItem, anim);
+            }
+
+            foreach (var scen in CustomAnimationsStuff.CustomAnimations.customAnimations.CustomScenariosArray)
+            {
+                UIMenuItem customScenarioMenuItem = new(scen.MenuName);
+                CustomAnimsMenu.AddItem(customScenarioMenuItem);
+                CustomScenarios.Add(customScenarioMenuItem, scen);
+            }
+            
             PropAnims.OnItemSelect += PropAnims_OnItemSelect; // Event handler
             MiscAnims.OnItemSelect += MiscAnims_OnItemSelect; // Event handler
             MainMenu.OnItemSelect += MainMenu_OnItemSelect; // Event handler
             AllAnimMain.OnItemSelect += AllAnimMain_OnItemSelect;
-
+            CustomAnimsMenu.OnItemSelect += CustomAnimsMenuOnOnItemSelect;
+            
             MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
             PropAnims.AddItems(CarryBox, Binoculars, Camera);
+        }
+
+        private static void CustomAnimsMenuOnOnItemSelect(UIMenu sender, UIMenuItem selecteditem, int index)
+        {
+            foreach (var i in CustomAnimations)
+            {
+                if (selecteditem == i.Key)
+                {
+                    i.Value.PlayAnimation();
+                }
+            }
+
+            foreach (var i in CustomScenarios)
+            {
+                if (selecteditem == i.Key)
+                {
+                    i.Value.StartScenario();
+                }
+            }
         }
 
         private static void MiscAnims_OnItemSelect(UIMenu sender, UIMenuItem selectedItem, int index)
