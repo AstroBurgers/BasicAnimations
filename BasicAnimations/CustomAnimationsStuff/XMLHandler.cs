@@ -5,38 +5,38 @@ using static BasicAnimations.Systems.Logging;
 
 namespace BasicAnimations.CustomAnimationsStuff;
 
-internal class XMLHelper<E>
+internal class XmlHelper<TE>
 {
-    internal string filePath { get; private set; }
+    internal string FilePath { get; private set; }
     
-    internal XMLHelper(string filePath)
+    internal XmlHelper(string filePath)
     {
-        this.filePath = filePath;
+        this.FilePath = filePath;
     }
 
-    internal void SerializeXML(E data)
+    internal void SerializeXml(TE data)
     {
-        var serializer = new XmlSerializer(typeof(E));
-        using(var sw = new StreamWriter(filePath, false))
+        var serializer = new XmlSerializer(typeof(TE));
+        using(var sw = new StreamWriter(FilePath, false))
         {
             serializer.Serialize(sw, data);
         }
     }
 
-    internal E DeserializeXML()
+    internal TE DeserializeXml()
     {
-        Logger.Log(LogType.Normal,$"Deserializing XML File: {filePath}");
-        var serializer = new XmlSerializer(typeof(E));
-        E? xmlObject = default;
-        using(var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        Logger.Log(LogType.Normal,$"Deserializing XML File: {FilePath}");
+        var serializer = new XmlSerializer(typeof(TE));
+        TE? xmlObject = default;
+        using(var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
         {
             try
             {
-                xmlObject = (E)serializer.Deserialize(fs);
+                xmlObject = (TE)serializer.Deserialize(fs);
             }
             catch (Exception e)
             {
-                Logger.Log(LogType.Error, $"An error occured in {nameof(DeserializeXML)}, Error: {e}");
+                Logger.Log(LogType.Error, $"An error occured in {nameof(DeserializeXml)}, Error: {e}");
             }
         }
         return xmlObject;
@@ -44,14 +44,14 @@ internal class XMLHelper<E>
 
     internal bool DoesFileExist()
     {
-        return File.Exists(filePath);
+        return File.Exists(FilePath);
     }
 
     internal void DeleteFile()
     {
         if(DoesFileExist())
         {
-            File.Delete(filePath);
+            File.Delete(FilePath);
         }
     }
 }

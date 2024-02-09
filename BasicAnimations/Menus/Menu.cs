@@ -228,6 +228,11 @@ namespace BasicAnimations.Menus
                     }
                     else if (MainMenu.Visible)
                     {
+                        MainMenu.CurrentItem.Selected = false;
+                        PropAnims.CurrentItem.Selected = false;
+                        MiscAnims.CurrentItem.Selected = false;
+                        AllAnimMain.CurrentItem.Selected = false;
+                        
                         MainMenu.Visible = false; // Making the menu no longer visible
                     }
                 }

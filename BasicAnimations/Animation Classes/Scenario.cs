@@ -8,11 +8,11 @@ namespace BasicAnimations.Animation_Classes
     public class Scenario
     {
         [XmlAttribute("Scenario")]
-        public string _scenarioName;
+        public string ScenarioName;
 
         public Scenario(string scenarioName)
         {
-            this._scenarioName = scenarioName;
+            this.ScenarioName = scenarioName;
         }
 
         internal void StartScenario()
@@ -25,8 +25,8 @@ namespace BasicAnimations.Animation_Classes
 
             else if (!IsAnimationActive && CheckRequirements())
             {
-                Logger.Log(LogType.Normal, $"Starting Scenario {_scenarioName}");
-                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, _scenarioName, 0, true);
+                Logger.Log(LogType.Normal, $"Starting Scenario {ScenarioName}");
+                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, ScenarioName, 0, true);
                 IsAnimationActive = true;
             }
         }

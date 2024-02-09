@@ -56,7 +56,7 @@
     <Compile Include="Animations.cs" />
     <Compile Include="Animation Classes\Animation.cs" />
     <Compile Include="Animation Classes\Scenario.cs" />
-    <Compile Include="CustomAnimationsStuff\CustomAnimations.cs" />
+    <Compile Include="CustomAnimationsStuff\CustomAnimation.cs" />
     <Compile Include="CustomAnimationsStuff\XMLHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Menus\Development.cs" />
