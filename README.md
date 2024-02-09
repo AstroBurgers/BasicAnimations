@@ -1,3 +1,7 @@
 # BasicAnimations
-# It does what it says in the name :shrug:
-# Enjoy!
+
+## LICENSING
+Please read the "LICENSE" file before modifying
+
+### Note
+This was one of my very first plugins, it has undergone many refactors however the code is still shit; have fun with a headache
