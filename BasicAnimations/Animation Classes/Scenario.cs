@@ -7,12 +7,23 @@ namespace BasicAnimations.Animation_Classes
 {
     public class Scenario
     {
-        [XmlAttribute("Scenario")]
-        public string ScenarioName;
+        [XmlAttribute("ScenarioName")]
+        public string ScenarioName = string.Empty;
 
+        [XmlText] 
+        public string MenuName = "CustomScenario";
+    
+        public Scenario() {}
+    
         public Scenario(string scenarioName)
         {
             this.ScenarioName = scenarioName;
+        }
+
+        public Scenario(string scenarioName, string MenuName)
+        {
+            ScenarioName = scenarioName;
+            this.MenuName = MenuName;
         }
 
         internal void StartScenario()

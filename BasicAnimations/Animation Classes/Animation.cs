@@ -1,4 +1,5 @@
-﻿using Rage;
+﻿using System.Xml.Serialization;
+using Rage;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
@@ -14,43 +15,80 @@ namespace BasicAnimations.Animation_Classes
     
     public class Animation
     {
-        private readonly string _startDict = string.Empty;
-        private readonly string _startName = string.Empty;
+        [XmlAttribute("IntroDict")]
+        public string StartDict = string.Empty;
+        [XmlAttribute("IntroName")]
+        public string StartName = string.Empty;
         
-        private readonly string _mainDict = string.Empty;
-        private readonly string _mainName = string.Empty;
+        [XmlAttribute("MainDict")]
+        public string MainDict = string.Empty;
+        [XmlAttribute("MainName")]
+        public string MainName = string.Empty;
         
-        private readonly string _stopDict = string.Empty;
-        private readonly string _stopName = string.Empty;
+        [XmlAttribute("OutroDict")]
+        public string StopDict = string.Empty;
+        [XmlAttribute("OutroName")]
+        public string StopName = string.Empty;
         
-        private readonly bool _looped = false;
-        private readonly bool _canMove = false;
+        [XmlAttribute("Looped")]
+        public bool Looped = false;
+        [XmlAttribute("CanPlayerMove")]
+        public bool CanMove = false;
         
-        private readonly bool _stayInEndFrame = false;
+        [XmlAttribute("StayInAnimEndFrame")]
+        public bool StayInEndFrame = false;
 
-        private readonly int _stayInEndFrameTime = 0;
+        [XmlAttribute("StayInAnimEndFrameTime")]
+        public int StayInEndFrameTime = 0;
 
-        private readonly AnimationStage _stayInEndFrameStage = AnimationStage.None;
+        [XmlAttribute("StayInAnimEndFrameStage")]
+        public AnimationStage StayInEndFrameStage = AnimationStage.None;
         
+        [XmlText]
+        public string MenuName = "CustomAnimation";
+        
+        public Animation() {}
         
         public Animation(string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped, bool stayInEndFrame = false, int stayInEndFrameTime = 0, AnimationStage stayInEndFrameStage = AnimationStage.None, bool canMove = false)
         {
-            _startDict = startDict;
-            _startName = startName;
+            StartDict = startDict;
+            StartName = startName;
 
-            _mainDict = mainDict;
-            _mainName = mainName;
+            MainDict = mainDict;
+            MainName = mainName;
 
-            _stopDict = stopDict;
-            _stopName = stopName;
+            StopDict = stopDict;
+            StopName = stopName;
 
-            _looped = looped;
-            _canMove = canMove;
+            Looped = looped;
+            CanMove = canMove;
 
-            _stayInEndFrame = stayInEndFrame;
-            _stayInEndFrameTime = stayInEndFrameTime;
+            StayInEndFrame = stayInEndFrame;
+            StayInEndFrameTime = stayInEndFrameTime;
 
-            _stayInEndFrameStage = stayInEndFrameStage;
+            StayInEndFrameStage = stayInEndFrameStage;
+        }
+        
+        public Animation(string menuName, string startDict, string startName, string mainDict, string mainName, string stopDict, string stopName, bool looped, bool stayInEndFrame = false, int stayInEndFrameTime = 0, AnimationStage stayInEndFrameStage = AnimationStage.None, bool canMove = false)
+        {
+            MenuName = menuName;
+            
+            StartDict = startDict;
+            StartName = startName;
+
+            MainDict = mainDict;
+            MainName = mainName;
+
+            StopDict = stopDict;
+            StopName = stopName;
+
+            Looped = looped;
+            CanMove = canMove;
+
+            StayInEndFrame = stayInEndFrame;
+            StayInEndFrameTime = stayInEndFrameTime;
+
+            StayInEndFrameStage = stayInEndFrameStage;
         }
 
         public void PlayAnimation()
@@ -59,9 +97,9 @@ namespace BasicAnimations.Animation_Classes
 
             switch (IsAnimationActive)
             {
-                case true when !string.IsNullOrEmpty(_stopName) && !string.IsNullOrEmpty(_stopDict):
-                    Logger.Log(LogType.Normal, $"Playing animation: {_stopName}");
-                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_stopDict), _stopName, 5f, AnimationFlags.None).WaitForCompletion();
+                case true when !string.IsNullOrEmpty(StopName) && !string.IsNullOrEmpty(StopDict):
+                    Logger.Log(LogType.Normal, $"Playing animation: {StopName}");
+                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(StopDict), StopName, 5f, AnimationFlags.None).WaitForCompletion();
                     IsAnimationActive = false;
                     MainPlayer.Tasks.Clear();
                     return;
@@ -72,21 +110,21 @@ namespace BasicAnimations.Animation_Classes
                     IsAnimationActive = false;
                     return;
                 
-                case false when _stayInEndFrame && (_stayInEndFrameStage == AnimationStage.Start):
-                    Logger.Log(LogType.Normal, $"Playing animation: {_startName}");
-                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_startDict), _startName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, _stayInEndFrameTime);
+                case false when StayInEndFrame && (StayInEndFrameStage == AnimationStage.Start):
+                    Logger.Log(LogType.Normal, $"Playing animation: {StartName}");
+                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(StartDict), StartName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, StayInEndFrameTime);
                     IsAnimationActive = true;
                     break;
                
-                case false when _looped && !string.IsNullOrEmpty(_startName) && !string.IsNullOrEmpty(_startDict) && CheckRequirements():
-                    Logger.Log(LogType.Normal, $"Playing animation: {_startName}");
-                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_startDict), _startName, 5f, SetFlags());
+                case false when Looped && !string.IsNullOrEmpty(StartName) && !string.IsNullOrEmpty(StartDict) && CheckRequirements():
+                    Logger.Log(LogType.Normal, $"Playing animation: {StartName}");
+                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(StartDict), StartName, 5f, SetFlags());
                     IsAnimationActive = true;
                     break;
                 
-                case false when !string.IsNullOrEmpty(_startName) && !string.IsNullOrEmpty(_startDict) && CheckRequirements():
-                    Logger.Log(LogType.Normal, $"Playing animation: {_startName}");
-                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_startDict), _startName, 5f, SetFlags()).WaitForCompletion();
+                case false when !string.IsNullOrEmpty(StartName) && !string.IsNullOrEmpty(StartDict) && CheckRequirements():
+                    Logger.Log(LogType.Normal, $"Playing animation: {StartName}");
+                    MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(StartDict), StartName, 5f, SetFlags()).WaitForCompletion();
                     IsAnimationActive = true;
                     break;
             }
@@ -97,35 +135,35 @@ namespace BasicAnimations.Animation_Classes
 
         private void PlaySecondaryAnimation()
         {
-            if (!CheckRequirements() || string.IsNullOrEmpty(_mainName) || string.IsNullOrEmpty(_mainDict)) { return; }
-            Logger.Log(LogType.Normal, $"Playing animation: {_mainName}");
-            if (_stayInEndFrame && (_stayInEndFrameStage == AnimationStage.Main))
+            if (!CheckRequirements() || string.IsNullOrEmpty(MainName) || string.IsNullOrEmpty(MainDict)) { return; }
+            Logger.Log(LogType.Normal, $"Playing animation: {MainName}");
+            if (StayInEndFrame && (StayInEndFrameStage == AnimationStage.Main))
             {
-                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_mainDict), _mainName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, _stayInEndFrameTime);
+                MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(MainDict), MainName, 5f, SetFlags()).WaitForStatus(TaskStatus.NoTask, StayInEndFrameTime);
                 IsAnimationActive = true;
                 return;
             }
             IsAnimationActive = true;
-            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(_mainDict), _mainName, 5f, SetFlags());
+            MainPlayer.Tasks.PlayAnimation(new AnimationDictionary(MainDict), MainName, 5f, SetFlags());
         }
 
         private AnimationFlags SetFlags()
         {
             var flags = AnimationFlags.None;
 
-            if (_stayInEndFrame)
+            if (StayInEndFrame)
             {
                 flags = AnimationFlags.StayInEndFrame;
-                if (_looped)
+                if (Looped)
                 {
                     flags = AnimationFlags.StayInEndFrame | AnimationFlags.Loop;
                 }
             }
-            else if (_canMove)
+            else if (CanMove)
             {
                 flags = AnimationFlags.Unknown65536 | AnimationFlags.UpperBodyOnly | AnimationFlags.SecondaryTask | AnimationFlags.Loop;
             }
-            else if (_looped)
+            else if (Looped)
             {
                 flags = AnimationFlags.Loop;
             }

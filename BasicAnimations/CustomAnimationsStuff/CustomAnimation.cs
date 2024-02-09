@@ -8,21 +8,22 @@ namespace BasicAnimations.CustomAnimationsStuff;
 [XmlRoot]
 public class CustomAnimations
 {
-    internal static CustomAnimation customAnimations;
-
-    [XmlElement]
-    internal CustomAnimation customAnimation;
+    [XmlIgnore]
+    internal static CustomAnimations customAnimations;
     
-    [XmlAttribute("CustomAnimations")]
-    internal Animation[] CustomAnimationsArray;
+    [XmlElement]
+    public Animation customAnimation;
+    
+    //[XmlAttribute("UserCustomAnimations")]
+    public Animation[] CustomAnimationsArray;
 
-    [XmlAttribute("CustomScenarios")]
-    internal Scenario[] CustomScenariosArray;
+    //[XmlAttribute("UserCustomScenarios")]
+    public Scenario[] CustomScenariosArray;
     
     public static void DeserializeCustomAnimations()
     {
-        var xmlParser = new XmlHelper<CustomAnimation>(@"plugins\BasicAnimations\CustomAnimations.xml");
-        CustomAnimations = xmlParser.DeserializeXml();
+        var xmlParser = new XmlHelper<CustomAnimations>(@"C:\Users\steve\Desktop\Desktop Files\Code Learning\MyFirstProject\bin\Debug\net6.0\CustomAnimations.xml");
+        customAnimations = xmlParser.DeserializeXml();
     }
 
 
