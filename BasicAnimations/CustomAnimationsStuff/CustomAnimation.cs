@@ -22,7 +22,7 @@ public class CustomAnimations
     
     public static void DeserializeCustomAnimations()
     {
-        var xmlParser = new XmlHelper<CustomAnimations>(@"C:\Users\steve\Desktop\Desktop Files\Code Learning\MyFirstProject\bin\Debug\net6.0\CustomAnimations.xml");
+        var xmlParser = new XmlHelper<CustomAnimations>(@"plugins\BasicAnimations\CustomAnimations.xml");
         customAnimations = xmlParser.DeserializeXml();
     }
 

@@ -56,6 +56,7 @@ namespace BasicAnimations.Menus
         private static readonly UIMenuItem Investigate = new("Investigate", "");
         private static readonly UIMenuItem Camera = new("Camera", "Pull Out A Camera");
         private static readonly UIMenuItem Binoculars = new("Binoculars", "Use some binoculars");
+        private static readonly UIMenuItem CustomAnimationsMenuItem = new("CustomAnimations");
         private static readonly UIMenuItem MiscAnimations = new("Miscellaneous");
         private static readonly UIMenuItem PropAnimations = new("Prop Animations");
         private static readonly UIMenuItem AllAnimations = new("All Animations");
@@ -80,11 +81,12 @@ namespace BasicAnimations.Menus
         private static void SetupMenu()
         {
             AllAnimMain.AddItems(Sitting, Leaning, Kneel, Suicide, Smoking, Situps, HandsOnBelt, Pushup, GrabVest, Salute, Mocking, CarryBox, Yoga, Binoculars, Camera, Investigate); // Adding all animations to the AllAnimations Menu
-            MainMenu.AddItems(AllAnimations, MiscAnimations, PropAnimations, EndAnimation);
+            MainMenu.AddItems(AllAnimations, MiscAnimations, PropAnimations, CustomAnimationsMenuItem, EndAnimation);
             MainMenu.BindMenuToItem(AllAnimMain, AllAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
             MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
-
+            MainMenu.BindMenuToItem(CustomAnimsMenu, CustomAnimationsMenuItem); //Binding the item defined before to a defined menu
+            
             foreach (var anim in CustomAnimationsStuff.CustomAnimations.customAnimations.CustomAnimationsArray)
             {
                 UIMenuItem customAnimMenuItem = new(anim.MenuName);

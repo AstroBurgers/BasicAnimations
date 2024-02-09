@@ -33,10 +33,10 @@ internal class EntryPoint
                     "~y~CAUTION~s~: This is a beta version of BA, please report any issues that occur to the discord.");
             }
 
+            CustomAnimations.DeserializeCustomAnimations();
             GameFiber.StartNew(Menu.CreateMenu);
             GameFiber.StartNew(SetupIniFile);
             GameFiber.StartNew(Hotkeys.HotKeyHandler);
-            //CustomAnimations.DeserializeCustomAnimations();
         }
         catch (Exception e)
         {
