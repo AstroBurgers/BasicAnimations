@@ -56,7 +56,7 @@ namespace BasicAnimations.Menus
         private static readonly UIMenuItem Investigate = new("Investigate", "");
         private static readonly UIMenuItem Camera = new("Camera", "Pull Out A Camera");
         private static readonly UIMenuItem Binoculars = new("Binoculars", "Use some binoculars");
-        private static readonly UIMenuItem CustomAnimationsMenuItem = new("CustomAnimations");
+        private static readonly UIMenuItem CustomAnimationsMenuItem = new("Custom Animations");
         private static readonly UIMenuItem MiscAnimations = new("Miscellaneous");
         private static readonly UIMenuItem PropAnimations = new("Prop Animations");
         private static readonly UIMenuItem AllAnimations = new("All Animations");
