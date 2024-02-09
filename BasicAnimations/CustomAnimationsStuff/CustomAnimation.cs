@@ -1,6 +1,4 @@
-﻿// TODO
-
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using BasicAnimations.Animation_Classes;
 
 namespace BasicAnimations.CustomAnimationsStuff;
