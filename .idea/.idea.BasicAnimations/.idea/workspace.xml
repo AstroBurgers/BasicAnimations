@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0222e4b9-041d-402e-97b1-1780c53f358b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Animation Classes/Animation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Animation Classes/Animation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Animation Classes/Scenario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Animation Classes/Scenario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Animations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Animations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimationsStuff/CustomAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimationsStuff/CustomAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimationsStuff/XMLHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimationsStuff/XMLHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Main.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Menus/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Menus/Menu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Helper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Helper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Hotkeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Hotkeys.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Logging.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Logging.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Settings.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AstroBurgers&quot;
+  }
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AstroBurgers/BasicAnimations.git&quot;,
+    &quot;accountId&quot;: &quot;4815f649-73a1-4271-b377-a498d5fe4394&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/steve/Desktop/Desktop Files/Coding/Projects/BasicAnimations/BasicAnimations/Animations.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/steve/Desktop/Desktop Files/Coding/Projects/BasicAnimations/BasicAnimations/Animations.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2XpM10mZGr4mWgGD0d0m1jDZ85C" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\steve\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\steve\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\steve\\AppData\\Local\\Symbols\\src&quot;
+    ]
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0222e4b9-041d-402e-97b1-1780c53f358b" name="Changes" comment="" />
+      <created>1699321356013</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699321356013</updated>
+      <workItem from="1699321358813" duration="442000" />
+      <workItem from="1699636901284" duration="120000" />
+      <workItem from="1699637048487" duration="4200000" />
+      <workItem from="1700493979425" duration="195000" />
+      <workItem from="1702080943593" duration="273000" />
+      <workItem from="1702081262751" duration="2807000" />
+      <workItem from="1705109338666" duration="567000" />
+      <workItem from="1705536358695" duration="1163000" />
+      <workItem from="1706558500002" duration="1210000" />
+      <workItem from="1707259042045" duration="11000" />
+      <workItem from="1707265390001" duration="3000" />
+      <workItem from="1707493032411" duration="5527000" />
+      <workItem from="1723076806895" duration="120000" />
+      <workItem from="1723077027009" duration="106000" />
+      <workItem from="1723077162862" duration="1884000" />
+    </task>
+    <task id="LOCAL-00001" summary="Updated .gitignore&#10;Started work on custom animations support">
+      <option name="closed" value="true" />
+      <created>1699637518595</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699637518595</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added intro animation to Sitting animation">
+      <option name="closed" value="true" />
+      <created>1702081023863</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702081023863</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactored HoldBox animation">
+      <option name="closed" value="true" />
+      <created>1702081755064</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702081755064</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactoring stuff... Holy shit :KEKW:">
+      <option name="closed" value="true" />
+      <created>1702082421285</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702082421285</updated>
+    </task>
+    <task id="LOCAL-00005" summary="More refactoring">
+      <option name="closed" value="true" />
+      <created>1702083314343</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702083314343</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Reattempting Custom Animations.">
+      <option name="closed" value="true" />
+      <created>1707493048045</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707493048045</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Incorporated CustomAnimation.cs">
+      <option name="closed" value="true" />
+      <created>1707497432720</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707497432720</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added custom animations menu (Initial Test)">
+      <option name="closed" value="true" />
+      <created>1707499399993</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707499399993</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added FULL custom animation support">
+      <option name="closed" value="true" />
+      <created>1707500463294</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707500463294</updated>
+    </task>
+    <task id="LOCAL-00010" summary="I CAN REMOVE THE FUCKING TODOOOOOOOOO!!">
+      <option name="closed" value="true" />
+      <created>1707500487077</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1707500487077</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Changed file version">
+      <option name="closed" value="true" />
+      <created>1707500519334</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1707500519334</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Updated .gitignore&#10;Started work on custom animations support" />
+    <MESSAGE value="Added intro animation to Sitting animation" />
+    <MESSAGE value="Refactored HoldBox animation" />
+    <MESSAGE value="Refactoring stuff... Holy shit :KEKW:" />
+    <MESSAGE value="More refactoring" />
+    <MESSAGE value="Reattempting Custom Animations." />
+    <MESSAGE value="Incorporated CustomAnimation.cs" />
+    <MESSAGE value="Added custom animations menu (Initial Test)" />
+    <MESSAGE value="Added FULL custom animation support" />
+    <MESSAGE value="I CAN REMOVE THE FUCKING TODOOOOOOOOO!!" />
+    <MESSAGE value="Changed file version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed file version" />
+  </component>
+</project>

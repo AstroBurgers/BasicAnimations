@@ -11,7 +11,7 @@ internal class XmlHelper<TE>
     
     internal XmlHelper(string filePath)
     {
-        this.FilePath = filePath;
+        FilePath = filePath;
     }
 
     internal void SerializeXml(TE data)

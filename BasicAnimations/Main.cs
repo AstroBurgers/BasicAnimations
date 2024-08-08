@@ -3,7 +3,7 @@ using Rage;
 using System;
 using System.Reflection;
 using BasicAnimations.CustomAnimationsStuff;
-using static BasicAnimations.Settings;
+using static BasicAnimations.Systems.Settings;
 using static BasicAnimations.Systems.Helper;
 using Menu = BasicAnimations.Menus.Menu;
 using static BasicAnimations.Systems.Logging;
@@ -23,7 +23,7 @@ internal class EntryPoint
                 "~b~By Astro",
                 "If your reading this have a great day!");
 
-            Logger.Log(LogType.Normal, "Version Loaded: " + Assembly.GetExecutingAssembly().GetName().Version);
+            Logger.Log(LogType.Normal, $"Version Loaded: {Assembly.GetExecutingAssembly().GetName().Version}");
             if (BetaVersion)
             {
                 Logger.Log(LogType.Warning, "This Is In Beta. Proceed with caution");

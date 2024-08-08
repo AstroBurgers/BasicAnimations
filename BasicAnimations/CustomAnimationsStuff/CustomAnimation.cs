@@ -29,8 +29,8 @@ public class CustomAnimations
 
     public CustomAnimations(Animation[] animations, Scenario[] scenarios)
     {
-        this.CustomAnimationsArray = animations;
-        this.CustomScenariosArray = scenarios;
+        CustomAnimationsArray = animations;
+        CustomScenariosArray = scenarios;
     }
 }
 

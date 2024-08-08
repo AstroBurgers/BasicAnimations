@@ -3,55 +3,54 @@ using Rage.Native;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
-namespace BasicAnimations.Animation_Classes
+namespace BasicAnimations.Animation_Classes;
+
+public class Scenario
 {
-    public class Scenario
+    [XmlAttribute("ScenarioName")]
+    public string ScenarioName = string.Empty;
+
+    [XmlText] 
+    public string MenuName = "CustomScenario";
+    
+    public Scenario() {}
+    
+    public Scenario(string scenarioName)
     {
-        [XmlAttribute("ScenarioName")]
-        public string ScenarioName = string.Empty;
+        ScenarioName = scenarioName;
+    }
 
-        [XmlText] 
-        public string MenuName = "CustomScenario";
-    
-        public Scenario() {}
-    
-        public Scenario(string scenarioName)
+    public Scenario(string scenarioName, string menuName)
+    {
+        ScenarioName = scenarioName;
+        MenuName = menuName;
+    }
+
+    internal void StartScenario()
+    {
+        if (IsAnimationActive || !CheckRequirements())
         {
-            this.ScenarioName = scenarioName;
+            EndScenario();
+            IsAnimationActive = false;
         }
 
-        public Scenario(string scenarioName, string MenuName)
+        else if (!IsAnimationActive && CheckRequirements())
         {
-            ScenarioName = scenarioName;
-            this.MenuName = MenuName;
+            Logger.Log(LogType.Normal, $"Starting Scenario {ScenarioName}");
+            NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, ScenarioName, 0, true);
+            IsAnimationActive = true;
         }
+    }
 
-        internal void StartScenario()
-        {
-            if (IsAnimationActive || !CheckRequirements())
-            {
-                EndScenario();
-                IsAnimationActive = false;
-            }
+    private void EndScenario()
+    {
+        Logger.Log(LogType.Normal, $"Clearing Scenario normally");
+        MainPlayer.Tasks.Clear();
+    }
 
-            else if (!IsAnimationActive && CheckRequirements())
-            {
-                Logger.Log(LogType.Normal, $"Starting Scenario {ScenarioName}");
-                NativeFunction.Natives.x142A02425FF02BD9(MainPlayer, ScenarioName, 0, true);
-                IsAnimationActive = true;
-            }
-        }
-
-        private void EndScenario()
-        {
-            Logger.Log(LogType.Normal, $"Clearing Scenario normally");
-            MainPlayer.Tasks.Clear();
-        }
-
-        internal void EndScenarioImmediately()
-        {
-            Logger.Log(LogType.Normal, $"Clearing Scenario Immediately");
-            MainPlayer.Tasks.ClearImmediately();
-        }
+    internal void EndScenarioImmediately()
+    {
+        Logger.Log(LogType.Normal, $"Clearing Scenario Immediately");
+        MainPlayer.Tasks.ClearImmediately();
     }
 }
