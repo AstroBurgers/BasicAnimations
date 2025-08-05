@@ -34,6 +34,5 @@ internal class Helper
         }
         GameFiber.Wait(1);
         IsAnimationActive = false;
-        IsAnimationActive = false;
     }
 }

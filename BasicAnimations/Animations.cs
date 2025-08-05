@@ -46,17 +46,22 @@ internal static class Animations
     {
         try
         {
-            if (IsAnimationActive && CheckRequirements())
+            if (IsAnimationActive)
             {
                 MainPlayer.Tasks.Clear();
                 Box.Detach();
                 GameFiber.Wait(1);
                 Box.Position = new Vector3(0f, 0f, 0f);
                 IsAnimationActive = false;
+                return;
             }
-            // 0x6B9BBD38AB0796DF ATTACH_ENTITY_TO_ENTITY
-            if (IsAnimationActive || !CheckRequirements()) return;
-            if (!Box.Exists()) { Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f); }
+
+            if (!CheckRequirements()) return;
+
+            if (!Box.Exists())
+            {
+                Box = new Rage.Object(new Model("prop_cs_cardbox_01"), Vector3.Zero, 0f);
+            }
             else if (Box.Exists())
             {
                 MainPlayer.Tasks.PlayAnimation(new AnimationDictionary("anim@heists@box_carry@"), "idle", 5f,
