@@ -1,5 +1,7 @@
+# BasicAnimations Documentation
 
-# `CustomAnimations.json` Documentation  
+
+## `CustomAnimations.json` Documentation  
 
 ---
 
