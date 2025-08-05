@@ -1,0 +1,26 @@
+﻿{
+  "animations": [
+    {
+      "menuName": "Bench Sit",
+      "introDict": "amb@world_human_picnic@male@enter",
+      "introName": "enter",
+      "mainDict": "anim@amb@business@bgen@bgen_no_work@",
+      "mainName": "sit_phone_phoneputdown_idle_nowork",
+      "outroDict": "get_up@sat_on_floor@to_stand",
+      "outroName": "getup_0",
+      "looped": true,
+      "canPlayerMove": false,
+      "stayInEndFrame": false,
+      "stayInEndFrameTime": 0,
+      "stayInEndFrameStage": "None",
+      "keybind": "NumPad1"
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioName": "world_human_smoking",
+      "menuName": "Smoke",
+      "keybind": "NumPad2"
+    }
+  ]
+}

@@ -1,33 +1,95 @@
-﻿using Rage;
+﻿#nullable enable
+using Rage;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 using static BasicAnimations.Systems.Helper;
+using static BasicAnimations.Systems.Logging;
+using BasicAnimations.CustomAnimations;
+using Keys = System.Windows.Forms.Keys;
 
 namespace BasicAnimations.Systems;
 
 internal static class Hotkeys
 {
+    private static readonly Dictionary<Keys, Action> StaticBindings = new();
+    private static readonly Dictionary<Keys, Action> DynamicBindings = new();
+
+    internal static void Initialize()
+    {
+        RegisterStaticBindings();
+        RegisterDynamicBindings();
+        Logger.Log(LogType.Normal, "Hotkey system initialized.");
+    }
+
     internal static void HotKeyHandler()
     {
         while (true)
         {
             GameFiber.Yield();
 
-            if (Game.IsKeyDown(Settings.Sit) && CheckModKey() && CheckRequirements()) { Animations.Sit.PlayAnimation(); } // Sit
-            else if (Game.IsKeyDown(Settings.Kneel) && CheckModKey() && CheckRequirements()) { Animations.Kneeling.StartScenario(); } // Kneel
-            else if (Game.IsKeyDown(Settings.Lean) && CheckModKey() && CheckRequirements()) { Animations.Lean.StartScenario(); } // Lean
-            else if (Game.IsKeyDown(Settings.HandsOnBeltKey) && CheckModKey() && CheckRequirements()) { Animations.GrabBelt.PlayAnimation(); } // Hands on belt
-            else if (Game.IsKeyDown(Settings.GrabVest) && CheckModKey() && CheckRequirements()) { Animations.GrabVest.PlayAnimation(); } // Grab vest
-            else if (Game.IsKeyDown(Settings.Suicide) && CheckModKey() && CheckRequirements()) { Animations.Suicide(); } // Suicide
-            else if (Game.IsKeyDown(Settings.Pushups) && CheckModKey() && CheckRequirements()) { Animations.Pushup.PlayAnimation(); } // Pushups
-            else if (Game.IsKeyDown(Settings.Situps) && CheckModKey() && CheckRequirements()) { Animations.Situp.PlayAnimation(); } // Situps
-            else if (Game.IsKeyDown(Settings.Salute) && CheckModKey() && CheckRequirements()) { Animations.Salute.PlayAnimation(); } // Saluting
-            else if (Game.IsKeyDown(Settings.Smoking) && CheckModKey() && CheckRequirements()) { Animations.Smoking.StartScenario(); } // Smoking
-            else if (Game.IsKeyDown(Settings.Box) && CheckModKey() && CheckRequirements()) { Animations.CarryBox(); } // Carry box
-            else if (Game.IsKeyDown(Settings.Mocking) && CheckModKey() && CheckRequirements()) { Animations.Mocking.PlayAnimation(); } // Mocking
-            else if (Game.IsKeyDown(Settings.Camera) && CheckModKey() && CheckRequirements()) { Animations.Camera.StartScenario(); } // Camera
-            else if (Game.IsKeyDown(Settings.Yoga) && CheckModKey() && CheckRequirements()) { Animations.Yoga.StartScenario(); } // Yoga
-            else if (Game.IsKeyDown(Settings.Binoculars) && CheckModKey() && CheckRequirements()) { Animations.Binoculars.StartScenario(); } // Binoculars
-            else if (Game.IsKeyDown(Settings.Investigate) && CheckModKey() && CheckRequirements()) { Animations.Investigate.StartScenario(); } // Investigate
+            foreach (var kvp in StaticBindings.Concat(DynamicBindings))
+            {
+                var key = kvp.Key;
+                var action = kvp.Value;
+
+                if (Game.IsKeyDown(key) && CheckModKey() && CheckRequirements())
+                {
+                    action();
+                }
+            }
         }
         // ReSharper disable once FunctionNeverReturns
+    }
+
+    private static void RegisterStaticBindings()
+    {
+        StaticBindings[Settings.Sit] = () => Animations.Sit.PlayAnimation();
+        StaticBindings[Settings.Kneel] = () => Animations.Kneeling.StartScenario();
+        StaticBindings[Settings.Lean] = () => Animations.Lean.StartScenario();
+        StaticBindings[Settings.HandsOnBeltKey] = () => Animations.GrabBelt.PlayAnimation();
+        StaticBindings[Settings.GrabVest] = () => Animations.GrabVest.PlayAnimation();
+        StaticBindings[Settings.Suicide] = Animations.Suicide;
+        StaticBindings[Settings.Pushups] = () => Animations.Pushup.PlayAnimation();
+        StaticBindings[Settings.Situps] = () => Animations.Situp.PlayAnimation();
+        StaticBindings[Settings.Salute] = () => Animations.Salute.PlayAnimation();
+        StaticBindings[Settings.Smoking] = () => Animations.Smoking.StartScenario();
+        StaticBindings[Settings.Box] = Animations.CarryBox;
+        StaticBindings[Settings.Mocking] = () => Animations.Mocking.PlayAnimation();
+        StaticBindings[Settings.Camera] = () => Animations.Camera.StartScenario();
+        StaticBindings[Settings.Yoga] = () => Animations.Yoga.StartScenario();
+        StaticBindings[Settings.Binoculars] = () => Animations.Binoculars.StartScenario();
+        StaticBindings[Settings.Investigate] = () => Animations.Investigate.StartScenario();
+    }
+
+    private static void RegisterDynamicBindings()
+    {
+        if (CustomAnimationsLoader.LoadedData == null)
+            return;
+
+        foreach (var anim in CustomAnimationsLoader.LoadedData.Animations)
+        {
+            if (TryParseKey(anim.Keybind, out var key))
+            {
+                DynamicBindings[key] = () => anim.PlayAnimation();
+            }
+        }
+
+        foreach (var scenario in CustomAnimationsLoader.LoadedData.Scenarios)
+        {
+            if (TryParseKey(scenario.Keybind, out var key))
+            {
+                DynamicBindings[key] = () => scenario.StartScenario();
+            }
+        }
+    }
+
+    private static bool TryParseKey(string? keybind, out Keys key)
+    {
+        if (!string.IsNullOrWhiteSpace(keybind) && Enum.TryParse(keybind, true, out key))
+            return true;
+
+        key = Keys.None;
+        return false;
     }
 }

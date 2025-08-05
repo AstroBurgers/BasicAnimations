@@ -1,41 +1,39 @@
-﻿using System.Xml.Serialization;
-using BasicAnimations.AnimationClasses;
+﻿#nullable enable
+using System;
+using System.IO;
+using System.Text.Json;
+using BasicAnimations.Systems;
 
 namespace BasicAnimations.CustomAnimations;
 
-[XmlRoot]
-public class CustomAnimations
+public static class CustomAnimationsLoader
 {
-    [XmlIgnore]
-    internal static CustomAnimations customAnimations;
-    
-    [XmlElement]
-    public Animation customAnimation;
-    
-    //[XmlAttribute("UserCustomAnimations")]
-    public Animation[] CustomAnimationsArray;
+    private const string FilePath = @"plugins\BasicAnimations\CustomAnimations.json";
 
-    //[XmlAttribute("UserCustomScenarios")]
-    public Scenario[] CustomScenariosArray;
-    
-    public static void DeserializeCustomAnimations()
+    public static CustomAnimationsModel? LoadedData { get; private set; }
+
+    public static void Load()
     {
-        var xmlParser = new XmlHelper<CustomAnimations>(@"plugins\BasicAnimations\CustomAnimations.xml");
-        customAnimations = xmlParser.DeserializeXml();
+        try
+        {
+            if (!File.Exists(FilePath))
+            {
+                Logging.Logger.Log(Logging.LogType.Error, $"Custom animation JSON not found: {FilePath}");
+                return;
+            }
+
+            var json = File.ReadAllText(FilePath);
+            LoadedData = JsonSerializer.Deserialize<CustomAnimationsModel>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            Logging.Logger.Log(Logging.LogType.Normal,
+                $"Loaded {LoadedData?.Animations?.Count ?? 0} animations and {LoadedData?.Scenarios?.Count ?? 0} scenarios.");
+        }
+        catch (Exception ex)
+        {
+            Logging.Logger.Log(Logging.LogType.Error, $"Error loading animation JSON: {ex.Message}");
+        }
     }
-
-
-    public CustomAnimations() {  }
-
-    public CustomAnimations(Animation[] animations, Scenario[] scenarios)
-    {
-        CustomAnimationsArray = animations;
-        CustomScenariosArray = scenarios;
-    }
-}
-
-[XmlType("Item")]
-public class CustomAnimation
-{
-    
 }

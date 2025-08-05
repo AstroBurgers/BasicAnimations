@@ -5,20 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0222e4b9-041d-402e-97b1-1780c53f358b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicAnimations/App.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimationsModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Animation Classes/Animation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Animation Classes/Scenario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Scenario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Scenario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Scenario.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BasicAnimations/BasicAnimations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/BasicAnimations.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimationsStuff/CustomAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimationsStuff/XMLHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/XMLHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Main.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Menus/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Menus/Menu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/XMLHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Menu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Hotkeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Hotkeys.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Settings.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSON File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -48,8 +58,9 @@
   }
 }]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/steve/Desktop/Desktop Files/Coding/Projects/BasicAnimations/BasicAnimations/Animation Classes/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/steve/Desktop/Desktop Files/Coding/Projects/BasicAnimations/BasicAnimations/Properties/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BasicAnimations/AnimationClasses/Scenario.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/GTA V/BasicAnimations/BasicAnimations/AnimationClasses/Scenario.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -106,7 +117,7 @@
       <workItem from="1723077027009" duration="106000" />
       <workItem from="1723077162862" duration="2123000" />
       <workItem from="1725057673076" duration="10000" />
-      <workItem from="1754352669731" duration="329000" />
+      <workItem from="1754352669731" duration="1566000" />
     </task>
     <task id="LOCAL-00001" summary="Updated .gitignore&#10;Started work on custom animations support">
       <option name="closed" value="true" />
@@ -212,7 +223,31 @@
       <option name="project" value="LOCAL" />
       <updated>1723079284228</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Reorganization, delete Development.cs">
+      <option name="closed" value="true" />
+      <created>1754353104759</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1754353104759</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Refactor Animation.cs">
+      <option name="closed" value="true" />
+      <created>1754353263164</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1754353263164</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Refactor Scenario.cs">
+      <option name="closed" value="true" />
+      <created>1754353319017</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1754353319017</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +272,8 @@
     <MESSAGE value="Fixed AssemblyInfo.cs" />
     <MESSAGE value="Reorganization, delete Development.cs" />
     <MESSAGE value="Refactor Animation.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Animation.cs" />
+    <MESSAGE value="Refactor Scenario.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Scenario.cs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

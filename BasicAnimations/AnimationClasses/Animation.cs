@@ -16,31 +16,25 @@ public enum AnimationStage
 
 public class Animation
 {
-    [XmlAttribute("IntroDict")] public string StartDict { get; set; } = string.Empty;
+    public string StartDict { get; set; } = string.Empty;
+    public string StartName { get; set; } = string.Empty;
 
-    [XmlAttribute("IntroName")] public string StartName { get; set; } = string.Empty;
+    public string MainDict { get; set; } = string.Empty;
+    public string MainName { get; set; } = string.Empty;
 
-    [XmlAttribute("MainDict")] public string MainDict { get; set; } = string.Empty;
+    public string StopDict { get; set; } = string.Empty;
+    public string StopName { get; set; } = string.Empty;
 
-    [XmlAttribute("MainName")] public string MainName { get; set; } = string.Empty;
+    public bool Looped { get; set; }
+    public bool CanMove { get; set; }
 
-    [XmlAttribute("OutroDict")] public string StopDict { get; set; } = string.Empty;
-
-    [XmlAttribute("OutroName")] public string StopName { get; set; } = string.Empty;
-
-    [XmlAttribute("Looped")] public bool Looped { get; set; }
-
-    [XmlAttribute("CanPlayerMove")] public bool CanMove { get; set; }
-
-    [XmlAttribute("StayInAnimEndFrame")] public bool StayInEndFrame { get; set; }
-
-    [XmlAttribute("StayInAnimEndFrameTime")]
+    public bool StayInEndFrame { get; set; }
     public int StayInEndFrameTime { get; set; }
-
-    [XmlAttribute("StayInAnimEndFrameStage")]
     public AnimationStage StayInEndFrameStage { get; set; } = AnimationStage.None;
 
-    [XmlText] public string? MenuName { get; set; } = "CustomAnimation";
+    public string MenuName { get; set; } = "CustomAnimation";
+
+    public string? Keybind { get; set; } // Optional: user-defined hotkey (e.g. "F5", "NumPad1")
 
     public Animation()
     {
@@ -58,7 +52,8 @@ public class Animation
         int stayInEndFrameTime = 0,
         AnimationStage stayInEndFrameStage = AnimationStage.None,
         bool canMove = false,
-        string? menuName = null
+        string? menuName = null,
+        string? keybind = null
     )
     {
         StartDict = startDict;
@@ -67,13 +62,16 @@ public class Animation
         MainName = mainName;
         StopDict = stopDict;
         StopName = stopName;
+
         Looped = looped;
         CanMove = canMove;
+
         StayInEndFrame = stayInEndFrame;
         StayInEndFrameTime = stayInEndFrameTime;
         StayInEndFrameStage = stayInEndFrameStage;
-        if (!string.IsNullOrEmpty(menuName))
-            MenuName = menuName;
+
+        MenuName = (string.IsNullOrWhiteSpace(menuName) ? "CustomAnimation" : menuName) ?? string.Empty;
+        Keybind = keybind;
     }
 
     public void PlayAnimation()

@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+﻿#nullable enable
 using Rage.Native;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
@@ -7,19 +7,21 @@ namespace BasicAnimations.AnimationClasses;
 
 public class Scenario
 {
-    [XmlAttribute("ScenarioName")] public string ScenarioName { get; set; } = string.Empty;
+    public string ScenarioName { get; set; } = string.Empty;
 
-    [XmlText] public string MenuName { get; set; } = "CustomScenario";
+    public string MenuName { get; set; } = "CustomScenario";
+
+    public string? Keybind { get; set; } // Optional keybind for triggering this scenario
 
     public Scenario()
     {
     }
 
-    public Scenario(string scenarioName, string? menuName = null)
+    public Scenario(string scenarioName, string? menuName = null, string? keybind = null)
     {
         ScenarioName = scenarioName;
-        if (!string.IsNullOrWhiteSpace(menuName))
-            MenuName = menuName;
+        MenuName = (string.IsNullOrWhiteSpace(menuName) ? "CustomScenario" : menuName) ?? string.Empty;
+        Keybind = keybind;
     }
 
     internal void StartScenario()

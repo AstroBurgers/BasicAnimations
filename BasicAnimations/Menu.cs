@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BasicAnimations.AnimationClasses;
+using BasicAnimations.CustomAnimations;
 using BasicAnimations.Systems;
 using Rage;
 using RAGENativeUI;
@@ -84,17 +85,25 @@ internal static class Menu
         MainMenu.BindMenuToItem(MiscAnims, MiscAnimations); //Binding the item defined before to a defined menu
         MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
         MainMenu.BindMenuToItem(CustomAnimsMenu, CustomAnimationsMenuItem); //Binding the item defined before to a defined menu
-            
-        foreach (var anim in BasicAnimations.CustomAnimations.CustomAnimations.customAnimations.CustomAnimationsArray)
+
+        foreach (var anim in CustomAnimationsLoader.LoadedData?.Animations ?? Enumerable.Empty<Animation>())
         {
-            UIMenuItem customAnimMenuItem = new(anim.MenuName);
+            var displayName = string.IsNullOrWhiteSpace(anim.Keybind)
+                ? anim.MenuName
+                : $"{anim.MenuName} ({anim.Keybind})";
+
+            UIMenuItem customAnimMenuItem = new(displayName);
             CustomAnimsMenu.AddItem(customAnimMenuItem);
             CustomAnimations.Add(customAnimMenuItem, anim);
         }
 
-        foreach (var scen in BasicAnimations.CustomAnimations.CustomAnimations.customAnimations.CustomScenariosArray)
+        foreach (var scen in CustomAnimationsLoader.LoadedData?.Scenarios ?? Enumerable.Empty<Scenario>())
         {
-            UIMenuItem customScenarioMenuItem = new(scen.MenuName);
+            var displayName = string.IsNullOrWhiteSpace(scen.Keybind)
+                ? scen.MenuName
+                : $"{scen.MenuName} ({scen.Keybind})";
+
+            UIMenuItem customScenarioMenuItem = new(displayName);
             CustomAnimsMenu.AddItem(customScenarioMenuItem);
             CustomScenarios.Add(customScenarioMenuItem, scen);
         }

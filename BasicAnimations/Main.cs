@@ -4,7 +4,6 @@ using System;
 using System.Reflection;
 using static BasicAnimations.Systems.Settings;
 using static BasicAnimations.Systems.Helper;
-using Menu = BasicAnimations.Menu;
 using static BasicAnimations.Systems.Logging;
 
 [assembly: Rage.Attributes.Plugin("Basic Animations", Description = "Time to do random stuff", Author = "Astro")]
@@ -32,7 +31,7 @@ internal class EntryPoint
                     "~y~CAUTION~s~: This is a beta version of BA, please report any issues that occur to the discord.");
             }
 
-            CustomAnimations.CustomAnimations.DeserializeCustomAnimations();
+            CustomAnimations.CustomAnimationsLoader.Load();
             GameFiber.StartNew(Menu.CreateMenu);
             GameFiber.StartNew(SetupIniFile);
             GameFiber.StartNew(Hotkeys.HotKeyHandler);

@@ -8,27 +8,32 @@ namespace BasicAnimations.Systems;
 internal static class Settings
 {
     # region Keys Variables
-    internal static Keys Investigate = Keys.None;
-    internal static Keys ModKey = Keys.None; // Modifier key
-    internal static Keys Camera = Keys.None; // Defining a new Keys var
-    internal static Keys Binoculars = Keys.None; // Defining a new Keys var
-    internal static Keys Yoga = Keys.None; // Defining a new Keys var
-    internal static Keys Suicide = Keys.None; // Defining a new Keys var
-    internal static Keys Smoking = Keys.None; // Defining a new Keys var
-    internal static Keys Situps = Keys.None; // Defining a new Keys var
-    internal static Keys Pushups = Keys.None; // Defining a new Keys var
-    internal static Keys Salute = Keys.None; // Defining a new Keys var
-    internal static Keys GrabVest = Keys.None; // Defining a new Keys var
-    internal static Keys Sit = Keys.None; // Defining a new Keys var
-    internal static Keys Kneel = Keys.None; // Defining a new Keys var
-    internal static Keys Lean = Keys.None; // Defining a new Keys var
-    internal static Keys Menu = Keys.None; // Defining a new Keys var
-    internal static InitializationFile Inifile; // Defining a new INI File
-    internal static Keys HandsOnBeltKey = Keys.None; // Defining a new Keys var
-    internal static Keys Lean2 = Keys.None; // Defining a new Keys var
-    internal static Keys Mocking = Keys.None; // Defining a new Keys var
-    internal static Keys Box = Keys.None; // Defining a new Keys var
+    // Modifier Keys
+    internal static Keys ModKey = Keys.None;
     internal static Keys MenuModKey = Keys.None;
+    
+    // Animation Keys
+    internal static Keys Investigate = Keys.None;
+    internal static Keys Camera = Keys.None;
+    internal static Keys Binoculars = Keys.None;
+    internal static Keys Yoga = Keys.None;
+    internal static Keys Suicide = Keys.None;
+    internal static Keys Smoking = Keys.None;
+    internal static Keys Situps = Keys.None;
+    internal static Keys Pushups = Keys.None;
+    internal static Keys Salute = Keys.None;
+    internal static Keys GrabVest = Keys.None;
+    internal static Keys Sit = Keys.None;
+    internal static Keys Kneel = Keys.None;
+    internal static Keys Lean = Keys.None;
+    internal static Keys Menu = Keys.None;
+    internal static Keys HandsOnBeltKey = Keys.None;
+    internal static Keys Lean2 = Keys.None;
+    internal static Keys Mocking = Keys.None;
+    internal static Keys Box = Keys.None;
+    
+    internal static InitializationFile Inifile; // Defining a new INI File
+    
     #endregion
 
     // Custom Keybinds
