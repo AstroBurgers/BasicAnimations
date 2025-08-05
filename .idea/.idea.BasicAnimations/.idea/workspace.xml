@@ -235,7 +235,9 @@
     <MESSAGE value="Changed file version" />
     <MESSAGE value="Refactor that had no purpose&#10;Fixed the fucking box issue" />
     <MESSAGE value="Fixed AssemblyInfo.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed AssemblyInfo.cs" />
+    <MESSAGE value="Reorganization, delete Development.cs" />
+    <MESSAGE value="Refactor Animation.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Animation.cs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
