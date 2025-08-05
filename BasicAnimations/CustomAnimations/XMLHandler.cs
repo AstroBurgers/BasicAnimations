@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 using static BasicAnimations.Systems.Logging;
 
-namespace BasicAnimations.CustomAnimationsStuff;
+namespace BasicAnimations.CustomAnimations;
 
 internal class XmlHelper<TE>
 {

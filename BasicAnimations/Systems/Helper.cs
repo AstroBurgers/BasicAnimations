@@ -8,7 +8,7 @@ internal class Helper
 {
     internal static Ped MainPlayer => Game.LocalPlayer.Character;
     internal static bool IsAnimationActive;
-    internal static bool BetaVersion = false;
+    internal static readonly bool BetaVersion = false;
 
     internal static bool CheckRequirements()
     {

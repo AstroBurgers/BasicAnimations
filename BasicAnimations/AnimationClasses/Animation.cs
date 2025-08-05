@@ -3,7 +3,7 @@ using Rage;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;
 
-namespace BasicAnimations.Animation_Classes;
+namespace BasicAnimations.AnimationClasses;
 
 public enum AnimationStage
 {

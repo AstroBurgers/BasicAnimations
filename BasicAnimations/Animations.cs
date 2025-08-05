@@ -1,7 +1,7 @@
-﻿using BasicAnimations.Animation_Classes;
-using Rage;
+﻿using Rage;
 using Rage.Native;
 using System;
+using BasicAnimations.AnimationClasses;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging.Logger;
 

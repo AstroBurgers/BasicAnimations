@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using BasicAnimations.Animation_Classes;
+using BasicAnimations.AnimationClasses;
 
-namespace BasicAnimations.CustomAnimationsStuff;
+namespace BasicAnimations.CustomAnimations;
 
 [XmlRoot]
 public class CustomAnimations

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BasicAnimations.Animation_Classes;
+using BasicAnimations.AnimationClasses;
 using BasicAnimations.Systems;
 using Rage;
 using RAGENativeUI;
@@ -9,12 +9,11 @@ using RAGENativeUI.Elements;
 using RAGENativeUI.PauseMenu;
 using static BasicAnimations.Systems.Helper;
 
-namespace BasicAnimations.Menus;
+namespace BasicAnimations;
 
 internal static class Menu
 {
     // Creating the menus
-    //String Params are the same as the items
     private static readonly MenuPool MainMenuPool = new();
     private static readonly UIMenu AllAnimMain = new("All Animations", "");
     private static readonly UIMenu MiscAnims = new("Miscellaneous", "");
@@ -47,13 +46,11 @@ internal static class Menu
         DevMenu.MouseControlsEnabled = false;
         DevMenu.AllowCameraMovement = true;
 
-        //Calling SetupMen so I can just have CreateMenu() in Main.cs
         SetupMenu();
         GameFiber.StartNew(ProcessMenus);
     }
+    
     //Creating menu Items
-    //First String is button name
-    //Second String is the button description on the bottom of the menu.
     private static readonly UIMenuItem Investigate = new("Investigate", "");
     private static readonly UIMenuItem Camera = new("Camera", "Pull Out A Camera");
     private static readonly UIMenuItem Binoculars = new("Binoculars", "Use some binoculars");
@@ -76,8 +73,8 @@ internal static class Menu
     private static readonly UIMenuItem Yoga = new("Yoga", "STREEETCH");
     private static readonly UIMenuItem EndAnimation = new("~r~End Current Action", "Ends the current active animation/scenario");
 
-    internal static Dictionary<UIMenuItem, Animation> CustomAnimations = new();
-    internal static Dictionary<UIMenuItem, Scenario> CustomScenarios = new();
+    private static readonly Dictionary<UIMenuItem, Animation> CustomAnimations = new();
+    private static readonly Dictionary<UIMenuItem, Scenario> CustomScenarios = new();
         
     private static void SetupMenu()
     {
@@ -88,14 +85,14 @@ internal static class Menu
         MainMenu.BindMenuToItem(PropAnims, PropAnimations); //Binding the item defined before to a defined menu
         MainMenu.BindMenuToItem(CustomAnimsMenu, CustomAnimationsMenuItem); //Binding the item defined before to a defined menu
             
-        foreach (var anim in CustomAnimationsStuff.CustomAnimations.customAnimations.CustomAnimationsArray)
+        foreach (var anim in BasicAnimations.CustomAnimations.CustomAnimations.customAnimations.CustomAnimationsArray)
         {
             UIMenuItem customAnimMenuItem = new(anim.MenuName);
             CustomAnimsMenu.AddItem(customAnimMenuItem);
             CustomAnimations.Add(customAnimMenuItem, anim);
         }
 
-        foreach (var scen in CustomAnimationsStuff.CustomAnimations.customAnimations.CustomScenariosArray)
+        foreach (var scen in BasicAnimations.CustomAnimations.CustomAnimations.customAnimations.CustomScenariosArray)
         {
             UIMenuItem customScenarioMenuItem = new(scen.MenuName);
             CustomAnimsMenu.AddItem(customScenarioMenuItem);
