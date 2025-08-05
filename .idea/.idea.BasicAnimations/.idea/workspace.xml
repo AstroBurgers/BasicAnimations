@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0222e4b9-041d-402e-97b1-1780c53f358b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/BasicAnimations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/BasicAnimations.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Menu.cs" afterDir="false" />
-    </list>
+    <list default="true" id="0222e4b9-041d-402e-97b1-1780c53f358b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +104,7 @@
       <workItem from="1723077027009" duration="106000" />
       <workItem from="1723077162862" duration="2123000" />
       <workItem from="1725057673076" duration="10000" />
-      <workItem from="1754352669731" duration="2489000" />
+      <workItem from="1754352669731" duration="2808000" />
     </task>
     <task id="LOCAL-00001" summary="Updated .gitignore&#10;Started work on custom animations support">
       <option name="closed" value="true" />
@@ -248,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754354404529</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Switch to Newtonsoft.Json, fix keybinds n such.">
+      <option name="closed" value="true" />
+      <created>1754355410050</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1754355410050</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +277,8 @@
     <MESSAGE value="Refactor Animation.cs" />
     <MESSAGE value="Refactor Scenario.cs" />
     <MESSAGE value="Change to full JSon structure, keybind support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change to full JSon structure, keybind support." />
+    <MESSAGE value="Switch to Newtonsoft.Json, fix keybinds n such." />
+    <option name="LAST_COMMIT_MESSAGE" value="Switch to Newtonsoft.Json, fix keybinds n such." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
