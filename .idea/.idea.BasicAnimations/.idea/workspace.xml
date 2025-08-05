@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0222e4b9-041d-402e-97b1-1780c53f358b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BasicAnimations/App.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimationsModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BasicAnimations/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Animation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Scenario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/AnimationClasses/Scenario.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BasicAnimations/BasicAnimations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/BasicAnimations.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/CustomAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/CustomAnimations/XMLHandler.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BasicAnimations/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Hotkeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Hotkeys.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicAnimations/Systems/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BasicAnimations/Systems/Settings.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +110,7 @@
       <workItem from="1723077027009" duration="106000" />
       <workItem from="1723077162862" duration="2123000" />
       <workItem from="1725057673076" duration="10000" />
-      <workItem from="1754352669731" duration="1566000" />
+      <workItem from="1754352669731" duration="2489000" />
     </task>
     <task id="LOCAL-00001" summary="Updated .gitignore&#10;Started work on custom animations support">
       <option name="closed" value="true" />
@@ -247,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754353319017</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Change to full JSon structure, keybind support.">
+      <option name="closed" value="true" />
+      <created>1754354404529</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1754354404529</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +274,8 @@
     <MESSAGE value="Reorganization, delete Development.cs" />
     <MESSAGE value="Refactor Animation.cs" />
     <MESSAGE value="Refactor Scenario.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Scenario.cs" />
+    <MESSAGE value="Change to full JSon structure, keybind support." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change to full JSon structure, keybind support." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

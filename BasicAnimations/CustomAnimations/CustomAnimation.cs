@@ -1,7 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.IO;
-using System.Text.Json;
+using Newtonsoft.Json;
 using BasicAnimations.Systems;
 
 namespace BasicAnimations.CustomAnimations;
@@ -23,10 +23,7 @@ public static class CustomAnimationsLoader
             }
 
             var json = File.ReadAllText(FilePath);
-            LoadedData = JsonSerializer.Deserialize<CustomAnimationsModel>(json, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
+            LoadedData = JsonConvert.DeserializeObject<CustomAnimationsModel>(json);
 
             Logging.Logger.Log(Logging.LogType.Normal,
                 $"Loaded {LoadedData?.Animations?.Count ?? 0} animations and {LoadedData?.Scenarios?.Count ?? 0} scenarios.");
@@ -36,4 +33,5 @@ public static class CustomAnimationsLoader
             Logging.Logger.Log(Logging.LogType.Error, $"Error loading animation JSON: {ex.Message}");
         }
     }
+
 }

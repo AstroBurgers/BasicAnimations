@@ -88,6 +88,8 @@ internal static class Menu
 
         foreach (var anim in CustomAnimationsLoader.LoadedData?.Animations ?? Enumerable.Empty<Animation>())
         {
+            Logging.Logger.Log(Logging.LogType.Normal, $"[Menu] Adding animation: {anim.MenuName}");
+
             var displayName = string.IsNullOrWhiteSpace(anim.Keybind)
                 ? anim.MenuName
                 : $"{anim.MenuName} ({anim.Keybind})";
@@ -99,6 +101,8 @@ internal static class Menu
 
         foreach (var scen in CustomAnimationsLoader.LoadedData?.Scenarios ?? Enumerable.Empty<Scenario>())
         {
+            Logging.Logger.Log(Logging.LogType.Normal, $"[Menu] Adding scenario: {scen.MenuName}");
+
             var displayName = string.IsNullOrWhiteSpace(scen.Keybind)
                 ? scen.MenuName
                 : $"{scen.MenuName} ({scen.Keybind})";
@@ -116,6 +120,7 @@ internal static class Menu
             
         MiscAnims.AddItems(Leaning, Suicide, Situps, Pushup, Mocking, Yoga);
         PropAnims.AddItems(CarryBox, Binoculars, Camera);
+        
     }
 
     private static void CustomAnimsMenuOnOnItemSelect(UIMenu sender, UIMenuItem selecteditem, int index)

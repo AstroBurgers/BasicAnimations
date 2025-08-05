@@ -1,5 +1,4 @@
 ﻿#nullable enable
-using System.Xml.Serialization;
 using Rage;
 using static BasicAnimations.Systems.Helper;
 using static BasicAnimations.Systems.Logging;

@@ -32,6 +32,7 @@ internal class EntryPoint
             }
 
             CustomAnimations.CustomAnimationsLoader.Load();
+            Hotkeys.Initialize();
             GameFiber.StartNew(Menu.CreateMenu);
             GameFiber.StartNew(SetupIniFile);
             GameFiber.StartNew(Hotkeys.HotKeyHandler);
