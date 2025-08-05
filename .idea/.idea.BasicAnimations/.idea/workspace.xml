@@ -104,7 +104,7 @@
       <workItem from="1723077027009" duration="106000" />
       <workItem from="1723077162862" duration="2123000" />
       <workItem from="1725057673076" duration="10000" />
-      <workItem from="1754352669731" duration="2808000" />
+      <workItem from="1754352669731" duration="3141000" />
     </task>
     <task id="LOCAL-00001" summary="Updated .gitignore&#10;Started work on custom animations support">
       <option name="closed" value="true" />
@@ -250,7 +250,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754355410050</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update README.md">
+      <option name="closed" value="true" />
+      <created>1754355717420</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1754355717420</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +286,8 @@
     <MESSAGE value="Refactor Scenario.cs" />
     <MESSAGE value="Change to full JSon structure, keybind support." />
     <MESSAGE value="Switch to Newtonsoft.Json, fix keybinds n such." />
-    <option name="LAST_COMMIT_MESSAGE" value="Switch to Newtonsoft.Json, fix keybinds n such." />
+    <MESSAGE value="update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="update README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
